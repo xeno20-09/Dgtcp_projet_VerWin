@@ -1,51 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.bunny.net">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-  <title></title>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-      <div class="container-fluid">
-        <img src="{{ asset('images/whiteOfficialLogo.png') }}" alt="Mon Image">
-     
-        <img src="{{ asset('images/logo_DGTCP_2_blanc.png') }}" alt="Mon Image">
-      </div>
-  
-    </nav>
-  </header>
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card mt-5">
-          <div class="card-body text-center">
-            <h2 class="mb-4">Vérifiez votre boîte mail</h2>
-            <p class="mb-4">Nous avons envoyé un e-mail à votre adresse e-mail. Veuillez consulter votre boîte de réception et cliquer sur le lien de confirmation pour activer votre compte.</p>
-            <p>Si vous n'avez pas reçu d'e-mail, veuillez vérifier votre dossier de courrier indésirable (spam) ou <a href="{{ route('register') }}">réessayez l'inscription</a>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 <!-- Footer -->
 <footer class="bg-primary text-center text-white">
   <!-- Grid container -->
@@ -190,6 +142,18 @@
             </li>
           </ul>
 
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <!--Grid column-->
       </div>
@@ -230,5 +194,3 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-</body>
-</html>
