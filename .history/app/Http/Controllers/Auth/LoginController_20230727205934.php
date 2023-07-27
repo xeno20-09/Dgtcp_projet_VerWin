@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
-       /*
+    /*
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------
@@ -36,19 +36,18 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        
         $this->middleware('guest')->except('logout');
-     
     }
+    if(use Illuminate\Support\Facades\Auth;
+    )
     public function redirectTo()
     {
-        
-        if (Auth::check() && Auth::user()->poste == 'Sécretaire') {
+        if (Auth::check() && Auth::user()->poste == 'Secretaire') {
       
             return '/HSecretaire';
     
         }
-        if (Auth::check() && Auth::user()->poste == 'Vérificateur') {
+        if (Auth::check() && Auth::user()->poste == 'Verificateur') {
         
             return '/HVerificateur';
     
@@ -74,27 +73,4 @@ class LoginController extends Controller
     
         }
     }
-
-
-
-
-
-
-    public function logout(Request $request)
-    {
-        // Vérifier si un utilisateur est connecté avant de procéder à la déconnexion
-        if (Auth::check()) {
-            // Mettez à jour la date de dernière déconnexion de l'utilisateur
-            $user = Auth::user();
-            $user->last_login_at = now();
-            $user->update();
-            
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-        }
-        return redirect('/');
-    }
-
-
 }
