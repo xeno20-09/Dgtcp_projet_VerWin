@@ -31,13 +31,13 @@
           <ul class="navbar-nav me-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('HVerificateur')}}">Home</a>
+              <a class="nav-link active" href="{{ url('HChef_division')}}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('liste_demande_n') }}">Saisir une demande</a>
+              <a class="nav-link active" href="{{url('liste_demandes_n')}}">Saisir une demande</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('liste_demande')}}">Liste des demandes</a>
+              <a class="nav-link" href="{{url('liste_demandes')}}">Liste des demandes</a>
             </li>
             <!--   <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
@@ -79,11 +79,11 @@
               </div>
             </li>
             @endguest
+
+
+
           </ul>
-          <form class="d-flex flex-row gap-3" style="width: 32%;position: relative;left: 120px;top: 72px;" action="{{route('info.search',$item->id)}}" method="GET">
-            <input class="form-control" type="search" name="query" value="{{request()->input('query') }}" placeholder="Recherche" aria-label="Recherche">
-            <button class="btn btn-outline" type="submit"><i class="fas fa-search" style="font-size:10px;"></i></button>
-          </form>
+
         </div>
         <li style="list-style-type: none;" class="nav-item">
           <a href=""><i class="fas fa-bell" style="font-size:48px;"></i></a>
@@ -96,12 +96,12 @@
     </nav>
   </header>
   <main class="py-4">
- 
+
 
     @yield('content')
   </main>
 
-  @extends('layout.verificateur.footer')
+  @extends('layout.chef_division.footer')
 </body>
 
 </html>

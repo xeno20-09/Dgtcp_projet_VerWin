@@ -79,6 +79,8 @@
               </div>
             </li>
             @endguest
+
+
           </ul>
           <form class="d-flex flex-row gap-3" style="width: 32%;position: relative;left: 120px;top: 72px;" action="{{route('info.search',$item->id)}}" method="GET">
             <input class="form-control" type="search" name="query" value="{{request()->input('query') }}" placeholder="Recherche" aria-label="Recherche">

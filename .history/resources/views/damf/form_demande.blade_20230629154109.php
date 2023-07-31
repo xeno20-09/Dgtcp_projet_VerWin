@@ -1,4 +1,4 @@
-@extends('layout.damf.header')
+@extends('layout.verificateur.header')
 @section('content')
 <div class="container">
   <h1 style="text-align: center;">

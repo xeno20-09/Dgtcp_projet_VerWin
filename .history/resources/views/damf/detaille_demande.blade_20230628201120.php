@@ -1,4 +1,4 @@
-@extends('layout.chef_bureau.header')
+@extends('layout.verificateur.header')
 @section('content')
 <div class="container">
   <h1 style="text-align: center;">
@@ -31,24 +31,25 @@
       <li class="list-group-item">Pays du beneficiaire: {{ $item['pays_benefi'] }}</li>
       <li class="list-group-item">Numero de compte du beneficiaire: {{ $item['num_compt_benefi'] }}</li>
       <li class="list-group-item">Statut de la demande: {{ $item['status_dmd'] }}</li>
-      @if( $item['vu_chef_division'] !=0)
-      <li class="list-group-item">Vu par le Chef Division</li>
+      @if( $item['vu_damf'] !=0)
+      <li class="list-group-item">Vu par le DAMF</li>
       @else
-      <li class="list-group-item">Non vu par le Chef Division</li>
+      <li class="list-group-item">Non vu par le DAMF</li>
       @endif
       @foreach ($jointure as $row)
       <li class="list-group-item">Nom du Secretaire:{{ $row->name }}</li>
-
       @break
 @endforeach
 @foreach ($jointure1 as $row1)
       <li class="list-group-item">Nom du Verificateur:{{ $row1->name }}</li>
-
       @break
 @endforeach
 @foreach ($jointure2 as $row2)
       <li class="list-group-item">Nom du Chef Division:{{ $row2->name }}</li>
-  
+      @break
+@endforeach
+@foreach ($jointure3 as $row3)
+      <li class="list-group-item">Nom du Chef Bureau:{{ $row3->name }}</li>
       @break
 @endforeach
     </ul>
@@ -62,7 +63,7 @@
 
 
   @foreach ($user as $item)
-  <a style="width: auto; height:fit-content;" href="{{ url('HChef_bureau')}}" class="btn btn-primary">Statistique</a>
+  <a style="width: auto; height:fit-content;" href="{{ url('HDamf')}}" class="btn btn-primary">Statistique</a>
 
 
   @endforeach
@@ -72,6 +73,4 @@
 <br>
 <br>
 @endsection
-
-
 

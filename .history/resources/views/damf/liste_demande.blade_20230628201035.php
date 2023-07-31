@@ -1,4 +1,4 @@
-@extends('layout.chef_division.header')
+@extends('layout.verificateur.header')
 @section('content')
 <div class="container">
   <h1 style="text-align: center;">
@@ -17,11 +17,11 @@
         <th scope="col">Prenom du client:</th>
         <th scope="col">Date:</th>
         <th scope="col">Nom Secretaire:</th>
-
         <th scope="col">Nom Beneficiere:</th>
         <th scope="col">Prenom Beneficiere:</th>
         <th scope="col">Nom Verificateur:</th>
- 
+        <th scope="col">Date decision :</th>
+        <th scope="col">Nom Chef Division:</th>
         <th scope="col">Status:</th>
 
       </tr>
@@ -50,9 +50,15 @@
         <td> {{ $itemd->name }}</td>
         @break
         @endforeach
+        <td>{{ $item->date_decision }}</td>
+        @foreach ($jointure2 as $iteme)
+        <td> {{ $iteme->name }}</td>
+        @break
+        @endforeach
         <td>{{ $item->status_dmd }}</td>
+     
         <td>
-          <a style="width: auto; height:fit-content;" href="{{ url('detailles_demandes',  ['id' => $item->id]) }}" class="btn btn-primary">Voir</a>
+          <a style="width: auto; height:fit-content;" href="{{ route('detailles_dmd',  ['id' => $item->id]) }}" class="btn btn-primary">Voir</a>
         </td>
 
 

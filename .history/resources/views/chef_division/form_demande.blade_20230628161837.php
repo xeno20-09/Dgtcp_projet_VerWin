@@ -1,4 +1,4 @@
-@extends('layout.damf.header')
+@extends('layout.verificateur.header')
 @section('content')
 <div class="container">
   <h1 style="text-align: center;">
@@ -10,13 +10,13 @@
   <h1>Demande N° {{ $item_c->numero_doss}} </h1>
 
 
-  <form action="{{route('store_formulaire_dmd',$item_c->id)}}" method="Post" class="card-body cardbody-color p-lg-5">
+  <form action="{{route('store_formulaire_demanded',$item_c->id)}}" method="Post" class="card-body cardbody-color p-lg-5">
 
     @csrf
     <legend>Checker l'enregistrement</legend>
 
     <div class="row">
-      <legend>Demande secretaire</legend>
+    <legend>Demande secretaire</legend>
       <hr>
 
 
@@ -192,7 +192,7 @@
 
 
     <br><br>
-    <legend>Demande Chef division</legend>
+    <legend>Saisir d'une demande</legend>
     <hr>
 
     <div class="row">
@@ -200,66 +200,21 @@
       <div class="col">
         <div class="form-group">
           <label for="" class="form-label mt-4">Date de decision</label>
-          <input name="date_decision" value="{{ $item_c->date_decision}}" type="text" class="form-control" id="" placeholder="Date de decision">
+          <input name="date_decision" type="date" class="form-control" id="" placeholder="Date de decision">
         </div>
       </div>
 
-      <br><br>
-      <legend>Demande du Chef Bureau</legend>
-      <hr>
 
-      <div class="row">
-
-        <div class="col">
-
-          <div class="form-group">
-            <input value="{{ $item_c->visa_chef_bureau}}" class="form-check-label" name="visa_chef_bureau" type="checkbox" id="exampleCheckbox">
-            <label class="form-check-label" for="exampleCheckbox">
-              Visa
-            </label>
-          </div>
-        </div>
+    </div>
 
 
-      </div>
-
-
-      <br><br>
-      <legend>Saisir d'une demande</legend>
-      <hr>
-
-      <div class="row">
-
-        <div class="col">
-
-          <div class="form-group">
-            <label for="exampleSelect1" class="form-label mt-4">Example disabled select</label>
-            <select name="status" class="form-select" id="exampleDisabledSelect1">
-              <option>Autorisée</option>
-              <option>Rejetée</option>
-              <option>Suspendu</option>
-            </select>
-          </div>
-
-        </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="" class="form-label mt-4">Motif du rejet ou de la suspension</label>
-            <input name="motif" value="{{ $item_c->motif}}" type="text" class="form-control" id="" placeholder="Motif">
-          </div>
-        </div>
-
-
-      </div>
+ 
 
 
 
 
-
-
-
-      <br>
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
   </form>
 
 
