@@ -43,13 +43,15 @@
 
   <div  style="display:flex;flex-direction:row;justify-content:space-between;">
     
-          <img src="https://i.ibb.co/Mfk8tbX/MEF-removebg-preview.png" style="height:50px;" alt="" />
-             
-       
-          <img src="https://i.ibb.co/LR4pkMQ/iso.jpg"  style="height:50px;margin-left:150px;" alt="" />
+          <img src=" https://ibb.co/9gRY8Jw" style="height:50px;" alt="" />
+         
+        
+          https://ibb.co/fDxRH3X
+    
+          <img src="https://i.goopics.net/p4j8zd.jpg"  style="height:50px;margin-left:150px;" alt="" />
       
     
-          <img src="https://i.ibb.co/H7xhBVk/dgtcp-removebg-preview.png" style="height:50px;margin-left:200px;" alt="" />
+          <img src="https://i.goopics.net/1y3z56.png"  style="height:50px;margin-left:115px;" alt="" />
       
   </div>
 

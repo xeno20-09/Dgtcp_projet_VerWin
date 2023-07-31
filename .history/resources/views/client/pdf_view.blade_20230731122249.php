@@ -42,15 +42,15 @@
 <body>
 
   <div  style="display:flex;flex-direction:row;justify-content:space-between;">
-    
-          <img src="https://i.ibb.co/Mfk8tbX/MEF-removebg-preview.png" style="height:50px;" alt="" />
-             
-       
-          <img src="https://i.ibb.co/LR4pkMQ/iso.jpg"  style="height:50px;margin-left:150px;" alt="" />
-      
-    
-          <img src="https://i.ibb.co/H7xhBVk/dgtcp-removebg-preview.png" style="height:50px;margin-left:200px;" alt="" />
-      
+      <div>
+          <img src="https://i.goopics.net/bxxd94.png" style="height:50px;" alt="" />
+      </div>
+      <div>
+          <img src="https://i.goopics.net/p4j8zd.jpg"  style="height:50px;margin-left:150px;" alt="" />
+      </div>
+      <div>
+          <img src="https://i.goopics.net/1y3z56.png"  style="height:50px;margin-left:115px;" alt="" />
+      </div>
   </div>
 
     <!-- Données du formulaire -->
@@ -67,76 +67,6 @@
                         <td>{{ $item->date }}</td>
                     </tr>
                     <!-- Ajoutez ici les autres lignes pour les autres champs du formulaire -->
-                    <tr>
-                      <td>Nature des produits:</td>
-                      <td>{{ $item->nature_p }}</td>
-                  </tr>
-                  <tr>
-                      <td>Nature des opérations:</td>
-                      <td>{{ $item->nature_op }}</td>
-                  </tr>
-                  <tr>
-                      <td>Montant en FCFA:</td>
-                      <td>{{ $item->montant }}</td>
-                  </tr>
-                  <tr>
-                      <td>Contre montant:</td>
-                      <td>{{ $item->montant_con }}{{ $item->devise }}</td>
-                  </tr>
-                  <tr>
-                      <td>Nom du client:</td>
-                      <td>{{ $item->nom_client }}</td>
-                  </tr>
-             
-                  <tr>
-                    <td>Prénom du client:</td>
-                    <td>{{ $item-> prenom_client }}</td>
-                  </tr>
-                  
-                  <tr>
-                    <td>Profession du client:</td>
-                    <td>{{ $item-> profess_client }}</td>                      
-                  </tr> 
-                  
-                  <tr>
-                    <td>Téléphone du client:</td>
-                    <td>{{ $item-> tel_client }}</td>
-                  </tr> 
-                  
-                  <tr>
-                    <td>Banque du client:</td>
-                    <td>{{ $item-> banque_client }}</td>
-                  </tr> 
-                  
-                  <tr>
-                    <td>Numéro de compte du client:</td>
-                    <td>{{ $item-> num_compt_client }}</td>
-                  </tr> 
-                  
-                  <tr>
-                    <td>Nom du beneficiaire:</td>
-                    <td>{{ $item['nom_benefi'] }}</td>
-                  </tr>  
-                  
-                  <tr>
-                    <td>Prenom du beneficiaire:</td>
-                    <td>{{ $item['prenom_benefi'] }}</td>
-                  </tr> 
-                  
-                  <tr>
-                  <td>Banque du beneficiaire:</td>
-                  <td> {{ $item['banque_benefi'] }}</td>
-                  </tr> 
-                  
-                  <tr>
-                    <td>Pays du beneficiaire:</td>
-                    <td>{{ $item['pays_benifi'] }}</td>
-                  </tr> 
-                  
-                  <tr>
-                  <td>Numero de compte du beneficiaire:</td>
-                  <td>{{ $item['num_compt_benefi'] }}</td>
-                  </tr> 
                 </table>
             </div>
             @endforeach

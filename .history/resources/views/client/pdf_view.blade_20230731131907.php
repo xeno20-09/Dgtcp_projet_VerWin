@@ -43,13 +43,14 @@
 
   <div  style="display:flex;flex-direction:row;justify-content:space-between;">
     
-          <img src="https://i.ibb.co/Mfk8tbX/MEF-removebg-preview.png" style="height:50px;" alt="" />
+          <img src="https://i.ibb.co/rdwPHBQ/white-Official-Logo.png" style="height:50px;" alt="" />
              
-       
+          <a href="https://imgbb.com/"><img src="" alt="MEF-removebg-preview" border="0"></a>
+          <a href="https://imgbb.com/"><img src="https://i.ibb.co/H7xhBVk/dgtcp-removebg-preview.png" alt="dgtcp-removebg-preview" border="0"></a>
           <img src="https://i.ibb.co/LR4pkMQ/iso.jpg"  style="height:50px;margin-left:150px;" alt="" />
       
     
-          <img src="https://i.ibb.co/H7xhBVk/dgtcp-removebg-preview.png" style="height:50px;margin-left:200px;" alt="" />
+          <img src="https://i.ibb.co/BnHnt4D/logo-DGTCP-2-blanc.png" style="height:50px;margin-left:115px;" alt="" />
       
   </div>
 

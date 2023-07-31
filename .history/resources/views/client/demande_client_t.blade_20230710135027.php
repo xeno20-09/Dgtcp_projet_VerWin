@@ -31,7 +31,7 @@
             <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>
             <li class="list-group-item">Prenom du beneficiaire: {{ $item['prenom_benefi'] }}</li>
             <li class="list-group-item">Banque du beneficiaire: {{ $item['banque_benefi'] }}</li>
-            <li class="list-group-item">Pays du beneficiaire: {{ $item['pays_benifi'] }}</li>
+            <li class="list-group-item">Pays du beneficiaire: {{ $item['pays_benefi'] }}</li>
             <li class="list-group-item">Numero de compte du beneficiaire: {{ $item['num_compt_benefi'] }}</li>
             <li class="list-group-item">Statut de la demande: {{ $item['status_dmd'] }}</li>
 

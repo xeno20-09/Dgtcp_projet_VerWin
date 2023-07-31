@@ -43,13 +43,16 @@
 
   <div  style="display:flex;flex-direction:row;justify-content:space-between;">
     
-          <img src="https://i.ibb.co/Mfk8tbX/MEF-removebg-preview.png" style="height:50px;" alt="" />
-             
-       
-          <img src="https://i.ibb.co/LR4pkMQ/iso.jpg"  style="height:50px;margin-left:150px;" alt="" />
+          <img src=" https://ibb.co/9gRY8Jw" style="height:50px;" alt="" />
+          <a href="https://ibb.co/9gRY8Jw"><img src="https://i.ibb.co/9gRY8Jw/iso.jpg" alt="iso" border="0"></a> <a href="https://ibb.co/9ZmZNwX"><img src="https://i.ibb.co/9ZmZNwX/logo-DGTCP-2-blanc.png" alt="logo-DGTCP-2-blanc" border="0"></a> <a href="https://ibb.co/fDxRH3X">
+            <img src="https://i.ibb.co/fDxRH3X/white-Official-Logo.png" alt="white-Official-Logo" border="0"></a>       
+        
+          
+    
+          <img src="https://ibb.co/9ZmZNwX"  style="height:50px;margin-left:150px;" alt="" />
       
     
-          <img src="https://i.ibb.co/H7xhBVk/dgtcp-removebg-preview.png" style="height:50px;margin-left:200px;" alt="" />
+          <img src="https://ibb.co/fDxRH3X"  style="height:50px;margin-left:115px;" alt="" />
       
   </div>
 
