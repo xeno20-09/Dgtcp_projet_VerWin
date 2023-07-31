@@ -22,7 +22,12 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  
+      <div id="id_img" class="container-fluid">
+     
+        <img src="https://i.goopics.net/bxxd94.png" style="height:60px" alt="" />
+
+      <img src="https://i.goopics.net/1y3z56.png"  style="height:60px; position:relative;left:200px;" alt="" />
+        </div>
       
        
   
