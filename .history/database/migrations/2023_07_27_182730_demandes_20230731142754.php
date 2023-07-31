@@ -20,8 +20,8 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('nature_p')->nullable();
             $table->string('nature_op')->nullable();
-            $table->bigInteger('montant')->nullable();
-            $table->bigInteger('montant_con')->default(0);
+            $table->Bi('montant')->nullable();
+            $table->Bi('montant_con')->default(0.0);
             $table->string('devise')->nullable();
             $table->string('nom_client')->nullable();
             $table->string('prenom_client')->nullable();
