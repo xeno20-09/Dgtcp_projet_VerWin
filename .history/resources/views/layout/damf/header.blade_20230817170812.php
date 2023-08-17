@@ -54,7 +54,7 @@
                         </li>
 
                         @guest
-                            @if (Route::has('login'))
+                            {{--      @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -64,7 +64,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             @php
                                 if (Auth::check()) {

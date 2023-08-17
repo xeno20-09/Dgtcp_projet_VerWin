@@ -1,4 +1,19 @@
 @extends('layout.header')
+public function logout(Request $request)
+{
+    // Vérifier si un utilisateur est connecté avant de procéder à la déconnexion
+    if (Auth::check()) {
+        // Mettez à jour la date de dernière déconnexion de l'utilisateur
+        $user = Auth::user();
+        $user->last_login_at = now();
+        $user->update();
+        
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    }
+    return redirect('/');
+}
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

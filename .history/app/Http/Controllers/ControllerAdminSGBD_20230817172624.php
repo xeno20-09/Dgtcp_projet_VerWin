@@ -37,17 +37,17 @@ class ControllerAdminSGBD extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-
+    
         // Création d'un nouveau modèle avec les données du formulaire
         $user = user::find($idc);
         $user->poste = $data['poste'];
-
+    
         // Sauvegarde du modèle en base de données
         $user->update();
         $user = User::orderBy('created_at', 'desc')->paginate(3);
         return view('Admin_SGBD.Home', compact('user'));
     }
-
+    
 
     public function delete_user(Request $request, $id)
     {

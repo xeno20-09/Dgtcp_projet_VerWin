@@ -1,4 +1,14 @@
 @extends('layout.header')
+
+    if (Auth::check()) {
+        // Mettez à jour la date de dernière déconnexion de l'utilisateur
+        $user = Auth::user();
+
+        
+        Auth::logout();
+      
+    }
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

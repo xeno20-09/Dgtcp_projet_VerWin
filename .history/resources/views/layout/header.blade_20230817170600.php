@@ -34,31 +34,14 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('HDamf') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('liste_dmd_n') }}">Saisir une demande</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('liste_dmd') }}">Liste des demandes</a>
-                        </li>
-                        <!--   <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> </a>
-                        </li>
-
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
+
+
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -71,40 +54,31 @@
                                     Auth::logout();
                                 }
                             @endphp
-                            {{--        <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li> --}}
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                         @endguest
+
+
                     </ul>
-                    <form class="d-flex flex-row gap-3"
-                        style="width: 32%;position: relative;left: 120px;top: 72px;"action="{{ route('info.search', $item->id) }}"
-                        method="GET">
-                        <input class="form-control" type="search" name="query"
-                            value="{{ request()->input('query') }}"placeholder="Recherche" aria-label="Recherche">
-                        <button class="btn btn-outline" type="submit"><i class="fas fa-search"
-                                style="font-size:10px;"></i></button>
-                    </form>
+
                 </div>
-                <li style="list-style-type: none;" class="nav-item">
-                    <a href=""><i class="fas fa-bell" style="font-size:48px;"></i></a>
-                    <span class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>
-                </li>
+
 
                 <img src="{{ asset('images/logo_DGTCP_2_blanc.png') }}" alt="Mon Image">
             </div>
@@ -114,11 +88,10 @@
     <main class="py-4">
 
 
-
         @yield('content')
     </main>
 
-    @extends('layout.damf.footer')
+    @extends('layout.footer')
 </body>
 
 </html>

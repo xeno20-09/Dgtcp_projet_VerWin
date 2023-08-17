@@ -22,6 +22,15 @@ class ControllerAdminSGBD extends Controller
     {
         $id = Auth::id();
         $user = User::orderBy('created_at', 'desc')->paginate(3);
+        /*    $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
+        $demande_valider = demande::where('status_dmd', '=', 'Autorisée')->get();
+        $demande_echec = demande::where('status_dmd', '=', 'Rejetée')->get();
+        $demande_suspendre = demande::where('status_dmd', '=', 'suspendre')->get();
+        $le_n_dmd_c = count($demande_encours);
+        $le_n_dmd_v = count($demande_valider);
+        $le_n_dmd_e = count($demande_echec);
+        $le_n_dmd_s = count($demande_suspendre);
+        $dmd_n_lu = count(demande::where('vu_chef_bureau', '=',0)->get()); */
         return view('Admin_SGBD.Home', compact('user'));
     }
 
@@ -29,8 +38,18 @@ class ControllerAdminSGBD extends Controller
     {
 
         $user = User::where('id', '=', $id)->get();
+        /*    $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
+        $demande_valider = demande::where('status_dmd', '=', 'Autorisée')->get();
+        $demande_echec = demande::where('status_dmd', '=', 'Rejetée')->get();
+        $demande_suspendre = demande::where('status_dmd', '=', 'suspendre')->get();
+        $le_n_dmd_c = count($demande_encours);
+        $le_n_dmd_v = count($demande_valider);
+        $le_n_dmd_e = count($demande_echec);
+        $le_n_dmd_s = count($demande_suspendre);
+        $dmd_n_lu = count(demande::where('vu_chef_bureau', '=',0)->get()); */
         return view('Admin_SGBD.form_user', compact('user'));
     }
+
 
     public function store_user(Request $request, $idc)
     {
@@ -38,16 +57,17 @@ class ControllerAdminSGBD extends Controller
         // Récupérer toutes les données du formulaire
         $data = $request->all();
 
+
         // Création d'un nouveau modèle avec les données du formulaire
         $user = user::find($idc);
         $user->poste = $data['poste'];
+
 
         // Sauvegarde du modèle en base de données
         $user->update();
         $user = User::orderBy('created_at', 'desc')->paginate(3);
         return view('Admin_SGBD.Home', compact('user'));
     }
-
 
     public function delete_user(Request $request, $id)
     {
