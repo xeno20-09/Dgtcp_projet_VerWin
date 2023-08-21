@@ -61,7 +61,7 @@
             <td>{{ $item->status_dmd }}</td>
             <td>
 
-                <a href="{{ route('formulaireda_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                <a href="{{ route('formulaired_demande_mj', ['id' => $item['id']]) }} " class="table-link">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>

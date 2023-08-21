@@ -36,6 +36,7 @@
 
                         <td> {{ $item->numero_doss }}</td>
                         <td> {{ $item->nom_client }}</td>
+                        <td> {{ $item->prenom_client }}</td>
                         <td> {{ $item->date }}</td>
                         @foreach ($jointure as $itemc)
                             <td> {{ $itemc->name }}</td>
@@ -44,6 +45,7 @@
 
 
                     <td>{{ $item->nom_benefi }}</td>
+                    <td>{{ $item->prenom_benefi }}</td>
 
                     @foreach ($jointure1 as $itemd)
                         <td> {{ $itemd->name }}</td>
@@ -61,7 +63,7 @@
             <td>{{ $item->status_dmd }}</td>
             <td>
 
-                <a href="{{ route('formulaireda_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                <a href="{{ route('formulairecb_demande_mj', ['id' => $item['id']]) }} " class="table-link">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>

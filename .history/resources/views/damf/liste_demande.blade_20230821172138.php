@@ -14,9 +14,11 @@
 
                     <th scope="col">N°Dossier:</th>
                     <th scope="col">Nom du client:</th>
+                    <th scope="col">Prenom du client:</th>
                     <th scope="col">Date:</th>
                     <th scope="col">Nom Secretaire:</th>
                     <th scope="col">Nom Beneficiere:</th>
+                    <th scope="col">Prenom Beneficiere:</th>
                     <th scope="col">Nom Verificateur:</th>
                     <th scope="col">Date decision :</th>
                     <th scope="col">Nom Chef Division:</th>
@@ -36,6 +38,7 @@
 
                         <td> {{ $item->numero_doss }}</td>
                         <td> {{ $item->nom_client }}</td>
+                        <td> {{ $item->prenom_client }}</td>
                         <td> {{ $item->date }}</td>
                         @foreach ($jointure as $itemc)
                             <td> {{ $itemc->name }}</td>
@@ -44,6 +47,7 @@
 
 
                     <td>{{ $item->nom_benefi }}</td>
+                    <td>{{ $item->prenom_benefi }}</td>
 
                     @foreach ($jointure1 as $itemd)
                         <td> {{ $itemd->name }}</td>
@@ -61,7 +65,7 @@
             <td>{{ $item->status_dmd }}</td>
             <td>
 
-                <a href="{{ route('formulaireda_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                <a href="{{ route('formulairecb_demande_mj', ['id' => $item['id']]) }} " class="table-link">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>

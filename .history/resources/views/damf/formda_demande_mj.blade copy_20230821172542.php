@@ -247,7 +247,8 @@
 
                             <div class="form-group">
                                 <label for="exampleSelect1" class="form-label mt-4">Example disabled select</label>
-                                <select name="status" class="form-select" id="exampleDisabledSelect1">
+                                <select name="status" class="form-select" id="exampleDisabledSelect1" value="{{ $item_c->motif }}"                                   <option>Autorisée</option>
+>
                                     <option>Autorisée</option>
                                     <option>Rejetée</option>
                                     <option>Suspendu</option>

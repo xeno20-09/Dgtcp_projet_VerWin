@@ -164,7 +164,7 @@
                         <div class="form-group">
                             <label for="" class="form-label mt-4">Pays benificiaire</label>
                             <input name="pays_benifi" type="text" class="form-control" id=""
-                                value="{{ $item_c->pays_benifi }}" placeholder="PaysClient">
+                                placeholder="PaysClient">
                         </div>
                     </div>
 

@@ -70,7 +70,7 @@ class ControllerDamf extends Controller
         $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         $demande = (demande::where('id', '=', $id_dmd)->get());
 
-        return view('damf.formda_demande_mj', compact('demande', 'dmd_n_lu', 'user'));
+        return view('chef_bureau.formda_demande_mj', compact('demande', 'dmd_n_lu', 'user'));
     }
     public function stor(Request $request, $idc)
     {

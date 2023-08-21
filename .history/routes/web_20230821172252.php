@@ -91,10 +91,10 @@ Route::post('/Fdamf{id}', [App\Http\Controllers\ControllerDamf::class, 'stor'])-
 Route::get('/liste_dmd', [App\Http\Controllers\ControllerDamf::class, 'liste_dmd']);
 Route::get('/detailles/{id}', [App\Http\Controllers\ControllerDamf::class, 'detailles'])->name('detailles_dmd');
 Route::get('/searchD{id}',  [App\Http\Controllers\Controller::class, 'searchdamf'])->name('info.search.d');
-Route::get('/damfMj{id}', [App\Http\Controllers\ControllerDamf::class, 'form'])->name('formulaireda_demande_mj');
-Route::post('/damfS_Mj{id}', [App\Http\Controllers\ControllerDamf::class, 'store'])->name('da_store');
+Route::get('/damfMj{id}', [App\Http\Controllers\ControllerBureau::class, 'form'])->name('formulairecb_demande_mj');
+Route::post('/damfS_Mj{id}', [App\Http\Controllers\ControllerBureau::class, 'store'])->name('cb_store');
 
-
+formulaireda_demande_mj
 /*************************************** Fin route Damf ***********************************/
 
 
