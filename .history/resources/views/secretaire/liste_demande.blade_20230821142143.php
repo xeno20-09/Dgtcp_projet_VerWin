@@ -144,7 +144,8 @@
 
             </tbody>
         </table>
-
+        @foreach ($user as $item)
+        @endforeach
     </div>
 
 

@@ -53,9 +53,10 @@
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                  Launch demo modal
+                                </button>
                             </td>
-
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
@@ -144,7 +145,8 @@
 
             </tbody>
         </table>
-
+        @foreach ($user as $item)
+        @endforeach
     </div>
 
 

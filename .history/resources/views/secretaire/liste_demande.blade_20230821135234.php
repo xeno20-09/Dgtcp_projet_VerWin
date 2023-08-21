@@ -55,7 +55,6 @@
                                 </a>
 
                             </td>
-
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
@@ -144,7 +143,8 @@
 
             </tbody>
         </table>
-
+        @foreach ($user as $item)
+        @endforeach
     </div>
 
 

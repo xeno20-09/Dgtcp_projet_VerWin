@@ -19,11 +19,11 @@
         @endforeach
         <legend>Enregistrement d'une demande</legend>
         <!--<div class="col">
-                                          <div class="form-group">
-                                            <label for="" class="form-label mt-4">Numéro du dossier</label>
-                                            <input name="num_dossier" type="text" class="form-control" id="" aria-describedby="" placeholder="" disabled>
-                                          </div>
-                                        </div> -->
+                                      <div class="form-group">
+                                        <label for="" class="form-label mt-4">Numéro du dossier</label>
+                                        <input name="num_dossier" type="text" class="form-control" id="" aria-describedby="" placeholder="" disabled>
+                                      </div>
+                                    </div> -->
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
@@ -37,10 +37,10 @@
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nature des opérations</label>
                 <!--     <select class="form-select" id="exampleSelect1">
-                                              <option></option>
-                                              <option></option>
-                                              <option></option>
-                                            </select> -->
+                                          <option></option>
+                                          <option></option>
+                                          <option></option>
+                                        </select> -->
                 <input name="nature_op" value="{{ $item1->nature_op }}" type="text" class="form-control" id=""
                     placeholder="Nature des opérations">
 
@@ -50,10 +50,10 @@
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nature des produits</label>
                 <!--   <select class="form-select" id="exampleSelect1">
-                                              <option></option>
-                                              <option></option>
-                                              <option></option>
-                                            </select> -->
+                                          <option></option>
+                                          <option></option>
+                                          <option></option>
+                                        </select> -->
                 <input name="nature_pro" value="{{ $item1->nature_p }}" type="text" class="form-control" id=""
                     placeholder="Nature des produits">
 
@@ -115,11 +115,11 @@
             </div>
         </div>
         <!--  <div class="col">
-                                          <div class="form-group">
-                                           <label for="" class="form-label mt-4">Montant converti</label>
-                                            <input name="montant_out" type="text" class="form-control" id="" placeholder="Montant converti">
-                                          </div>
-                                        </div>-->
+                                      <div class="form-group">
+                                       <label for="" class="form-label mt-4">Montant converti</label>
+                                        <input name="montant_out" type="text" class="form-control" id="" placeholder="Montant converti">
+                                      </div>
+                                    </div>-->
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Profession client</label>
@@ -156,7 +156,35 @@
 
     </div>
     @endforeach
+    
+    @foreach ($demande as $item1)
+    <!-- Bouton qui ouvre le modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-{{ $item1->id }}">
+        <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
+        </span>
+    </button>
 
+    <!-- Le modal -->
+    <div class="modal fade" id="myModal-{{ $item1->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mise à jour de la demande n°{{ $item1->id }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('store_dmd_mj', $item->id) }}" method="post"
+                        class="card-body cardbody-color p-lg-5">
+                        <!-- ... Le contenu de votre formulaire ... -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
     <br>
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>

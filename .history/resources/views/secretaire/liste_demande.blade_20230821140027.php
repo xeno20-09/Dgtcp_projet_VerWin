@@ -53,9 +53,9 @@
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-
+                             
                             </td>
-
+                            
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
@@ -144,7 +144,8 @@
 
             </tbody>
         </table>
-
+        @foreach ($user as $item)
+        @endforeach
     </div>
 
 
