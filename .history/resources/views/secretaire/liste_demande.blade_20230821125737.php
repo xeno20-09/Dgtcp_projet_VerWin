@@ -20,10 +20,8 @@
                     <th scope="col">Montant:</th>
                     <th scope="col">Devise:</th>
 
-                    <th scope="col">Contre Montant en FCFA:</th>
+                    <th scope="col">Contre Montant:</th>
                     <th scope="col">Status Dossier:</th>
-                    <th scope="col">Actions</span></th>
-
 
 
                 </tr>
@@ -46,16 +44,6 @@
                             <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
                             <td>
-
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-
-                            </td>
-                            <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
                                     class="btn btn-primary">Voir</a>
@@ -66,20 +54,7 @@
                             <td>{{ $item['date'] }}</td>
                             <td>{{ $item['nom_client'] }}</td>
                             <td>{{ $item['prenom_client'] }}</td>
-                            <td> {{ $item['montant'] }}</td>
-                            <td>{{ $item['devise'] }}</td>
-                            <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
-
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-
-                            </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
@@ -91,20 +66,7 @@
                             <td>{{ $item['date'] }}</td>
                             <td>{{ $item['nom_client'] }}</td>
                             <td>{{ $item['prenom_client'] }}</td>
-                            <td> {{ $item['montant'] }}</td>
-                            <td>{{ $item['devise'] }}</td>
-                            <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
-
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-
-                            </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"
@@ -116,20 +78,7 @@
                             <td>{{ $item['date'] }}</td>
                             <td>{{ $item['nom_client'] }}</td>
                             <td>{{ $item['prenom_client'] }}</td>
-                            <td> {{ $item['montant'] }}</td>
-                            <td>{{ $item['devise'] }}</td>
-                            <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
-
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
-                                    <span class="fa-stack">
-                                        <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-
-                            </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
                                     href="{{ route('detaille_demande', ['id' => $item->id]) }}"

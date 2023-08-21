@@ -47,8 +47,8 @@ class ControllerSecretaire extends Controller
         return view('secretaire.form_demande_mj', compact('demande', 'dmd_n_lu', 'user'));
     }
 
-
-    public function store_mj(Request $request, $id_dmd)
+    
+    public function store_user(Request $request, $id_dmd)
     {
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
@@ -77,7 +77,7 @@ class ControllerSecretaire extends Controller
         $dmd_secretaire->status_dmd = 'En cours';
 
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->update();
+        $user->update();
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  
@@ -86,8 +86,8 @@ class ControllerSecretaire extends Controller
         return view('secretaire.liste_demande', compact('demande', 'dmd_n_lu', 'user'));
 
         // Sauvegarde du modèle en base de données
-
-
+      
+   
     }
 
     public function store(Request $request)

@@ -45,9 +45,9 @@
                             <td>{{ $item['devise'] }}</td>
                             <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
+                            <td style="width: 20%;">
 
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                                <a href="{{ route('modify_user', ['id' => $item['id']]) }} " class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
@@ -70,9 +70,9 @@
                             <td>{{ $item['devise'] }}</td>
                             <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
+                            <td style="width: 20%;">
 
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                                <a href="{{ route('modify_user', ['id' => $item['id']]) }} " class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
@@ -95,9 +95,9 @@
                             <td>{{ $item['devise'] }}</td>
                             <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
+                            <td style="width: 20%;">
 
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                                <a href="{{ route('modify_user', ['id' => $item['id']]) }} " class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
@@ -120,9 +120,9 @@
                             <td>{{ $item['devise'] }}</td>
                             <td>{{ $item['montant_con'] }}</td>
                             <td>{{ $item['status_dmd'] }}</td>
-                            <td>
+                            <td style="width: 20%;">
 
-                                <a href="{{ route('formulaire_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+                                <a href="{{ route('modify_user', ['id' => $item['id']]) }} " class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fas fa-pen fa-stack-1x fa-inverse"></i>

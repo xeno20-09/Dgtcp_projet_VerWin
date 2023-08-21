@@ -35,8 +35,7 @@ Route::post('/Secretaire{id}', [App\Http\Controllers\ControllerSecretaire::class
 Route::get('/Listedeman', [App\Http\Controllers\ControllerSecretaire::class, 'liste'])->name('liste_deman');
 Route::get('/detaille{id}', [App\Http\Controllers\ControllerSecretaire::class, 'detaille'])->name('detaille_demande');
 Route::get('/searchs{id}',  [App\Http\Controllers\Controller::class, 'searchs'])->name('info.search.s');
-Route::get('/SecretaireMj{id}', [App\Http\Controllers\ControllerSecretaire::class, 'form'])->name('formulaire_demande_mj');
-Route::post('/SecretaireS_Mj{id}', [App\Http\Controllers\ControllerSecretaire::class, 'store_mj'])->name('store_dmd_mj');
+Route::get('/Secretaire', [App\Http\Controllers\ControllerSecretaire::class, 'form'])->name('formulaire_demande_mj');
 
 /*************************************** Fin route secretaire ***********************************/
 

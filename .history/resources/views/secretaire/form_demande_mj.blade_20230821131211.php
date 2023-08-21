@@ -28,9 +28,10 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
-                    <input name="date_depot" type="texte" value="{{ $date }}" class="form-control" id=""
+                @foreach ($demande as $item1)
+                    <input name="date_depot" type="texte" value="{{ $item1->date}}" class="form-control" id=""
                         aria-describedby="" placeholder="">
-                     
+              
             </div>
         </div>
         <div class="col">
@@ -41,7 +42,7 @@
                   <option></option>
                   <option></option>
                 </select> -->
-                <input name="nature_op" type="text" class="form-control" id=""
+                <input name="nature_op" value="{{ $item1->nature_op}}" type="text" class="form-control" id=""
                     placeholder="Nature des opérations">
 
             </div>
@@ -54,7 +55,7 @@
                   <option></option>
                   <option></option>
                 </select> -->
-                <input name="nature_pro" type="text" class="form-control" id=""
+                <input name="nature_pro" value="{{ $item1->nature_pro}}"  type="text" class="form-control" id=""
                     placeholder="Nature des produits">
 
             </div>
@@ -147,7 +148,7 @@
         </div>
 
     </div>
-
+    @endforeach
     <br>
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>

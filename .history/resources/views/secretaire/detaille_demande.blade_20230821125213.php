@@ -16,6 +16,7 @@
                     <li class="list-group-item">Nature des opérations: {{ $item['nature_op'] }}</li>
                     <li class="list-group-item">Montant en {{ $item['devise'] }}: {{ $item['montant'] }}</li>
                     <li class="list-group-item">Contre montant en FCFA: {{ $item['montant_con'] }}</li>
+                    <li class="list-group-item">Devise: {{ $item['devise'] }}</li>
                     <li class="list-group-item">Nom du client: {{ $item['nom_client'] }}</li>
                     @php
                         $i = $item['file'];

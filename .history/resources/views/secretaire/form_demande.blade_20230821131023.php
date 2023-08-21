@@ -30,7 +30,9 @@
                 <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
                     <input name="date_depot" type="texte" value="{{ $date }}" class="form-control" id=""
                         aria-describedby="" placeholder="">
-                     
+                        @foreach ($user as $item)
+
+                @endforeach
             </div>
         </div>
         <div class="col">

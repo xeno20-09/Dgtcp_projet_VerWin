@@ -47,47 +47,21 @@ class ControllerSecretaire extends Controller
         return view('secretaire.form_demande_mj', compact('demande', 'dmd_n_lu', 'user'));
     }
 
-
-    public function store_mj(Request $request, $id_dmd)
+    
+    public function store_user(Request $request, $id_dmd)
     {
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
 
         // Création d'un nouveau modèle avec les données du formulaire
-        $dmd_secretaire = demande::find($id_dmd);
-        $dmd_secretaire->nature_p = $data['nature_pro'];
-        $dmd_secretaire->nature_op = $data['nature_op'];
-        $dmd_secretaire->montant = $data['montant_in'];
-        $convertedObj = Currency::convert()
-            ->from($data['currency_from'])
-            ->to($data['currency_to'])
-            ->amount($data['montant_in']);
-        $montant_con = $convertedObj->get();
-        $dmd_secretaire->montant_con = $montant_con;
-        $dmd_secretaire->devise = $data['currency_from'];
-        $dmd_secretaire->nom_client = $data['nom_client'];
-        $dmd_secretaire->prenom_client = $data['prenom_client'];
-        $dmd_secretaire->profess_client = $data['profess_client'];
-        $dmd_secretaire->tel_client = $data['tel_client'];
-        $dmd_secretaire->banque_client = $data['banque_client'];
-
-        $dmd_secretaire->num_compt_client = $data['num_compt_client'];
-        $dmd_secretaire->id_secret =  $data['id_user'];
-        $dmd_secretaire->status_dmd = 'En cours';
+        $user = user::find($idc);
+        $user->poste = $data['poste'];
 
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->update();
-        $user = User::where('id', '=', $id)->get();
-
-        // Redirection vers la page de liste des produits  
-        $demande = demande::where('id_secret', '=', $id)->get();
-        $le_n_dmd = count($demande);
-        return view('secretaire.liste_demande', compact('demande', 'dmd_n_lu', 'user'));
-
-        // Sauvegarde du modèle en base de données
-
-
+        $user->update();
+        $user = User::orderBy('created_at', 'desc')->paginate(3);
+        return view('Admin_SGBD.Home', compact('user'));
     }
 
     public function store(Request $request)
