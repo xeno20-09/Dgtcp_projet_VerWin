@@ -12,7 +12,7 @@
                 $numdoss = $item_c->numero_doss;
                 $ref = $date . substr($numdoss, 0, 2);
             @endphp
-            <form action="{{ route('store_piece_dmd', $item_c->id) }}" method="post">
+            <form action="{{route('store_piece_dmd', $item_c->id)}}" method="post">
                 @csrf
 
                 @for ($i = 0; $i < $numberinput; $i++)

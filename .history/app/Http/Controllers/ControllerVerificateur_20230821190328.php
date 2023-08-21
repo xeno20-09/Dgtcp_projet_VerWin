@@ -83,8 +83,8 @@ class ControllerVerificateur extends Controller
                 // Enregistrer dans la base de données
 
             }
-            $dmd_verificateur->update();
         }
+        $dmd_verificateur->update();
     }
     public function store(Request $request, $idc)
     {

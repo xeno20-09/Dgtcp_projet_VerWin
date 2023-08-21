@@ -68,23 +68,23 @@ class ControllerVerificateur extends Controller
         // Récupérer toutes les données du formulaire
         $data = $request->all();
         if (isset($data['libellepiece'])) {
-            $libellePieces = $data['libellepiece'];
-            $referencesPieces = $data['referencespiece'];
-            $datesPieces = $data['date_piece'];
-            $montantLignes = $data['montantligne'];
+        $libellePieces = $data['libellepiece'];
+        $referencesPieces = $data['referencespiece'];
+        $datesPieces = $data['date_piece'];
+        $montantLignes = $data['montantligne'];
 
-            $dmd_verificateur = demande::find($id_d);
-            for ($i = 0; $i < count($libellePieces); $i++) {
-                $dmd_verificateur->libellepiece = $libellePieces[$i];
-                $dmd_verificateur->referencespiece = $referencesPieces[$i];
-                $dmd_verificateur->date_piece = $datesPieces[$i];
-                $dmd_verificateur->montantligne = $montantLignes[$i];
+        $dmd_verificateur = demande::find($id_d);
+        for ($i = 0; $i < count($libellePieces); $i++) {
+            $dmd_verificateur->libellepiece = $libellePieces[$i];
+            $dmd_verificateur->referencespiece = $referencesPieces[$i];
+            $dmd_verificateur->date_piece = $datesPieces[$i];
+            $dmd_verificateur->montantligne = $montantLignes[$i];
 
-                // Enregistrer dans la base de données
+            // Enregistrer dans la base de données
 
-            }
-            $dmd_verificateur->update();
         }
+
+        $dmd_verificateur->update();
     }
     public function store(Request $request, $idc)
     {
