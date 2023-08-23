@@ -108,7 +108,7 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-        $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
+
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_secretaire = demande::find($id_dmd);
         $dmd_secretaire->nature_p = $data['nature_pro'];
@@ -126,7 +126,7 @@ class ControllerSecretaire extends Controller
         $dmd_secretaire->profess_client = $data['profess_client'];
         $dmd_secretaire->tel_client = $data['tel_client'];
         $dmd_secretaire->banque_client = $data['banque_client'];
-        $dmd_secretaire->numero_doss =  $dmd_secretaire->numero_doss;
+        $dmd_secretaire->numero_doss = $data[' num_doss'];
 
         $dmd_secretaire->num_compt_client = $data['num_compt_client'];
         $dmd_secretaire->id_secret =  $data['id_user'];

@@ -6,7 +6,7 @@
         @endforeach
     </h1>
     @foreach ($user as $item)
-        <form action="{{ route('store_suite_dmd', $item->id) }}" method="post" class="card-body cardbody-color p-lg-5">
+        <form action="{{ route(' store_suite_dmd', $item->id) }}" method="post" class="card-body cardbody-color p-lg-5">
             <input type="hidden" name="id_user" value="{{ $item->id }}">
             <input type="hidden" name="nom_demandeur" value="{{ $item->nom }}">
             <input type="hidden" name="mail_demandeur" value="{{ $item->mail }}">
@@ -20,11 +20,11 @@
         <legend>Enregistrement d'une demande</legend>
 
         <!--<div class="col">
-                                                                                                              <div class="form-group">
-                                                                                                                <label for="" class="form-label mt-4">Numéro du dossier</label>
-                                                                                                                <input name="num_dossier" type="text" class="form-control" id="" aria-describedby="" placeholder="" disabled>
-                                                                                                              </div>
-                                                                                                            </div> -->
+                                                                                              <div class="form-group">
+                                                                                                <label for="" class="form-label mt-4">Numéro du dossier</label>
+                                                                                                <input name="num_dossier" type="text" class="form-control" id="" aria-describedby="" placeholder="" disabled>
+                                                                                              </div>
+                                                                                            </div> -->
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
@@ -34,15 +34,16 @@
 
             </div>
         </div>
-        <input type="hidden" name="num_doss" value="{{ $numeroDossier }}">
+        <input type="hidden" name="num_compt_client" value="{{ $numeroDossier }}">
+
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nature des opérations</label>
                 <!--     <select class="form-select" id="exampleSelect1">
-                                                                                                                  <option></option>
-                                                                                                                  <option></option>
-                                                                                                                  <option></option>
-                                                                                                                </select> -->
+                                                                                                  <option></option>
+                                                                                                  <option></option>
+                                                                                                  <option></option>
+                                                                                                </select> -->
                 <input name="nature_op" value="{{ $item1->nature_op }}" type="text" class="form-control" id=""
                     placeholder="Nature des opérations">
 
@@ -52,10 +53,10 @@
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nature des produits</label>
                 <!--   <select class="form-select" id="exampleSelect1">
-                                                                                                                  <option></option>
-                                                                                                                  <option></option>
-                                                                                                                  <option></option>
-                                                                                                                </select> -->
+                                                                                                  <option></option>
+                                                                                                  <option></option>
+                                                                                                  <option></option>
+                                                                                                </select> -->
                 <input name="nature_pro" value="{{ $item1->nature_p }}" type="text" class="form-control" id=""
                     placeholder="Nature des produits">
 
@@ -117,11 +118,11 @@
             </div>
         </div>
         <!--  <div class="col">
-                                                                                                              <div class="form-group">
-                                                                                                               <label for="" class="form-label mt-4">Montant converti</label>
-                                                                                                                <input name="montant_out" type="text" class="form-control" id="" placeholder="Montant converti">
-                                                                                                              </div>
-                                                                                                            </div>-->
+                                                                                              <div class="form-group">
+                                                                                               <label for="" class="form-label mt-4">Montant converti</label>
+                                                                                                <input name="montant_out" type="text" class="form-control" id="" placeholder="Montant converti">
+                                                                                              </div>
+                                                                                            </div>-->
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Profession client</label>

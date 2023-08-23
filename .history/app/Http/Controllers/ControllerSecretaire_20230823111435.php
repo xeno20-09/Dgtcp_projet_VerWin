@@ -108,7 +108,7 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-        $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
+
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_secretaire = demande::find($id_dmd);
         $dmd_secretaire->nature_p = $data['nature_pro'];
@@ -134,6 +134,7 @@ class ControllerSecretaire extends Controller
 
         // Sauvegarde du modèle en base de données
         $dmd_secretaire->save();
+        dd($dmd_secretaire);
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  

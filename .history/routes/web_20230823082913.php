@@ -39,7 +39,7 @@ Route::get('/SecretaireMj{id}', [App\Http\Controllers\ControllerSecretaire::clas
 Route::post('/SecretaireS_Mj{id}', [App\Http\Controllers\ControllerSecretaire::class, 'store_mj'])->name('store_dmd_mj');
 Route::get('/Secretaire', [App\Http\Controllers\ControllerSecretaire::class, 'check_demande'])->name('check_demande');
 Route::post('/check{id}',  [App\Http\Controllers\ControllerSecretaire::class, 'searchs'])->name('dmd.suite');
-Route::post('/{id}', [App\Http\Controllers\ControllerSecretaire::class, 'store_suite_dmd'])->name('store_suite_dmd');
+Route::post('/SecretaireS_dmd{id}', [App\Http\Controllers\ControllerSecretaire::class, 'store_suite_dmd'])->name('store_suite_dmd');
 
 
 /*************************************** Fin route secretaire ***********************************/

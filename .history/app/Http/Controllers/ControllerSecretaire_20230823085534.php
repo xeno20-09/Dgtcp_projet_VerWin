@@ -61,7 +61,6 @@ class ControllerSecretaire extends Controller
         $demandes = demande::where('numero_doss', '=', $x)->first();
 
         $id_dmd = $demandes->id;
-        $numeroDossier = $demandes->numero_doss;
         $dmd_suite = piece::where('id_dmd', '=', $id_dmd)->first();
         $montantr = $dmd_suite->montantrestant;
         $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
@@ -73,8 +72,8 @@ class ControllerSecretaire extends Controller
         $le_n_dmd_e = count($demande_echec);
         $le_n_dmd_s = count($demande_suspendre);
         $dmd_n_lu = count(demande::where('vu_chef_bureau', '=', 0)->get());
-        // dd($numeroDossier);
-        return view('secretaire.form_dmd_suite', compact('montantr', 'numeroDossier', 'demande', 'user', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu'));
+        dd($id_dmd);
+        return view('secretaire.form_dmd_suite', compact('montantr', 'demande', 'user', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu'));
     }
 
     public function check_demande(Request $request)
@@ -108,7 +107,7 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-        $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
+
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_secretaire = demande::find($id_dmd);
         $dmd_secretaire->nature_p = $data['nature_pro'];
@@ -126,14 +125,14 @@ class ControllerSecretaire extends Controller
         $dmd_secretaire->profess_client = $data['profess_client'];
         $dmd_secretaire->tel_client = $data['tel_client'];
         $dmd_secretaire->banque_client = $data['banque_client'];
-        $dmd_secretaire->numero_doss =  $dmd_secretaire->numero_doss;
+        $dmd_secretaire->numero_doss = $data[' num_doss'];
 
         $dmd_secretaire->num_compt_client = $data['num_compt_client'];
         $dmd_secretaire->id_secret =  $data['id_user'];
         $dmd_secretaire->status_dmd = 'En cours';
 
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->save();
+        $dmd_secretaire->update();
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  
