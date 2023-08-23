@@ -225,7 +225,7 @@ class ControllerVerificateur extends Controller
 
             $montantrestant_a = $changes->montantrestant;
             $changes->montantrestant = $montantrestant_a - $montant;
-
+            dd($changes);
             $changes->update();
 
 

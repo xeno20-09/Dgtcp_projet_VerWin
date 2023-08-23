@@ -148,10 +148,7 @@ class ControllerVerificateur extends Controller
         $montant_con = $convertedObj->get();
         $dmd_verificateur->montant_con = $montant_con;
         $dmd_verificateur->update();
-        $demande = Piece::where('nom_v', $n_verificateur)->get();
-        $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->get());
-        return view('verificateur.recap_pieces', compact('demande', 'dmd_n_lu', 'user'));
+        return view('verificateur.recap', compact('numberinput', 'filewithoutext', 'file', 'date', 'demande', 'dmd_n_lu', 'user', 'jointure'));
     }
 
     public function store(Request $request, $idc)
@@ -218,13 +215,11 @@ class ControllerVerificateur extends Controller
             $demand = demande::where('id', '=', $idc)->first();
             $num = $demand->numero_doss;
             $montant = $demand->montant;
-            $numo = substr($num, 0, 7);
-            $changes = piece::where('numero_doss', '=', $numo)->first();
-            // $change = piece::find($num);
-            // $change = piece::where('numero_doss', '=', $numo)->get();
-
-            $montantrestant_a = $changes->montantrestant;
-            $changes->montantrestant = $montantrestant_a - $montant;
+            // $change = piece::where('numero_doss', '=', $num)->get();
+            $changes = piece::where('numero_doss', '=', $num)->first();
+            $change = piece::find($num);
+            dd($num);
+            $montantrestant = $change->montantrestant - $montant;
 
             $changes->update();
 

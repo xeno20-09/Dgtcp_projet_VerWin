@@ -218,13 +218,12 @@ class ControllerVerificateur extends Controller
             $demand = demande::where('id', '=', $idc)->first();
             $num = $demand->numero_doss;
             $montant = $demand->montant;
-            $numo = substr($num, 0, 7);
-            $changes = piece::where('numero_doss', '=', $numo)->first();
-            // $change = piece::find($num);
-            // $change = piece::where('numero_doss', '=', $numo)->get();
-
-            $montantrestant_a = $changes->montantrestant;
-            $changes->montantrestant = $montantrestant_a - $montant;
+            // $change = piece::where('numero_doss', '=', $num)->get();
+            $changes = piece::where('numero_doss', '=', $num)->first();
+            $change = piece::find($num);
+            
+            dd($numo);
+            $montantrestant = $change->montantrestant - $montant;
 
             $changes->update();
 

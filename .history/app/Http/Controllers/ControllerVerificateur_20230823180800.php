@@ -223,8 +223,8 @@ class ControllerVerificateur extends Controller
             // $change = piece::find($num);
             // $change = piece::where('numero_doss', '=', $numo)->get();
 
-            $montantrestant_a = $changes->montantrestant;
-            $changes->montantrestant = $montantrestant_a - $montant;
+            dd($changes->montantrestant);
+            $changes->montantrestant    $montantrestant = $changes->montantrestant - $montant;
 
             $changes->update();
 
