@@ -205,13 +205,7 @@ class ControllerSecretaire extends Controller
 
     public function get_search_ask_suite(Request $request)
     {
-
-        $id = Auth::id();
-        $user = User::where('id', '=', $id)->get();
-        $date = now();
-        $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
-
-        return view('secretaire.checkdemande', compact('dmd_n_lu', 'user', 'date'));
+dd
     }
     /************************************Formulaire pour chercher une demande pour poursuivre************************************************ */
 
@@ -256,16 +250,25 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-
         $suite_dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         // Création d'un nouveau modèle avec les données du formulaire
         $suite_dmd_secretaire = demande::find($data['id_doss']);
 
-        $nom_client = $suite_dmd_secretaire->nom_client;
-        $prenom_client = $suite_dmd_secretaire->prenom_client;
-        $profess_client = $suite_dmd_secretaire->profess_client;
-        $tel_client = $suite_dmd_secretaire->tel_client;
-        $banque_client = $suite_dmd_secretaire->banque_client;
+        $suite_dmd_secretaire->nature_p = $data['nature_pro'];
+        $suite_dmd_secretaire->nature_op = $data['nature_op'];
+        $suite_dmd_secretaire->montant = $data['montant_in'];
+        $convertedObj = Currency::convert()
+            ->from($data['currency_from'])
+            ->to($data['currency_to'])
+            ->amount($data['montant_in']);
+        $montant_con = $convertedObj->get();
+        $suite_dmd_secretaire->montant_con = $montant_con;
+        $suite_dmd_secretaire->devise = $data['currency_from'];
+        $suite_dmd_secretaire->nom_client = $suite_dmd_secretaire->nom_client;
+        $suite_dmd_secretaire->prenom_client = $suite_dmd_secretaire->prenom_client;
+        $suite_dmd_secretaire->profess_client = $suite_dmd_secretaire->profess_client;
+        $suite_dmd_secretaire->tel_client = $suite_dmd_secretaire->tel_client;
+        $suite_dmd_secretaire->banque_client = $suite_dmd_secretaire->banque_client;
         $num = $suite_dmd_secretaire->numero_doss;
 
 
@@ -275,40 +278,23 @@ class ControllerSecretaire extends Controller
         if ($dernierNumeroDossier) {
             $derniereValeur = $dernierNumeroDossier->numero_doss;
             $dernierCaractere = substr($derniereValeur, -1);
-            $numero = $dernierCaractere;
-            $numf = $num . '_' . '1';
+            $numero = $dernierCaractere + 1;
+            $numf = $num . '_' . $numero;
         }
 
-        $dmd_secretaire = new demande();
+        $suite_dmd_secretaire->numero_doss =  $numf;
 
+        $suite_dmd_secretaire->num_compt_client = $data['num_compt_client'];
+        $suite_dmd_secretaire->id_secret =  $data['id_user'];
+        $suite_dmd_secretaire->status_dmd = 'En cours';
 
-        $dmd_secretaire->nom_client = $nom_client;
-        $dmd_secretaire->prenom_client = $prenom_client;
-        $dmd_secretaire->profess_client = $profess_client;
-        $dmd_secretaire->tel_client = $tel_client;
-        $dmd_secretaire->banque_client = $banque_client;
-        $dmd_secretaire->numero_doss = $numf;
-
-        $dmd_secretaire->num_compt_client = $data['num_compt_client'];
-        $dmd_secretaire->id_secret =  $data['id_user'];
-        $dmd_secretaire->status_dmd = 'En cours';
-        $dmd_secretaire->nature_p = $data['nature_pro'];
-        $dmd_secretaire->nature_op = $data['nature_op'];
-        $dmd_secretaire->montant = $data['montant_in'];
-        $convertedObj = Currency::convert()
-            ->from($data['currency_from'])
-            ->to($data['currency_to'])
-            ->amount($data['montant_in']);
-        $montant_con = $convertedObj->get();
-        $dmd_secretaire->montant_con = $montant_con;
-        $dmd_secretaire->devise = $data['currency_from'];
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->save();
+        $suite_dmd_secretaire->save();
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  
         $demande = demande::where('id_secret', '=', $id)->get();
-        $dmd_n_lu = count($demande);
+        $le_n_dmd = count($demande);
         return view('secretaire.liste_demande', compact('demande', 'dmd_n_lu', 'user'));
 
         // Sauvegarde du modèle en base de données

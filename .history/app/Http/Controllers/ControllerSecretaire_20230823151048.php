@@ -303,7 +303,7 @@ class ControllerSecretaire extends Controller
         $dmd_secretaire->montant_con = $montant_con;
         $dmd_secretaire->devise = $data['currency_from'];
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->save();
+        $suite_dmd_secretaire->save();
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  

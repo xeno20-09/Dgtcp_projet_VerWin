@@ -55,7 +55,7 @@
                                     <a class="dropdown-item" href="{{ route('get_form_ask') }}">
                                         {{ __('Saisir une demande') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('get_search_ask_suite') }}">
+                                    <a class="dropdown-item" href="{{ urll('get_search_ask_suite') }}">
                                         {{ __('Poursuivre une demande existante') }}
                                     </a>
                                 </div>

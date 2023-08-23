@@ -37,7 +37,7 @@ Route::get('/ListeDetaille{id_ask}', [App\Http\Controllers\ControllerSecretaire:
 Route::get('/RechecherDemande{id_user}',  [App\Http\Controllers\Controller::class, 'get_search_ask'])->name('get_search_ask');
 Route::get('/MiseAJourDemande{id_user}', [App\Http\Controllers\ControllerSecretaire::class, 'get_update_form_ask'])->name('get_update_form_ask');
 Route::post('/MiseAJourDemandeSave{id_user}', [App\Http\Controllers\ControllerSecretaire::class, 'store_update_form_ask'])->name('store_update_form_ask');
-Route::get('/get_search_ask_suite', [App\Http\Controllers\ControllerSecretaire::class, 'get_search_ask_suite'])->name('get_search_ask_suite');
+Route::get('/RechecherDemandeSuite', [App\Http\Controllers\ControllerSecretaire::class, ''])->name('get_search_ask_suit');
 Route::post('/RechecherLaDemandeSuite{id}',  [App\Http\Controllers\ControllerSecretaire::class, 'store_search_ask_suite'])->name('store_search_ask_suite');
 Route::post('/FormulaireSuiteSave', [App\Http\Controllers\ControllerSecretaire::class, 'store_form_ask_suite'])->name('store_form_ask_suite');
 
@@ -46,7 +46,7 @@ Route::post('/FormulaireSuiteSave', [App\Http\Controllers\ControllerSecretaire::
 
 
 /**************************************** Debut route verificateur ********************************/
-Route::get('/HVerificateur', [App\Http\Controllers\ControllerVerificateur::class, 'home']);
+/* Route::get('/HVerificateur', [App\Http\Controllers\ControllerVerificateur::class, 'home']);
 Route::get('/liste_demande_n', [App\Http\Controllers\ControllerVerificateur::class, 'liste_demande_n']);
 Route::get('/Verificateur/{id}', [App\Http\Controllers\ControllerVerificateur::class, 'formulaire'])->name('voir_demande');
 Route::post('/FVerificateur{id}', [App\Http\Controllers\ControllerVerificateur::class, 'store'])->name('store_formulaire_demandes');
@@ -56,7 +56,7 @@ Route::get('/searchv{id}',  [App\Http\Controllers\Controller::class, 'searchv'])
 Route::get('/VerificateurMj{id}', [App\Http\Controllers\ControllerVerificateur::class, 'form'])->name('formulairev_demande_mj');
 Route::post('/VerificateurS_Mj{id}', [App\Http\Controllers\ControllerVerificateur::class, 'store'])->name('le_store_formulaire');
 Route::post('/FVerifica{id}', [App\Http\Controllers\ControllerVerificateur::class, 'store_piece_dmd'])->name('store_piece_dmd');
-
+ */
 /*************************************** Fin route verificateur ***********************************/
 
 

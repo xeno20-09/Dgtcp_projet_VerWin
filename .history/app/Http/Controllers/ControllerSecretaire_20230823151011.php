@@ -260,7 +260,7 @@ class ControllerSecretaire extends Controller
         $suite_dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         // Création d'un nouveau modèle avec les données du formulaire
         $suite_dmd_secretaire = demande::find($data['id_doss']);
-
+     
         $nom_client = $suite_dmd_secretaire->nom_client;
         $prenom_client = $suite_dmd_secretaire->prenom_client;
         $profess_client = $suite_dmd_secretaire->profess_client;
@@ -278,18 +278,18 @@ class ControllerSecretaire extends Controller
             $numero = $dernierCaractere;
             $numf = $num . '_' . '1';
         }
-
+   
         $dmd_secretaire = new demande();
 
 
-        $dmd_secretaire->nom_client = $nom_client;
-        $dmd_secretaire->prenom_client = $prenom_client;
-        $dmd_secretaire->profess_client = $profess_client;
-        $dmd_secretaire->tel_client = $tel_client;
-        $dmd_secretaire->banque_client = $banque_client;
-        $dmd_secretaire->numero_doss = $numf;
+         $dmd_secretaire->nom_client= $nom_client;
+         $dmd_secretaire->prenom_client= $prenom_client;
+          $dmd_secretaire->profess_client;
+         $dmd_secretaire->tel_client= $tel_client;
+        $banque_client  $dmd_secretaire->banque_client;
+        $num = $dmd_secretaire->numero_doss;
 
-        $dmd_secretaire->num_compt_client = $data['num_compt_client'];
+     $dmd_secretaire->num_compt_client = $data['num_compt_client'];
         $dmd_secretaire->id_secret =  $data['id_user'];
         $dmd_secretaire->status_dmd = 'En cours';
         $dmd_secretaire->nature_p = $data['nature_pro'];
@@ -303,7 +303,7 @@ class ControllerSecretaire extends Controller
         $dmd_secretaire->montant_con = $montant_con;
         $dmd_secretaire->devise = $data['currency_from'];
         // Sauvegarde du modèle en base de données
-        $dmd_secretaire->save();
+        $suite_dmd_secretaire->save();
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  
