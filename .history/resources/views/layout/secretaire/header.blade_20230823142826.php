@@ -50,14 +50,12 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Demande
                                 </a>
-                                <a class="dropdown-item" href="{{ route('get_search_ask_suite') }}">
-                                    {{ __('Poursuivre une demande existante') }}
-                                </a>
+
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('get_form_ask') }}">
                                         {{ __('Saisir une demande') }}
                                     </a>
-
+                                
                                 </div>
                             </li>
                             <li class="nav-item">
