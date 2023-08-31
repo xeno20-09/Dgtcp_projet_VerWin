@@ -77,6 +77,11 @@
                         <li class="list-group-item">Non vu par le DAMF</li>
                     @endif
 
+                    @if ($item['vu_verifi'] != 0)
+                        <li class="list-group-item">Vu par le vérificateur</li>
+                    @else
+                        <li class="list-group-item">Non vu par le vérificateur</li>
+                    @endif
                 </ul>
             </div>
         @endforeach

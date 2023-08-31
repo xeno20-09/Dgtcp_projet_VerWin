@@ -61,7 +61,7 @@
 
                             <td>
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
+                                    href="{{ route('get_list_details_ask', ['id_ask' => $item->id]) }}"
                                     class="btn btn-primary">Voir</a>
                             </td>
                         @elseif($verif == 'Autorisée')
@@ -87,7 +87,7 @@
                             </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
+                                    href="{{ route('get_list_details_ask', ['id_user' => $item->id]) }}"
                                     class="btn btn-primary">Voir</a>
                             </td>
                         @elseif($verif == 'Suspendu')
@@ -113,7 +113,7 @@
                             </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
+                                    href="{{ route('get_list_details_ask', ['id_user' => $item->id]) }}"
                                     class="btn btn-primary">Voir</a>
                             </td>
                         @else
@@ -139,7 +139,7 @@
                             </td>
                             <td>
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
+                                    href="{{ route('get_list_details_ask', ['id_ask' =>  $item['id'] ) }}"
                                     class="btn btn-primary">Voir</a>
                             </td>
                     @endif

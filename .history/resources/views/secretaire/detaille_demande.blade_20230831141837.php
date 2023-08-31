@@ -71,12 +71,17 @@
                         <li class="list-group-item">Non vu par le chef bureau</li>
                     @endif
 
-                    @if ($item['vu_damf'] != 0)
-                        <li class="list-group-item">Vu par le DAMF</li>
+                    @if ($item['vu_verifi'] != 0)
+                        <li class="list-group-item">Vu par le D</li>
                     @else
-                        <li class="list-group-item">Non vu par le DAMF</li>
+                        <li class="list-group-item">Non vu par le D</li>
                     @endif
 
+                    @if ($item['vu_verifi'] != 0)
+                        <li class="list-group-item">Vu par le vérificateur</li>
+                    @else
+                        <li class="list-group-item">Non vu par le vérificateur</li>
+                    @endif
                 </ul>
             </div>
         @endforeach

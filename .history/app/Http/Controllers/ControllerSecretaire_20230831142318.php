@@ -151,8 +151,8 @@ class ControllerSecretaire extends Controller
         $demande = demande::where('id_secret', '=', $id_c)->where('id', '=', $id)->get();
         $le_n_dmd = count($demande);
         $dmd = demande::find($id);
-        $dmd->reponse_damf = 0;
-        $dmd->update();
+        $dmd->reponse_damf=0;
+        
         $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         $dmd_back = count(demande::where('back_secret', '=', 1)->where('vu_secret', '=', 0)->get());
         /*        $fileNamesJson = $demande->file;
@@ -266,7 +266,7 @@ class ControllerSecretaire extends Controller
         $numeroDossier = $demandes->numero_doss;
         $dmd_suite = piece::where('id_dmd', '=', $id_dmd)->first();
 
-        if ($dmd_suite->montantrestant == null) {
+        if ($dmd_suite == null) {
             $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
             $demande_valider = demande::where('status_dmd', '=', 'Autorisée')->get();
             $demande_echec = demande::where('status_dmd', '=', 'Rejetée')->get();

@@ -266,7 +266,7 @@ class ControllerSecretaire extends Controller
         $numeroDossier = $demandes->numero_doss;
         $dmd_suite = piece::where('id_dmd', '=', $id_dmd)->first();
 
-        if ($dmd_suite->montantrestant == null) {
+        if ($dmd_suites->numero_doss == null) {
             $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
             $demande_valider = demande::where('status_dmd', '=', 'Autorisée')->get();
             $demande_echec = demande::where('status_dmd', '=', 'Rejetée')->get();

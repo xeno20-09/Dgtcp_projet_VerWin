@@ -3,9 +3,8 @@
     <div class="container">
         <h1 style="text-align: center;">
             @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }} <span
-                        class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
+                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }}  <span class="badge rounded-pill badge-notification bg-danger"
+                    style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
         <h1>Liste des demandes </h1>
@@ -61,8 +60,8 @@
 
                             <td>
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
-                                    class="btn btn-primary">Voir</a>
+                                    href="{{ route('get_list_details_ask', ['id_ask' => $item->id]) }}"
+                                    class="btn btn-primary">Voir</a> 
                             </td>
                         @elseif($verif == 'Autorisée')
                         <tr class="table-success">
@@ -85,10 +84,10 @@
                                 </a>
 
                             </td>
-                            <td>
+                            <td>{{-- 
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
-                                    class="btn btn-primary">Voir</a>
+                                    href="{{ route('get_list_details_ask', ['id_user' => $item->id]) }}"
+                                    class="btn btn-primary">Voir</a> --}}
                             </td>
                         @elseif($verif == 'Suspendu')
                         <tr class="table-warning">
@@ -111,10 +110,10 @@
                                 </a>
 
                             </td>
-                            <td>
+                            <td>{{-- 
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
-                                    class="btn btn-primary">Voir</a>
+                                    href="{{ route('get_list_details_ask', ['id_user' => $item->id]) }}"
+                                    class="btn btn-primary">Voir</a> --}}
                             </td>
                         @else
                         <tr class="table-danger">
@@ -137,10 +136,10 @@
                                 </a>
 
                             </td>
-                            <td>
+                            <td>{{-- 
                                 <a style="width: auto; height:fit-content;"
-                                    href="{{ route('get_list_details_ask', ['id_ask' => $item['id']]) }}"
-                                    class="btn btn-primary">Voir</a>
+                                    href="{{ route('get_list_details_ask', ['id_user' => $item->id]) }}"
+                                    class="btn btn-primary">Voir</a> --}}
                             </td>
                     @endif
                 @endforeach

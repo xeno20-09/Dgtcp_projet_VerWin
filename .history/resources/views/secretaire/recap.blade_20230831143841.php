@@ -36,8 +36,7 @@
                             <td>N/A</td>
                         @endif
                     </tr>
-                    Selon le recapitulatif Mr/Mme {{ $itemd->nom_client }} le montant restant pour le dossier
-                    {{ $itemd->numero_doss }} initial est de 0
+                    Selon le recapitulatif Mr/Mme {{ $itemd->nom_client }} le montant 
                 @endforeach
             </tbody>
         </table>

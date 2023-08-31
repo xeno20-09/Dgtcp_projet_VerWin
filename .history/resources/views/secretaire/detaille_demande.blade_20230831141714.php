@@ -58,25 +58,6 @@
                     @else
                         <li class="list-group-item">Non vu par le vérificateur</li>
                     @endif
-
-                    @if ($item['vu_chef_division'] != 0)
-                        <li class="list-group-item">Vu par le chef division</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef division</li>
-                    @endif
-
-                    @if ($item['vu_chef_bureau'] != 0)
-                        <li class="list-group-item">Vu par le chef bureau</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef bureau</li>
-                    @endif
-
-                    @if ($item['vu_damf'] != 0)
-                        <li class="list-group-item">Vu par le DAMF</li>
-                    @else
-                        <li class="list-group-item">Non vu par le DAMF</li>
-                    @endif
-
                 </ul>
             </div>
         @endforeach

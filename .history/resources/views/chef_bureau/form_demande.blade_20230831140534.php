@@ -1,4 +1,4 @@
-@extends('layout.damf.header')
+@extends('layout.chef_bureau.header')
 @section('content')
     <div class="container">
         <h1 style="text-align: center;">
@@ -12,7 +12,7 @@
             <h1>Demande N° {{ $item_c->numero_doss }} </h1>
 
 
-            <form action="{{ route('store_formulaire_dmd', $item_c->id) }}" method="Post"
+            <form action="{{ route('store_formulaire_demand', $item_c->id) }}" method="Post"
                 class="card-body cardbody-color p-lg-5">
 
                 @csrf
@@ -128,6 +128,7 @@
                 </div>
 
 
+
                 <br><br>
                 <legend>Demande du verificateur</legend>
                 <hr>
@@ -203,79 +204,43 @@
                                 class="form-control" id="" placeholder="Date de decision">
                         </div>
                     </div>
-                </div>
-                <br><br>
-                <legend>Demande du Chef Bureau</legend>
-                <hr>
+
+                    <br><br>
+                    <legend>Saisir d'une demande</legend>
+                    <hr>
 
 
-
-                <div class="row">
-
-                    <div class="col">
-
-                        <div class="form-group">
-
-                            <label for="" class="form-label mt-4">Autorisation</label>
-                            <input name="motif" value="{{ $item_c->status_dmd_cb }}" type="text"
-                                class="form-control" id="" placeholder="">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleSelect1" class="form-label mt-4">Example disabled select</label>
+                                <select name="status" class="form-select" id="exampleDisabledSelect1">
+                                    <option>Autorisée</option>
+                                    <option>Rejetée</option>
+                                    <option>Suspendu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="" class="form-label mt-4">Motif du rejet ou de la suspension</label>
+                                <input name="motif" value="{{ $item_c->motif }}" type="text" class="form-control"
+                                    id="" placeholder="Motif">
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="" class="form-label mt-4">Motif du rejet ou de la suspension</label>
-                            <input name="motif" value="{{ $item_c->motif_cb }}" type="text" class="form-control"
-                                id="" placeholder="Motif">
-                        </div>
+                
+
+
+
                     </div>
 
-                    <div class="col">
-                        <div class="form-group">
 
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <br><br>
-                <legend>Saisir d'une demande</legend>
-                <hr>
-
-                <div class="row">
-
-                    <div class="col">
-
-                        <div class="form-group">
-                            <label for="exampleSelect1" class="form-label mt-4">Example disabled select</label>
-                            <select name="status" class="form-select" id="exampleDisabledSelect1">
-                                <option>Autorisée</option>
-                                <option>Rejetée</option>
-                                <option>Suspendu</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="" class="form-label mt-4">Motif du rejet ou de la suspension</label>
-                            <input name="motif" value="{{ $item_c->motif }}" type="text" class="form-control"
-                                id="" placeholder="Motif">
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="form-group">
-
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
-            <a href="{{ url('retour_cb', $item_c->id) }}"><button class="btn btn-danger">Retournez la
-                    demande au Chef Bureau </button></a>
+            <a href="{{ route('retour_cd', $item_c->id) }}"> <button class="btn btn-danger">Retournez la
+                    demande au Chef Division </button></a>
         @endforeach
 
 

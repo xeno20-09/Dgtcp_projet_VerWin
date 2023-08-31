@@ -1,11 +1,10 @@
-@extends('layout.secretaire.header')
+@extends('layout.secre.header')
 @section('content')
     <div class="container">
         <h1 style="text-align: center;">
             @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }} <span
-                        class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
+                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }}  <span class="badge rounded-pill badge-notification bg-danger"
+                    style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
         <table class="table">
@@ -36,12 +35,10 @@
                             <td>N/A</td>
                         @endif
                     </tr>
-                    Selon le recapitulatif Mr/Mme {{ $itemd->nom_client }} le montant restant pour le dossier
-                    {{ $itemd->numero_doss }} initial est de 0
                 @endforeach
             </tbody>
         </table>
-
+        
 
 
     </div>

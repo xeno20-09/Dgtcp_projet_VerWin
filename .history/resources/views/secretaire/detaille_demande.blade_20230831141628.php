@@ -3,9 +3,8 @@
     <div class="container">
         <h1 style="text-align: center;">
             @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }} <span
-                        class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
+                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }}  <span class="badge rounded-pill badge-notification bg-danger"
+                    style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
         <h1>Liste des demandes </h1>
@@ -53,30 +52,14 @@
                         <li class="list-group-item">Motif du rejet demande: {{ $item['motif'] }}</li>
                     @endif
 
-                    @if ($item['vu_verifi'] != 0)
+                @php
+                    
+                @endphp
+                    @if ($item['vu_verif'] != 0)
                         <li class="list-group-item">Vu par le vérificateur</li>
                     @else
                         <li class="list-group-item">Non vu par le vérificateur</li>
                     @endif
-
-                    @if ($item['vu_chef_division'] != 0)
-                        <li class="list-group-item">Vu par le chef division</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef division</li>
-                    @endif
-
-                    @if ($item['vu_chef_bureau'] != 0)
-                        <li class="list-group-item">Vu par le chef bureau</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef bureau</li>
-                    @endif
-
-                    @if ($item['vu_damf'] != 0)
-                        <li class="list-group-item">Vu par le DAMF</li>
-                    @else
-                        <li class="list-group-item">Non vu par le DAMF</li>
-                    @endif
-
                 </ul>
             </div>
         @endforeach

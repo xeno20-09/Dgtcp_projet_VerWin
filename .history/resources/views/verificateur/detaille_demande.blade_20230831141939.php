@@ -3,9 +3,8 @@
     <div class="container">
         <h1 style="text-align: center;">
             @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }} <span
-                        class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
+                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }}  <span class="badge rounded-pill badge-notification bg-danger"
+                    style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
         <h1>Liste des demandes </h1>
@@ -46,6 +45,12 @@
                             Il y a aucune pièces assimilées à ce dossier.
                         @endif
 
+
+
+
+
+
+
                     </li>
 
                     <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>
@@ -54,30 +59,30 @@
                     <li class="list-group-item">Pays du beneficiaire: {{ $item['pays_benifi'] }}</li>
                     <li class="list-group-item">Numero de compte du beneficiaire: {{ $item['num_compt_benefi'] }}</li>
                     <li class="list-group-item">Statut de la demande: {{ $item['status_dmd'] }}</li>
-                    {{--       @if ($item['vu_chef_division'] != 0)
-                        <li class="list-group-item">Vu par le chef division</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef division</li>
-                    @endif
+                    @if ($item['vu_chef_division'] != 0)
+                    <li class="list-group-item">Vu par le chef division</li>
+                @else
+                    <li class="list-group-item">Non vu par le chef division</li>
+                @endif
 
-                    @if ($item['vu_chef_bureau'] != 0)
-                        <li class="list-group-item">Vu par le chef bureau</li>
-                    @else
-                        <li class="list-group-item">Non vu par le chef bureau</li>
-                    @endif
+                @if ($item['vu_chef_bureau'] != 0)
+                    <li class="list-group-item">Vu par le chef bureau</li>
+                @else
+                    <li class="list-group-item">Non vu par le chef bureau</li>
+                @endif
 
-                    @if ($item['vu_damf'] != 0)
-                        <li class="list-group-item">Vu par le DAMF</li>
-                    @else
-                        <li class="list-group-item">Non vu par le DAMF</li>
-                    @endif
-
-                         @foreach ($jointure as $row)
+                @if ($item['vu_damf'] != 0)
+                    <li class="list-group-item">Vu par le DAMF</li>
+                @else
+                    <li class="list-group-item">Non vu par le DAMF</li>
+                @endif
+                /*
+                    @foreach ($jointure as $row)
                         <li class="list-group-item">Nom du Secretaire:{{ $row->name }}</li>
-                    @break --}}
-        @endforeach
-        </ul>
-    </div>
+                    @break
+                @endforeach
+            </ul>
+        </div>
     @endforeach
 
 
@@ -89,9 +94,9 @@
         <a style="width: auto; height:fit-content;" href="{{ url('HVerificateur') }}"
             class="btn btn-primary">Statistique</a>
     @endforeach
-    </div>
+</div>
 
 
-    <br>
-    <br>
+<br>
+<br>
 @endsection
