@@ -249,7 +249,7 @@ class ControllerVerificateur extends Controller
         if ($mots == null) {
             $compteurVirgule_ns = 0;
         }
-
+      
         $dmd_verificateur->nombre_doc = $compteurVirgule_s + 1;
         $dmd_verificateur->vu_verifi = 1;
 
@@ -267,7 +267,7 @@ class ControllerVerificateur extends Controller
         $demand = demande::where('id', '=', $idc)->first();
         $num = $demand->numero_doss;
         $montant = $demand->montant;
-
+ 
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
         $numberinput = $dmd_verificateur->nombre_doc;
         //dd($numberinput);
@@ -334,7 +334,7 @@ class ControllerVerificateur extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
 
-
+   
         $demand = demande::where('id', '=', $idc)->first();
         $num = $demand->numero_doss;
         $montant = $demand->montant;
