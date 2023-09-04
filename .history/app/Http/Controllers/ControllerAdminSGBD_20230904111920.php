@@ -16,6 +16,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
+use Illuminate\Foundation\Auth\User;
 
 class ControllerAdminSGBD extends Controller
 {
