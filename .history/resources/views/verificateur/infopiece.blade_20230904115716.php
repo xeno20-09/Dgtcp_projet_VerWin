@@ -57,19 +57,13 @@
                         </div>
                         @php
                             $valeurMax = $restant;
-if($valeurMax==null){
-    $valeurMax='r';
-}
-else{
-    $valeurMax = $valeurMax;  
-}
-                          
                         @endphp
-                       <div class="col">
+
+                        <div class="col">
                             <div class="form-group">
                                 <label for="montantligne">Montant de la ligne</label>
                                 <input type="number" name="montantligne[]" id="montantligne"
-                                    placeholder="Montant de la ligne"  class="form-control">
+                                    placeholder="Montant de la ligne" class="form-control">
                             </div>
                         </div>
 
@@ -77,7 +71,9 @@ else{
                         <div class="col">
                             <div class="form-group">
 
-
+@php
+    echo $v
+@endphp
 
                                 <?php if ($montantdmd <= $valeurMax ) {
                                     echo "<label for='montantdmd'>Montant de la demande</label>";

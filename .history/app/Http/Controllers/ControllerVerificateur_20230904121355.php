@@ -158,14 +158,6 @@ class ControllerVerificateur extends Controller
         // Supposons que vous avez déjà effectué des vérifications sur l'existence des pièces avec les références fournies
         $themontant = 0;
         // Parcourez toutes les pièces soumises
-        $dat = $request->all();
-        foreach ($dat['libellepiece'] as $key => $libellePiece) {
-
-            $ladmd_pieces = new Piece();
-
-            $themontant += $dat['montantligne'][$key];
-        }
-        // Parcourez toutes les pièces soumises
         foreach ($data['libellepiece'] as $key => $libellePiece) {
             $dmd_pieces = new Piece();
             $dmd_pieces->id_dmd = $id_d;
@@ -177,6 +169,7 @@ class ControllerVerificateur extends Controller
             $dmd_pieces->nom_b = $dmd_verificateur->nom_benefi;
             $dmd_pieces->nom_v = $n_verificateur;
             $dmd_pieces->numero_doss = $dmd_verificateur->numero_doss;
+            $themontant += $data['montantligne'][$key];
             // Montant initial et Montant restant
             if (isset($data['montantrestant'][$key])) {
                 $lastPiece = Piece::where('montantrestant', $data['montantrestant'][$key])->latest()->first();
@@ -184,27 +177,25 @@ class ControllerVerificateur extends Controller
             } else {
                 $lastPiece = 0;
             }
-            $lastPiece_s = Piece::where('numero_doss', $dmd_pieces->numero_doss)->orderByDesc('created_at')->first();
-
-            if ($lastPiece) {
-                $dmd_pieces->montantinitial = $lastPiece->montantrestant;
-                $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
-                //dd($dmd_pieces->montantrestant);
-            } else if ($lastPiece_s) {
-                $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
-                $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
-                ($dmd_pieces->montantrestant);
-            } else {
-                /*valide*/
-                $dmd_pieces->montantrestant =  $themontant - $dmd_verificateur->montant;
-                $dmd_pieces->montantinitial = $dmd_verificateur->montant;
-                //dd($dmd_pieces->montantrestant);
-                // dd( $dmd_pieces->montantinitial  ); 
-            }
-
-            // Enregistrez la pièce dans la base de données
-            $dmd_pieces->save();
         }
+        $lastPiece_s = Piece::where('numero_doss', $dmd_pieces->numero_doss)->orderByDesc('created_at')->first();
+
+        if ($lastPiece) {
+            $dmd_pieces->montantinitial = $lastPiece->montantrestant;
+            $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
+        } else if ($lastPiece_s) {
+            $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
+            $dmd_pieces->montantrestant =   $lastPiece_s->montantrestant - $dmd_pieces->montantligne;
+            // dd($dmd_pieces);
+        } else {
+            /*valide*/
+            $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
+            $dmd_pieces->montantinitial = $dmd_verificateur->montant;
+        }
+        dd();
+        // Enregistrez la pièce dans la base de données
+        // $dmd_pieces->save();
+
 
         $demande = Piece::where('nom_v', $n_verificateur)->get();
         $user = User::where('id', '=', $id)->get();

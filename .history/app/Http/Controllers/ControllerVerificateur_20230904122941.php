@@ -189,17 +189,16 @@ class ControllerVerificateur extends Controller
             if ($lastPiece) {
                 $dmd_pieces->montantinitial = $lastPiece->montantrestant;
                 $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
-                //dd($dmd_pieces->montantrestant);
+                dd( $dmd_pieces->montantrestant );
             } else if ($lastPiece_s) {
                 $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
-                $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
-                ($dmd_pieces->montantrestant);
+                $dmd_pieces->montantrestant =   $lastPiece_s->montantrestant -  $themontant;
+                dd( $dmd_pieces->montantrestant );
             } else {
                 /*valide*/
                 $dmd_pieces->montantrestant =  $themontant - $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
-                //dd($dmd_pieces->montantrestant);
-                // dd( $dmd_pieces->montantinitial  ); 
+                dd( $dmd_pieces->montantrestant );
             }
 
             // Enregistrez la pièce dans la base de données

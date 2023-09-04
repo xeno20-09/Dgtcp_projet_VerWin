@@ -185,21 +185,18 @@ class ControllerVerificateur extends Controller
                 $lastPiece = 0;
             }
             $lastPiece_s = Piece::where('numero_doss', $dmd_pieces->numero_doss)->orderByDesc('created_at')->first();
-
+            dd($themontant);
             if ($lastPiece) {
                 $dmd_pieces->montantinitial = $lastPiece->montantrestant;
                 $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
-                //dd($dmd_pieces->montantrestant);
             } else if ($lastPiece_s) {
                 $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
-                $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
-                ($dmd_pieces->montantrestant);
+                $dmd_pieces->montantrestant =   $lastPiece_s->montantrestant -  $themontant;
+                // dd($dmd_pieces);
             } else {
                 /*valide*/
                 $dmd_pieces->montantrestant =  $themontant - $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
-                //dd($dmd_pieces->montantrestant);
-                // dd( $dmd_pieces->montantinitial  ); 
             }
 
             // Enregistrez la pièce dans la base de données

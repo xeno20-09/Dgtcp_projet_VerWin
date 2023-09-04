@@ -57,19 +57,13 @@
                         </div>
                         @php
                             $valeurMax = $restant;
-if($valeurMax==null){
-    $valeurMax='r';
-}
-else{
-    $valeurMax = $valeurMax;  
-}
-                          
                         @endphp
-                       <div class="col">
+
+                        <div class="col">
                             <div class="form-group">
                                 <label for="montantligne">Montant de la ligne</label>
                                 <input type="number" name="montantligne[]" id="montantligne"
-                                    placeholder="Montant de la ligne"  class="form-control">
+                                    placeholder="Montant de la ligne" class="form-control">
                             </div>
                         </div>
 
@@ -79,16 +73,16 @@ else{
 
 
 
-                                <?php if ($montantdmd <= $valeurMax ) {
+                                <?php if ($montantdmd <= $valeurMax || $valeurMax == null) {
                                     echo "<label for='montantdmd'>Montant de la demande</label>";
                                     echo "  <input type='number' value='$montantdmd' name=' id='montantdmd'
-                                    placeholder='Montant de la demande' style='background-color: rgb(199, 255, 199)' class='form-control'>";
+                                                                                                                                                                                            placeholder='Montant de la demande' style='background-color: rgb(199, 255, 199)' class='form-control'>";
                                 }
                                 
-                                if ($valeurMax < $montantdmd ) {
+                                if ($valeurMax < $montantdmd && $valeurMax != null) {
                                     echo "<label for='montantdmd'>Montant de la demande</label>";
                                     echo "  <input type='number' value='$montantdmd' name=' id='montantdmd'
-                                   placeholder='Montant de la demande' style='background-color: rgb(255, 112, 112)' class='form-control'>";
+                                                                                                                                                                                                                                                                                                                                                                                            placeholder='Montant de la demande' style='background-color: rgb(255, 112, 112)' class='form-control'>";
                                 }
                                 
                                 ?>
@@ -103,7 +97,7 @@ else{
                 
                 echo ' </form>  ';
                 if ($valeurMax < $montantdmd ) {
-                    echo "<a href=''><button class='btn btn-danger'>Rejeter</button></a>";
+                    echo "<a href=''><button style='background-color: red'>Rejeter</button></a>";
                 }
                 
                 ?>

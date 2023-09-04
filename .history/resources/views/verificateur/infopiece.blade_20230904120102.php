@@ -58,10 +58,7 @@
                         @php
                             $valeurMax = $restant;
 if($valeurMax==null){
-    $valeurMax='r';
-}
-else{
-    $valeurMax = $valeurMax;  
+    $valeurMax=''
 }
                           
                         @endphp
@@ -69,7 +66,7 @@ else{
                             <div class="form-group">
                                 <label for="montantligne">Montant de la ligne</label>
                                 <input type="number" name="montantligne[]" id="montantligne"
-                                    placeholder="Montant de la ligne"  class="form-control">
+                                    placeholder="Montant de la ligne" value="{{ $valeurMax }}" class="form-control">
                             </div>
                         </div>
 
