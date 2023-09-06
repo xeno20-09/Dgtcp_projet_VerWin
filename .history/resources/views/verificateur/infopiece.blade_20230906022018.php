@@ -105,7 +105,9 @@
                   
                 @endfor
 
-      
+                @php
+                    echo $valeurMax*1;
+                @endphp
             {{--     
                    
                     @if ( $valeurMax>=$montantdmd ) --}}
@@ -125,7 +127,6 @@
                 </a>
             </div>
         </div>
-    </div>
 {{--         @endif
  --}}        @endforeach
     </div>

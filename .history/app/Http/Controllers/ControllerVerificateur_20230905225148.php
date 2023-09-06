@@ -124,24 +124,22 @@ class ControllerVerificateur extends Controller
             // dd($dmd_verificateur->montantrestant);
 
             if ($dmd_verificateur == null) {
-                $restant = ' r';
+                $restant = 0;
             } else {
                 $restant = $dmd_verificateur->montantrestant;
             }
             //dd($restant);
             if (($bon == $demand->nombre_doc)) {
                 $e = 'ok';
-                dd($restant);
+
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
             if (($bon == 0) && ($bad == 0)) {
                 $restant = null;
                 $e = 'non';
-                //dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             } else {
                 $e = 'ok';
-                // dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }
@@ -169,6 +167,7 @@ class ControllerVerificateur extends Controller
 
         foreach ($data['libellepiece'] as $key => $llibellepiece) {
 
+            $ladmd_pieces = new Piece();
 
             $themontant = array_sum($data['montantligne']);
         }
@@ -184,13 +183,8 @@ class ControllerVerificateur extends Controller
             $dmd_pieces->montantligne =  $data['montantligne'][$key];
 
             $dmd_pieces->date =  $data['date_piece'][$key];
-            //dd($data['date_expi']);
-            if (isset($data['date_expi'])) {
-                foreach ($data['date_expi'] as $dateExpi) {
-                    $dmd_pieces->dateexpi =  $dateExpi;
-                }
-            }
-
+            dd($data['date_expi']);
+            $dmd_pieces->dateexpi =  $data['date_expi'];
 
             $dmd_pieces->nom_d = $dmd_verificateur->nom_client;
             $dmd_pieces->nom_b = $dmd_verificateur->nom_benefi;
@@ -211,14 +205,14 @@ class ControllerVerificateur extends Controller
                 //dd($dmd_pieces->montantrestant);
             } else if ($lastPiece_s) {
                 $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
-                $dmd_pieces->montantrestant =    $dmd_verificateur->montant - $themontant;
+                $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
                 //dd($dmd_pieces->montantrestant);
             } else {
                 /*valide*/
                 $dmd_pieces->montantrestant =   $dmd_verificateur->montant - $themontant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
 
-                //dd($themontant);
+                // dd($themontant);
                 // dd($dmd_verificateur->montant);
                 //dd($dmd_pieces->montantrestant);
                 // dd( $dmd_pieces->montantinitial  ); 
@@ -226,15 +220,8 @@ class ControllerVerificateur extends Controller
             //dd($dmd_pieces);
             // Enregistrez la pièce dans la base de données
             $dmd_pieces->save();
-            // 
+            // dd($dmd_pieces);
         }
-        // dd($dmd_pieces);
-        $demande = Piece::where('nom_v', $n_verificateur)->get();
-        $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
-        $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-
-        return view('verificateur.recap_pieces', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
 
     public function store(Request $request, $idc)
@@ -488,7 +475,6 @@ class ControllerVerificateur extends Controller
         $date = now();
         $dmd_pieces->date = $date;
         $dmd_pieces->montantligne = $p->montantligne;
-        $dmd_pieces->montantrestant = 0;
         $dmd_pieces->nom_d = $p->nom_d;
         $dmd_pieces->nom_b = $p->nom_b;
         $dmd_pieces->nom_v = $users->name;

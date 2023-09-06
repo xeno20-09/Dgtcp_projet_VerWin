@@ -105,11 +105,12 @@
                   
                 @endfor
 
-      
+                @php
+                    echo $valeurMax*1;
+                @endphp
             {{--     
                    
-                    @if ( $valeurMax>=$montantdmd ) --}}
-                    <div class="row mt-5">
+                    @if ( $valeurMax>=$montantdmd ) --}}<div class="row mt-5">
                     <div class="col">
                         <div class="form-group">
                     <button type='submit' class='btn btn-primary'>Enregistrer</button>
@@ -125,7 +126,6 @@
                 </a>
             </div>
         </div>
-    </div>
 {{--         @endif
  --}}        @endforeach
     </div>

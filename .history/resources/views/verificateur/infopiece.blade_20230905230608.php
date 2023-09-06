@@ -102,31 +102,28 @@
                             </div>
                         </div>
                     </div>
-                  
+                    
                 @endfor
 
-      
-            {{--     
+                <div class="row mt-5">
                    
-                    @if ( $valeurMax>=$montantdmd ) --}}
-                    <div class="row mt-5">
+
                     <div class="col">
                         <div class="form-group">
                     <button type='submit' class='btn btn-primary'>Enregistrer</button>
                 </div>
             </div>
-{{--             @endif
- --}}            </form> 
-{{--             @if (  $montantdmd>$valeurMax )
- --}}            <div class="col">
+                
+            </form> 
+            @if ( $valeurMax != 'r' && $ValeurMax ==0 )
+            <div class="col">
                 <div class="form-group">
                 <a href='{{ route('rejet_piece_verificateur', $item_c->id) }}'>
                     <button class='btn btn-danger'>Rejeter</button>
                 </a>
             </div>
         </div>
-    </div>
-{{--         @endif
- --}}        @endforeach
+        @endif
+        @endforeach
     </div>
 @endsection

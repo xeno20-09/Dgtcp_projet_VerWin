@@ -141,7 +141,7 @@ class ControllerVerificateur extends Controller
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             } else {
                 $e = 'ok';
-                // dd($restant);
+               // dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }
@@ -487,8 +487,8 @@ class ControllerVerificateur extends Controller
         $dmd_pieces->referencespiece = $p->referencespiece;
         $date = now();
         $dmd_pieces->date = $date;
-        $dmd_pieces->montantligne = $p->montantligne;
-        $dmd_pieces->montantrestant = 0;
+        $dmd_pieces->montantligne = 0;
+        $dmd_pieces->montantrestant = 'Neant';
         $dmd_pieces->nom_d = $p->nom_d;
         $dmd_pieces->nom_b = $p->nom_b;
         $dmd_pieces->nom_v = $users->name;

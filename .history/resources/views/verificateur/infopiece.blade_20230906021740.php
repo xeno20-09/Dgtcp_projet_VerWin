@@ -98,6 +98,15 @@
                                     <input type='number' value='{{ $restant }}' name='montantrestant[]'
                                         id='montantrestant' style='background-color: skyblue'
                                         placeholder='Montant de la Restant' class='form-control'readonly>
+                                    
+                                            
+                                        @else
+                                        {{ $restant }}=null
+                                        <label for='montantrestant'></label>
+                                        <input type='number' value='{{ $restant }}' name='montantrestant[]'
+                                            id='montantrestant' style='background-color: skyblue'
+                                            placeholder='Montant de la Restant' class='form-control'readonly>
+                                        @endif
                                 @endif
                             </div>
                         </div>
@@ -105,28 +114,28 @@
                   
                 @endfor
 
-      
-            {{--     
+                @php
+                    echo $valeurMax*1;
+                @endphp
+                <div class="row mt-5">
                    
-                    @if ( $valeurMax>=$montantdmd ) --}}
-                    <div class="row mt-5">
+                    @if ( $valeurMax>=$montantdmd )
                     <div class="col">
                         <div class="form-group">
                     <button type='submit' class='btn btn-primary'>Enregistrer</button>
                 </div>
             </div>
-{{--             @endif
- --}}            </form> 
-{{--             @if (  $montantdmd>$valeurMax )
- --}}            <div class="col">
+            @endif
+            </form> 
+            @if (  $montantdmd>$valeurMax )
+            <div class="col">
                 <div class="form-group">
                 <a href='{{ route('rejet_piece_verificateur', $item_c->id) }}'>
                     <button class='btn btn-danger'>Rejeter</button>
                 </a>
             </div>
         </div>
-    </div>
-{{--         @endif
- --}}        @endforeach
+        @endif
+        @endforeach
     </div>
 @endsection

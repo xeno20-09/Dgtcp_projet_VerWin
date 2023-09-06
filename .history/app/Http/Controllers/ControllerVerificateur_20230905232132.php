@@ -141,7 +141,7 @@ class ControllerVerificateur extends Controller
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             } else {
                 $e = 'ok';
-                // dd($restant);
+                dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }
@@ -228,7 +228,7 @@ class ControllerVerificateur extends Controller
             $dmd_pieces->save();
             // 
         }
-        // dd($dmd_pieces);
+        dd($dmd_pieces);
         $demande = Piece::where('nom_v', $n_verificateur)->get();
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
@@ -488,7 +488,7 @@ class ControllerVerificateur extends Controller
         $date = now();
         $dmd_pieces->date = $date;
         $dmd_pieces->montantligne = $p->montantligne;
-        $dmd_pieces->montantrestant = 0;
+        $dmd_pieces->montantrestant = 'Neant';
         $dmd_pieces->nom_d = $p->nom_d;
         $dmd_pieces->nom_b = $p->nom_b;
         $dmd_pieces->nom_v = $users->name;

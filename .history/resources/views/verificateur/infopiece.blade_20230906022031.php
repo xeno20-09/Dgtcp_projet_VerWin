@@ -105,7 +105,9 @@
                   
                 @endfor
 
-      
+                @php
+                    echo $valeurMax*1;
+                @endphp
             {{--     
                    
                     @if ( $valeurMax>=$montantdmd ) --}}

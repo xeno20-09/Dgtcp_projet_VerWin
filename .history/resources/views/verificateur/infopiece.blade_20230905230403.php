@@ -17,7 +17,12 @@
                 @csrf
                 @php
                 $valeurMax = $restant;
-
+if($valeurMax=='r' ){
+$valeurMax='r';
+}
+else{
+$valeurMax = $valeurMax;  
+}
               
             @endphp
                 @for ($i = 0; $i < $item_c->nombre_doc; $i++)
@@ -102,31 +107,27 @@
                             </div>
                         </div>
                     </div>
-                  
+                    
                 @endfor
 
-      
-            {{--     
+                <div class="row mt-5">
                    
-                    @if ( $valeurMax>=$montantdmd ) --}}
-                    <div class="row mt-5">
+
                     <div class="col">
                         <div class="form-group">
                     <button type='submit' class='btn btn-primary'>Enregistrer</button>
                 </div>
             </div>
-{{--             @endif
- --}}            </form> 
-{{--             @if (  $montantdmd>$valeurMax )
- --}}            <div class="col">
+                
+            </form> 
+
+            <div class="col">
                 <div class="form-group">
                 <a href='{{ route('rejet_piece_verificateur', $item_c->id) }}'>
                     <button class='btn btn-danger'>Rejeter</button>
                 </a>
             </div>
         </div>
-    </div>
-{{--         @endif
- --}}        @endforeach
+        @endforeach
     </div>
 @endsection
