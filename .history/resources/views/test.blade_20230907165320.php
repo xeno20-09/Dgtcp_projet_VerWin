@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des États</title>
+    <!-- Ajoutez les liens vers les fichiers CSS Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Gestion des États</h1>
+        
+        <!-- Afficher les états sous forme de cases à cocher -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="actif" id="etatActif">
+            <label class="form-check-label" for="etatActif">
+                Actif
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="inactif" id="etatInactif">
+            <label class="form-check-label" for="etatInactif">
+                Inactif
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="rupture_stock" id="etatRuptureStock">
+            <label class="form-check-label" for="etatRuptureStock">
+                Rupture de Stock
+            </label>
+        </div>
+
+        <!-- Un bouton pour soumettre les états sélectionnés -->
+        <button class="btn btn-primary mt-2" id="submitBtn">Valider</button>
+    </div>
+
+    <!-- Ajoutez les liens vers les fichiers JavaScript Bootstrap (facultatif) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script
