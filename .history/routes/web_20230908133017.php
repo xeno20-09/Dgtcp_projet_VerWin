@@ -139,6 +139,5 @@ Route::post('/Store{id}', [App\Http\Controllers\ControllerAdminSGBD::class, 'sto
 Route::get('/user/pdf', [App\Http\Controllers\ControllerAdminSGBD::class, 'createPDF']);
 Route::get('/Etat', [App\Http\Controllers\ControllerAdminSGBD::class, 'getetatdmd'])->name('etatdmd');
 Route::post('/listedmd', [App\Http\Controllers\ControllerAdminSGBD::class, 'listedmd'])->name('listedmd');
-Route::get('/lesdetailles/{id}', [App\Http\Controllers\ControllerAdminSGBD::class, 'detailles'])->name('detaillesdmd');
 
 /******************************************************************************* */

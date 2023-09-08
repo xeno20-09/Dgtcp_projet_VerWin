@@ -98,34 +98,6 @@ class ControllerAdminSGBD extends Controller
 
         // Le reste de votre code ici...
     }
-    public function   detailles(Request $request, $id)
-    {
-        $id_c = Auth::id();
-        $user = User::where('id', '=', $id_c)->get();
-        $demande = demande::where('id', '=', $id)->get();
-        $le_n_dmd = count($demande);
-        $jointure = DB::table('users')
-            ->join('demandes', 'users.id', '=', 'demandes.id_secret')
-            ->select('demandes.*', 'users.*')
-            ->get();
-        $jointure1 = DB::table('users')
-            ->join('demandes', 'users.id', '=', 'demandes.id_verifi')
-            ->select('demandes.*', 'users.*')
-            ->get();
-        $jointure2 = DB::table('users')
-            ->join('demandes', 'users.id', '=', 'demandes.id_chef_division')
-            ->select('demandes.*', 'users.*')
-            ->get();
-        $jointure3 = DB::table('users')
-            ->join('demandes', 'users.id', '=', 'demandes.id_chef_bureau')
-            ->select('demandes.*', 'users.*')
-            ->get();
-        $dmd_n_lu = count(demande::where('vu_damf', '=', 0)->where('vu_chef_bureau', '=', 1)->get());
-
-
-
-        return view('Admin_SGBD.detaille_demande', compact('demande', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
-    }
 
 
     public function delete_user(Request $request, $id)

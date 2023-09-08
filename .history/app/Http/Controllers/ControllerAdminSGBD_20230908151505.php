@@ -124,7 +124,7 @@ class ControllerAdminSGBD extends Controller
 
 
 
-        return view('Admin_SGBD.detaille_demande', compact('demande', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
+        return view('damf.detaille_demande', compact('demande', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
     }
 
 
