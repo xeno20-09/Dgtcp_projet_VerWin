@@ -36,12 +36,8 @@
                         @else
                             Il y a aucune pièces assimilées à ce dossier.
                         @endif --}}
-                 
-                        @if ($item['pieces'])
                         {{ $item['pieces'] }}
-                        @else
-                        Il n'y a pas de pieces joints 
-                        @endif
+                        
                     </li>
 
 
