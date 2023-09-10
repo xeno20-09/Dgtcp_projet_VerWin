@@ -43,7 +43,7 @@
             @endforeach
         
         @else
-Votre demande n'est pas prete , revenez plus tard
+Votre demande n'est pas prete , revenez le   @foreach ($demande as $item)   {{ $item['date_decision'] }}  @endforeach
         @endif
 
     </div>

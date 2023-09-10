@@ -34,10 +34,10 @@ class ControllerClient extends Controller
             ->get();
         $test = count($demande);
         $demandes = demande::where('numero_doss', '=', $num_doss)
-            ->where('date', '=', $date_depot)
-            ->first();
+        ->where('date', '=', $date_depot)
+        ->first();
         $pic = 0;
-        if (($demandes->status_dmd == 'Autorisée') || ($demandes->status_dmd == 'Rejetée') || ($demandes->status_dmd == 'Suspendu')) {
+        if (($demande->status_dmd == 'Autorisée') || ($demande->status_dmd == 'Rejetée') || ($demande->status_dmd == 'Suspendu')) {
             $pic = 1;
         } else {
             $pic = 0;

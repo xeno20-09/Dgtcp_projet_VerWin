@@ -33,17 +33,13 @@ class ControllerClient extends Controller
             ->where('date', '=', $date_depot)
             ->get();
         $test = count($demande);
-        $demandes = demande::where('numero_doss', '=', $num_doss)
-            ->where('date', '=', $date_depot)
-            ->first();
-        $pic = 0;
-        if (($demandes->status_dmd == 'Autorisée') || ($demandes->status_dmd == 'Rejetée') || ($demandes->status_dmd == 'Suspendu')) {
-            $pic = 1;
-        } else {
-            $pic = 0;
-        }
+        $pic=0;
+        if (($demande->status_dmd=='Autorisée')||($demande->status_dmd=='Rejetée')||($demande->status_dmd=='Suspendu'))
+{
+$
+}
         if ($test != 0) {
-            return view('client.demande_client_t', compact('user', 'demande', 'pic'));
+            return view('client.demande_client_t', compact('user', 'demande'));
         }
         if ($test == 0) {
             return view('client.demande_client_i', compact('user'));

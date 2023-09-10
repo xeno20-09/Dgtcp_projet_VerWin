@@ -6,7 +6,7 @@
     @endforeach
 </h1>
 <div class="container">
-    @if ($pic==1)
+    @if ($pic=1)
     @foreach ($demande as $item)
     @if (($item['status_dmd']=='Autorisée')||($item['status_dmd']=='Rejetée')||($item['status_dmd']=='Suspendu'))
     <a class="btn btn-primary" href="{{ URL::to('/demande/pdf', ['id' => $item->numero_doss]) }}">Export demande to PDF</a>     
@@ -41,9 +41,9 @@
             </ul>
     
             @endforeach
-        
+            @endif
         @else
-Votre demande n'est pas prete , revenez plus tard
+Votre demande n'est pas prete , revenez le   @foreach ($demande as $item)   {{ $item['date_decision'] }}  @endforeach
         @endif
 
     </div>

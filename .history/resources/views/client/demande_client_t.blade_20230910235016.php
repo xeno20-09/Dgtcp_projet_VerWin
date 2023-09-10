@@ -41,15 +41,24 @@
             </ul>
     
             @endforeach
-        
+            @foreach ($user as $item)
+  <a style="width: auto; height:fit-content;" href="{{ url('Client')}}" class="btn btn-primary">Home</a>
+  @endforeach
         @else
 Votre demande n'est pas prete , revenez plus tard
+width: auto;
+  height: 35px;
+  position: relative;
+  top: 22px;
+  left: -201px;
+  right: 198px;
+@foreach ($user as $item)
+<a style="width: auto; height:fit-content;" href="{{ url('Client')}}" class="btn btn-primary">Home</a>
+@endforeach
         @endif
 
     </div>
-    @foreach ($user as $item)
-  <a style="width: auto; height:fit-content;" href="{{ url('Client')}}" class="btn btn-primary">Home</a>
-  @endforeach
+
 </div>
 
 @endsection

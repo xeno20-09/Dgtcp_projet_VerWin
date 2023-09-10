@@ -42,6 +42,7 @@ class ControllerClient extends Controller
         } else {
             $pic = 0;
         }
+        dd()
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }

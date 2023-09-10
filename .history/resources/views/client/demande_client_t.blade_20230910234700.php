@@ -43,7 +43,7 @@
             @endforeach
         
         @else
-Votre demande n'est pas prete , revenez plus tard
+Votre demande n'est pas prete , revenez plus
         @endif
 
     </div>
