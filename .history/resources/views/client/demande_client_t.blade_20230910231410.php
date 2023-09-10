@@ -7,9 +7,11 @@
 </h1>
 <div class="container">
 @foreach ($demande as $item)
-@if ($item['status_dmd']!=null)
 <a class="btn btn-primary" href="{{ URL::to('/demande/pdf', ['id' => $item->numero_doss]) }}">Export demande to PDF</a>     
+@if ($item['status_dmd']!='Autorisée')
+<li class="list-group-item">Motif de la demande: {{ $item['motif'] }}</li>
     @else
+<li class="list-group-item"></li>
 @endif
 
     <h1>Liste de demandes </h1>

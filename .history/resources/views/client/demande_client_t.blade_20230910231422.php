@@ -7,7 +7,7 @@
 </h1>
 <div class="container">
 @foreach ($demande as $item)
-@if ($item['status_dmd']!=null)
+@if ($item['status_dmd']!='Autorisée')
 <a class="btn btn-primary" href="{{ URL::to('/demande/pdf', ['id' => $item->numero_doss]) }}">Export demande to PDF</a>     
     @else
 @endif
