@@ -85,8 +85,8 @@
                                 <td>{{ $item->nature_op }}</td>
                             </tr>
                             <tr>
-                                <td>Montant :</td>
-                                <td>{{ $item->montant }} {{ $item->devise }}</td>
+                                <td>Montant en {{ $item->devise }}:</td>
+                                <td>{{ $item->montant }}</td>
                             </tr>
                             <tr>
                                 <td>Contre montant:</td>

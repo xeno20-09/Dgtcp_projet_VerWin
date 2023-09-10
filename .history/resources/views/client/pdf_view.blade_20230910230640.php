@@ -86,7 +86,7 @@
                             </tr>
                             <tr>
                                 <td>Montant :</td>
-                                <td>{{ $item->montant }} {{ $item->devise }}</td>
+                                <td>{{ $item->montant }}{{ $item->devise }}</td>
                             </tr>
                             <tr>
                                 <td>Contre montant:</td>

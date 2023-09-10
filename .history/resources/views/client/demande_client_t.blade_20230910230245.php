@@ -23,6 +23,7 @@
             <li class="list-group-item">Contre montant en FCFA: {{ $item-> montant_con }}</li>
             <li class="list-group-item">Nom du client: {{ $item-> nom_client }}</li>
             <li class="list-group-item">Prénom du client: {{ $item-> prenom_client }}</li>
+            <li class="list-group-item">Téléphone du client: {{ $item-> tel_client }}</li>
             <li class="list-group-item">Banque du client: {{ $item-> banque_client }}</li>
             <li class="list-group-item">Numéro de compte du client: {{ $item-> num_compt_client }}</li>
             <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>

@@ -85,18 +85,27 @@
                                 <td>{{ $item->nature_op }}</td>
                             </tr>
                             <tr>
-                                <td>Montant :</td>
-                                <td>{{ $item->montant }} {{ $item->devise }}</td>
+                                <td>Montant en {{ $item->devise }}:</td>
+                                <td>{{ $item->montant }}</td>
                             </tr>
                             <tr>
                                 <td>Contre montant:</td>
-                                <td>{{ $item->montant_con }} FCFA</td>
+                                <td>{{ $item->montant_con }} </td>
                             </tr>
                             <tr>
                                 <td>Nom du client:</td>
                                 <td>{{ $item->nom_client }}</td>
                             </tr>
 
+                            <tr>
+                                <td>Profession du client:</td>
+                                <td>{{ $item->profess_client }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Téléphone du client:</td>
+                                <td>{{ $item->tel_client }}</td>
+                            </tr>
 
                             <tr>
                                 <td>Banque du client:</td>
@@ -113,14 +122,21 @@
                                 <td>{{ $item['nom_benefi'] }}</td>
                             </tr>
 
-                  
+                            <tr>
+                                <td>Prenom du beneficiaire:</td>
+                                <td>{{ $item['prenom_benefi'] }}</td>
+                            </tr>
 
                             <tr>
                                 <td>Banque du beneficiaire:</td>
                                 <td> {{ $item['banque_benefi'] }}</td>
                             </tr>
 
-                          
+                            <tr>
+                                <td>Pays du beneficiaire:</td>
+                                <td>{{ $item['pays_benifi'] }}</td>
+                            </tr>
+
                             <tr>
                                 <td>Numero de compte du beneficiaire:</td>
                                 <td>{{ $item['num_compt_benefi'] }}</td>

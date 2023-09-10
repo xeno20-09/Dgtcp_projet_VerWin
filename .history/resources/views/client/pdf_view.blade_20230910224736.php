@@ -85,8 +85,8 @@
                                 <td>{{ $item->nature_op }}</td>
                             </tr>
                             <tr>
-                                <td>Montant :</td>
-                                <td>{{ $item->montant }} {{ $item->devise }}</td>
+                                <td>Montant en {{ $item->devise }}:</td>
+                                <td>{{ $item->montant }}</td>
                             </tr>
                             <tr>
                                 <td>Contre montant:</td>
@@ -97,6 +97,20 @@
                                 <td>{{ $item->nom_client }}</td>
                             </tr>
 
+                            <tr>
+                                <td>Prénom du client:</td>
+                                <td>{{ $item->prenom_client }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Profession du client:</td>
+                                <td>{{ $item->profess_client }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Téléphone du client:</td>
+                                <td>{{ $item->tel_client }}</td>
+                            </tr>
 
                             <tr>
                                 <td>Banque du client:</td>
@@ -113,14 +127,21 @@
                                 <td>{{ $item['nom_benefi'] }}</td>
                             </tr>
 
-                  
+                            <tr>
+                                <td>Prenom du beneficiaire:</td>
+                                <td>{{ $item['prenom_benefi'] }}</td>
+                            </tr>
 
                             <tr>
                                 <td>Banque du beneficiaire:</td>
                                 <td> {{ $item['banque_benefi'] }}</td>
                             </tr>
 
-                          
+                            <tr>
+                                <td>Pays du beneficiaire:</td>
+                                <td>{{ $item['pays_benifi'] }}</td>
+                            </tr>
+
                             <tr>
                                 <td>Numero de compte du beneficiaire:</td>
                                 <td>{{ $item['num_compt_benefi'] }}</td>
@@ -140,13 +161,13 @@
                 @foreach ($demande as $item)
                     <tr>
                         <td>Statut de la demande:</td>
-                        <td style="">{{ $item['status_dmd'] }}</td>
+                        <td style=">{{ $item['status_dmd'] }}</td>
                     </tr>
                     <tr>
                       
                         @if ($item['status_dmd']!='Autorisée')
                         <td>Motif:</td>
-                        <td style="">{{ $item['motif'] }}</td>
+                        <td style=">{{ $item['motif'] }}</td>
                             @else
                             <td></td>
                         @endif
