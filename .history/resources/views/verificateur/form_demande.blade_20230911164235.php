@@ -305,11 +305,5 @@ btn2.name='btn2';
                 container.appendChild(clonedRow);
        
         });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
-
-        });
     });
 </script>

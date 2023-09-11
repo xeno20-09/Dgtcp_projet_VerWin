@@ -103,7 +103,7 @@ class ControllerSecretaire extends Controller
         $montant_con = $convertedObj->get();
         //dd($convertedObj);
         $dmd_secretaire->montant_con = $montant_con;
-        //dd($convertedObj);
+        dd()
         $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->nom_client = $data['nom_client'];
         $dmd_secretaire->prenom_client = $data['prenom_client'];

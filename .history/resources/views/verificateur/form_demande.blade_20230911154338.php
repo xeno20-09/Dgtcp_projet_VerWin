@@ -298,18 +298,14 @@
             refs.name = "ref_doss[]";
             datex.name = "exp_pieces[]";
             mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+btn1.name
 
 
                 container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
+                boutonRetirer.addEventListener("click", function () {
+            container.appendChild(clonedRow).remove();
 
+        });
         });
     });
 </script>

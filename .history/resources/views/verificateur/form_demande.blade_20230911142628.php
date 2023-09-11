@@ -225,13 +225,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
+                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
                             </div>
                         </div>
                         <div class="col" id="retirer">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
+                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="retirerChamp">-</button>
                             </div>
                         </div>
                     </div>
@@ -262,20 +262,22 @@
     document.addEventListener("DOMContentLoaded", function () {
         var boutonRetirer = document.getElementById("retirerChamp");
 
+           // Masquez le bouton "Retirer" si i est à 0
+         // Sélectionnez le bouton "Ajouter" et le bouton "Retirer"
         var boutonAjouter = document.getElementById("ajouterChamp");
 
         // Sélectionnez le conteneur des rangées
         var container = document.getElementById("container");
-      
+
         // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
         boutonAjouter.addEventListener("click", function () {
-            
+            i++;
             // Incrémente le compteur de clics
 
             // Clonez la première rangée
-            
+            if(i!=0){
             var clonedRow = container.querySelector(".row").cloneNode(true);
-            
+            }
             // Effacez les valeurs des champs clonés
             var inputs = clonedRow.querySelectorAll("input");
             inputs.forEach(function (input) {
@@ -287,9 +289,6 @@
             var refs = clonedRow.querySelector("#refs");
             var datex = clonedRow.querySelector("#expi");
             var mligne = clonedRow.querySelector("#mligne");
-            var btn1 = clonedRow.querySelector("#retirerChamp");
-            var btn2 = clonedRow.querySelector("#ajouterChamp");
-
             piece.value = "";
             refs.value = "";
             datex.value = "";
@@ -298,18 +297,26 @@
             refs.name = "ref_doss[]";
             datex.name = "exp_pieces[]";
             mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+            if(i!=0){
+                document.getElementById("retirer").style.display = "inline-block";
 
-
+            }
                 container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
 
+
+        });
+ // Ajoutez le clone au conteneur
+
+            // Affichez le bouton "Retirer" lorsque i est supérieur à 0
+            
+        // Ajoutez un gestionnaire d'événements au bouton "Retirer"
+        boutonRetirer.addEventListener("click", function () {
+            // Supprimez la rangée au clic sur le bouton "Retirer"
+          
+                lastRow.remove();
+            
+
+         
         });
     });
 </script>

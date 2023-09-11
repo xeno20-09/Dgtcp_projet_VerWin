@@ -225,13 +225,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
+                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
                             </div>
                         </div>
                         <div class="col" id="retirer">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
+                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="retirerChamp">-</button>
                             </div>
                         </div>
                     </div>
@@ -255,61 +255,72 @@
     <br>
 @endsection
 
-<script>
-    // Définissez une variable globale pour stocker la valeur de i
-    var i = 0;
+    <script>
+        // Définissez une variable globale pour stocker la valeur de i
+        var i = 0;
 
-    document.addEventListener("DOMContentLoaded", function () {
-        var boutonRetirer = document.getElementById("retirerChamp");
+        document.addEventListener("DOMContentLoaded", function () {
+            var boutonRetirer = document.getElementById("retirerChamp");
 
-        var boutonAjouter = document.getElementById("ajouterChamp");
+            // Masquez le bouton "Retirer" si i est à 0
+            if (i == 0) {
+                boutonRetirer.style.display = "none";
+            }
 
-        // Sélectionnez le conteneur des rangées
-        var container = document.getElementById("container");
-      
-        // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
-        boutonAjouter.addEventListener("click", function () {
-            
-            // Incrémente le compteur de clics
+            // Sélectionnez le bouton "Ajouter" et le bouton "Retirer"
+            var boutonAjouter = document.getElementById("ajouterChamp");
 
-            // Clonez la première rangée
-            
-            var clonedRow = container.querySelector(".row").cloneNode(true);
-            
-            // Effacez les valeurs des champs clonés
-            var inputs = clonedRow.querySelectorAll("input");
-            inputs.forEach(function (input) {
-                input.value = "";
-            });
+            // Sélectionnez le conteneur des rangées
+            var container = document.getElementById("container");
 
-            // Changez les noms des champs et réinitialisez les valeurs
-            var piece = clonedRow.querySelector("#pieces");
-            var refs = clonedRow.querySelector("#refs");
-            var datex = clonedRow.querySelector("#expi");
-            var mligne = clonedRow.querySelector("#mligne");
-            var btn1 = clonedRow.querySelector("#retirerChamp");
-            var btn2 = clonedRow.querySelector("#ajouterChamp");
+            // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
+            boutonAjouter.addEventListener("click", function () {
+                i++;
+                // Incrémente le compteur de clics
 
-            piece.value = "";
-            refs.value = "";
-            datex.value = "";
-            mligne.value = " ";
-            piece.name = "pieces_doss[]";
-            refs.name = "ref_doss[]";
-            datex.name = "exp_pieces[]";
-            mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+                // Clonez la première rangée
+                var clonedRow = container.querySelector(".row").cloneNode(true);
 
+                // Effacez les valeurs des champs clonés
+                var inputs = clonedRow.querySelectorAll("input");
+                inputs.forEach(function (input) {
+                    input.value = "";
+                });
 
+                // Changez les noms des champs et réinitialisez les valeurs
+                var piece = clonedRow.querySelector("#pieces");
+                var refs = clonedRow.querySelector("#refs");
+                var datex = clonedRow.querySelector("#expi");
+                var mligne = clonedRow.querySelector("#mligne");
+                piece.value = "";
+                refs.value = "";
+                datex.value = "";
+                mligne.value = " ";
+                piece.name = "pieces_doss[]";
+                refs.name = "ref_doss[]";
+                datex.name = "exp_pieces[]";
+                mligne.name = "montantligne[]";
+
+                // Ajoutez le clone au conteneur
                 container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
 
+                // Affichez le bouton "Retirer" lorsque i est supérieur à 0
+                if (i > 0) {
+                    boutonRetirer.style.display = "inline-block";
+                }
+
+                // Ajoutez un gestionnaire d'événements au bouton "Retirer"
+                boutonRetirer.addEventListener("click", function () {
+                    // Supprimez la rangée au clic sur le bouton "Retirer"
+                    var lastRow = container.querySelector(".row:last-child");
+                    if (lastRow) {
+                        lastRow.remove();
+                        i--; // Décrémentez le compteur
+                        if (i == 0) {
+                            boutonRetirer.style.display = "none";
+                        }
+                    }
+                });
+            });
         });
-    });
-</script>
+    </script>

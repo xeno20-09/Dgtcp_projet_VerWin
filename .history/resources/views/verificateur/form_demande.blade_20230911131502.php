@@ -225,13 +225,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
+                                <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
                             </div>
                         </div>
-                        <div class="col" id="retirer">
+                        <div class="col">
                             <div class="form-group">
-                                <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
+                                <label for="" class="form-label mt-4">Retirer la piece</label>
+                                <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="tChamp">+</button>
                             </div>
                         </div>
                     </div>
@@ -256,26 +256,22 @@
 @endsection
 
 <script>
-    // Définissez une variable globale pour stocker la valeur de i
-    var i = 0;
-
     document.addEventListener("DOMContentLoaded", function () {
-        var boutonRetirer = document.getElementById("retirerChamp");
-
+        // Sélectionnez le bouton "Ajouter"
         var boutonAjouter = document.getElementById("ajouterChamp");
 
         // Sélectionnez le conteneur des rangées
         var container = document.getElementById("container");
-      
+
+        // Compteur de clics
+
         // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
         boutonAjouter.addEventListener("click", function () {
-            
             // Incrémente le compteur de clics
 
             // Clonez la première rangée
-            
             var clonedRow = container.querySelector(".row").cloneNode(true);
-            
+
             // Effacez les valeurs des champs clonés
             var inputs = clonedRow.querySelectorAll("input");
             inputs.forEach(function (input) {
@@ -287,29 +283,33 @@
             var refs = clonedRow.querySelector("#refs");
             var datex = clonedRow.querySelector("#expi");
             var mligne = clonedRow.querySelector("#mligne");
-            var btn1 = clonedRow.querySelector("#retirerChamp");
-            var btn2 = clonedRow.querySelector("#ajouterChamp");
+            var boutonSupprimer = document.createElement("button");
+boutonSupprimer.textContent = "-";
+boutonSupprimer.classList.add("btn", "btn-primary");
+boutonSupprimer.style.position = "relative";
+boutonSupprimer.style.top = "36px";
+boutonSupprimer.style.right = "100px";
+boutonSupprimer.style.textAlign = "center";
+boutonSupprimer.style.width = "37px";
+boutonSupprimer.style.height = "38px";
 
+boutonSupprimer.addEventListener("click", function () {
+    // Code pour supprimer cette rangée
+});
+clonedRow.appendChild(boutonSupprimer);
             piece.value = "";
             refs.value = "";
             datex.value = "";
-            mligne.value = " ";
+            mligne.value=" ";
             piece.name = "pieces_doss[]";
             refs.name = "ref_doss[]";
             datex.name = "exp_pieces[]";
             mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+      
+            // Ajoutez le clone au conteneur
+            container.appendChild(clonedRow);
 
-
-                container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
-
+            // Affichez le nombre de clics dans la console
         });
     });
 </script>

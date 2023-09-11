@@ -225,13 +225,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
+                                <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
                             </div>
                         </div>
-                        <div class="col" id="retirer">
+                        <div class="col">
                             <div class="form-group">
-                                <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
+                                <label for="" class="form-label mt-4">Retirer la piece</label>
+                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="retirerChamp">-</button>
                             </div>
                         </div>
                     </div>
@@ -257,59 +257,75 @@
 
 <script>
     // Définissez une variable globale pour stocker la valeur de i
-    var i = 0;
+var i = 0;
 
-    document.addEventListener("DOMContentLoaded", function () {
-        var boutonRetirer = document.getElementById("retirerChamp");
-
-        var boutonAjouter = document.getElementById("ajouterChamp");
-
-        // Sélectionnez le conteneur des rangées
-        var container = document.getElementById("container");
-      
-        // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
-        boutonAjouter.addEventListener("click", function () {
-            
-            // Incrémente le compteur de clics
-
-            // Clonez la première rangée
-            
-            var clonedRow = container.querySelector(".row").cloneNode(true);
-            
-            // Effacez les valeurs des champs clonés
-            var inputs = clonedRow.querySelectorAll("input");
-            inputs.forEach(function (input) {
-                input.value = "";
-            });
-
-            // Changez les noms des champs et réinitialisez les valeurs
-            var piece = clonedRow.querySelector("#pieces");
-            var refs = clonedRow.querySelector("#refs");
-            var datex = clonedRow.querySelector("#expi");
-            var mligne = clonedRow.querySelector("#mligne");
-            var btn1 = clonedRow.querySelector("#retirerChamp");
-            var btn2 = clonedRow.querySelector("#ajouterChamp");
-
-            piece.value = "";
-            refs.value = "";
-            datex.value = "";
-            mligne.value = " ";
-            piece.name = "pieces_doss[]";
-            refs.name = "ref_doss[]";
-            datex.name = "exp_pieces[]";
-            mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+// Définissez une fonction pour obtenir la valeur actuelle de i
 
 
-                container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
+  document.addEventListener("DOMContentLoaded", function () {
+   
+    // Sélectionnez le bouton "Ajouter"
+    var boutonAjouter = document.getElementById("ajouterChamp");
+    var retirer=document.getElementById("retirerChamp");
 
-        });
-    });
+    // Sélectionnez le conteneur des rangées
+    var container = document.getElementById("container");
+
+    // Ajoutez un gestionnaire d'événement au bouton "Ajouter"
+    boutonAjouter.addEventListener("click", function () {
+        i++;
+        // Incrémente le compteur de clics
+// Clonez la première rangée
+var clonedRow = container.querySelector(".row").cloneNode(true);
+
+// Effacez les valeurs des champs clonés
+var inputs = clonedRow.querySelectorAll("input");
+inputs.forEach(function (input) {
+    input.value = "";
+});
+
+// Changez les noms des champs et réinitialisez les valeurs
+var piece = clonedRow.querySelector("#pieces");
+var refs = clonedRow.querySelector("#refs");
+var datex = clonedRow.querySelector("#expi");
+var mligne = clonedRow.querySelector("#mligne");
+piece.value = "";
+refs.value = "";
+datex.value = "";
+mligne.value = " ";
+piece.name = "pieces_doss[]";
+refs.name = "ref_doss[]";
+datex.name = "exp_pieces[]";
+mligne.name = "montantligne[]";
+
+// Créez le bouton "Moins" et ajoutez-lui du style
+var boutonMoins = document.createElement("button");
+boutonMoins.textContent = "-";
+boutonMoins.classList.add("btn", "btn-danger"); // Ajoutez les classes CSS pour un bouton danger
+
+// Ajoutez un gestionnaire d'événements de clic au bouton "Moins"
+boutonMoins.addEventListener("click", function () {
+    // Supprimez la rangée au clic sur le bouton "Moins"
+    clonedRow.remove();
+});
+
+// Ajoutez le bouton "Moins" à la rangée clonée
+clonedRow.appendChild(boutonMoins);
+
+// Ajoutez le clone au conteneur
+container.appendChild(clonedRow);
+
+
+});
+retirer.addEventListener("click", function () {
+    // Supprimez la rangée au clic sur le bouton "Moins"
+    clonedRow.remove();
+});
+if (getI()!== 0) {
+            } else {
+                document.getElementById("retirerChamp").style.display = "none";
+            }
+
+            console.log()
+});
 </script>

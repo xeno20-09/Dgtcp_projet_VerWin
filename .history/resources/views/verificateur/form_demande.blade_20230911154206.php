@@ -287,9 +287,6 @@
             var refs = clonedRow.querySelector("#refs");
             var datex = clonedRow.querySelector("#expi");
             var mligne = clonedRow.querySelector("#mligne");
-            var btn1 = clonedRow.querySelector("#retirerChamp");
-            var btn2 = clonedRow.querySelector("#ajouterChamp");
-
             piece.value = "";
             refs.value = "";
             datex.value = "";
@@ -298,18 +295,14 @@
             refs.name = "ref_doss[]";
             datex.name = "exp_pieces[]";
             mligne.name = "montantligne[]";
-btn1.name='btn1';
-btn2.name='btn2';
+
 
 
                 container.appendChild(clonedRow);
-       
-        });
-        boutonRetirer.addEventListener("click", function () {
-            var rows = container.querySelectorAll(".row");
-                var lastRow = rows[rows.length - 1];
-            container.removeChild(lastRow).remove();
+                boutonRetirer.addEventListener("click", function () {
+            container.appendChild(clonedRow).remove();
 
+        });
         });
     });
 </script>
