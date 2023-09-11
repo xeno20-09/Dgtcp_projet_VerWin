@@ -226,13 +226,13 @@
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Ajouter une autre piece</label>
                                 <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
+                                <label for="" class="form-label mt-4">Ajouter une autre piece</label>
+                                <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" id="ajouterChamp">+</button>
-                           
+                               
                             </div>
                         </div>
                     </div>
