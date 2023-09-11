@@ -527,7 +527,7 @@ class ControllerVerificateur extends Controller
         $rejt->status_dmd = 'Rejetée';
         $rejt->motif = 'Rejetée pour incorformité au niveau des montants';
         $data = $request->all();
-        /*  $dmd_pieces = new Piece();
+       /*  $dmd_pieces = new Piece();
         $dmd_pieces->id_dmd = $idm;
         $dmd_pieces->libellepiece = $p->libellepiece;
         $dmd_pieces->referencespiece = $p->referencespiece;
@@ -545,7 +545,7 @@ class ControllerVerificateur extends Controller
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
 
         //dd($dmd_pieces);
-        //$dmd_pieces->save();
+        $dmd_pieces->save();
         //dd($rejt);
         $rejt->update();
         return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));

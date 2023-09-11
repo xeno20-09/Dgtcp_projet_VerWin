@@ -82,18 +82,17 @@
                         @endif
                         <div class="col">
                             <div class="form-group">
-                                @if ( $restant!=0)
+                              
                                     <label for='montantdmd'>Montant de la demande</label>
                                     <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
                                         id='montantdmd' placeholder='Montant de la demande'
                                         class='form-control'readonly>
-                                        @endif           
+                             
                                         @if ( $restant==0)
                                         <label for='montantdmd'>Montant de la demande</label>
                                         <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
                                             id='montantdmd' style='background-color: red' placeholder='Montant de la demande'
                                             class='form-control'readonly>
-                                            
 @endif
                             </div>
                         </div>

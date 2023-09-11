@@ -93,7 +93,6 @@
                                         <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
                                             id='montantdmd' style='background-color: red' placeholder='Montant de la demande'
                                             class='form-control'readonly>
-                                            
 @endif
                             </div>
                         </div>

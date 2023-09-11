@@ -527,7 +527,7 @@ class ControllerVerificateur extends Controller
         $rejt->status_dmd = 'Rejetée';
         $rejt->motif = 'Rejetée pour incorformité au niveau des montants';
         $data = $request->all();
-        /*  $dmd_pieces = new Piece();
+       /*  $dmd_pieces = new Piece();
         $dmd_pieces->id_dmd = $idm;
         $dmd_pieces->libellepiece = $p->libellepiece;
         $dmd_pieces->referencespiece = $p->referencespiece;

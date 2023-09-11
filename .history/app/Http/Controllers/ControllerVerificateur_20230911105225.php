@@ -132,8 +132,8 @@ class ControllerVerificateur extends Controller
             } else {
                 $restant = $dmd_verificateur->montantrestant;
             }
-            //dd($bad);
-            if (($bon == $demand->nombre_doc) || ($bad != 0)) {
+            dd($bad);
+            if (($bon == $demand->nombre_doc)) {
                 $e = 'ok';
                 //dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
@@ -527,7 +527,7 @@ class ControllerVerificateur extends Controller
         $rejt->status_dmd = 'Rejetée';
         $rejt->motif = 'Rejetée pour incorformité au niveau des montants';
         $data = $request->all();
-        /*  $dmd_pieces = new Piece();
+        $dmd_pieces = new Piece();
         $dmd_pieces->id_dmd = $idm;
         $dmd_pieces->libellepiece = $p->libellepiece;
         $dmd_pieces->referencespiece = $p->referencespiece;
@@ -538,14 +538,14 @@ class ControllerVerificateur extends Controller
         $dmd_pieces->nom_d = $p->nom_d;
         $dmd_pieces->nom_b = $p->nom_b;
         $dmd_pieces->nom_v = $users->name;
-        $dmd_pieces->numero_doss = $num; */
+        $dmd_pieces->numero_doss = $num;
         $name_v =  $users->name;
         $pieces = piece::where('nom_v', '=', $name_v)->get();
         $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
 
         //dd($dmd_pieces);
-        //$dmd_pieces->save();
+        $dmd_pieces->save();
         //dd($rejt);
         $rejt->update();
         return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));
