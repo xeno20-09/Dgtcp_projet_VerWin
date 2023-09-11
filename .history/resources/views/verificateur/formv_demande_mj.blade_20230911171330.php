@@ -240,19 +240,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Reference piece</label>
-                                <input name="ref_doss[]" type="text" class="form-control"value="{{ $item_c->referencespiece }}" id="refs" placeholder="ref pieces">
+                                <input name="ref_doss[]" type="text" class="form-control"value="{{ $item_c->libellepiece }}" id="refs" placeholder="ref pieces">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Montant ligne</label>
-                                <input name="montantligne[]" type="number" class="form-control" value="{{ $item_c->montantligne }}" id="mligne" placeholder="Montant ligne">
+                                <input name="montantligne[]" type="number" class="form-control" id="mligne" placeholder="Montant ligne">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="" class="form-label mt-4">Date d'expiration de la piece</label>
-                                <input name="exp_pieces[]" value="{{ $item_c->dateexpi }}"  type="date" class="form-control" id="expi" placeholder="date expiration pieces">
+                                <input name="exp_pieces[]" value=" " type="date" class="form-control" id="expi" placeholder="date expiration pieces">
                             </div>
                         </div>
                     {{-- </div>

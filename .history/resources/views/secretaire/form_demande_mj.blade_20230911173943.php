@@ -8,13 +8,12 @@
     </h1>
     @foreach ($user as $item)
     @foreach ($demande as $item1)
-        <form action="{{ route('store_update_form_ask', $item1->id) }}" method="post" class="card-body cardbody-color p-lg-5">
+        <form action="{{ route('store_update_form_ask', $itemc->id) }}" method="post" class="card-body cardbody-color p-lg-5">
             <input type="hidden" name="id_user" value="{{ $item->id }}">
             <input type="hidden" name="nom_demandeur" value="{{ $item->nom }}">
             <input type="hidden" name="mail_demandeur" value="{{ $item->mail }}">
             <input type="hidden" name="poste_demandeur" value="{{ $item->poste }}">
             @csrf
-            @endforeach
     @endforeach
     <div class="row">
         @foreach ($user as $item)

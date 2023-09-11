@@ -123,7 +123,7 @@ class ControllerSecretaire extends Controller
         $demande = demande::where('id_secret', '=', $id)->where('vu_secret', '=', 1)->get();
         $le_n_dmd = count($demande);
         $dmd_back = count(demande::where('back_secret', '=', 1)->where('vu_secret', '=', 0)->get());
-        return view('secretaire.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
+        return redirect()->('secretaire.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
     /************************************Sauvegarder une demande************************************************ */
 
@@ -215,7 +215,6 @@ class ControllerSecretaire extends Controller
         }
         // Sauvegarde du modèle en base de données
         $dmd_secretaire->update();
-        //dd($id_dmd);
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  

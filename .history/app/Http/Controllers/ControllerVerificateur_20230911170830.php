@@ -133,7 +133,7 @@ class ControllerVerificateur extends Controller
                 $restant = $dmd_verificateur->montantrestant;
             }
             //dd($bad);
-            if (($bon == $demand->nombre_doc) /* || ($bad != 0) */ && ($demand->nombre_doc != 0)) {
+            if (($bon == $demand->nombre_doc) || ($bad != 0)) {
                 $e = 'ok';
                 dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
@@ -187,7 +187,7 @@ class ControllerVerificateur extends Controller
             }
             if ((!($bon == $demand->nombre_doc)) && ($libellePiece[0] != null) && ($referencePiece[0] != null)) {
                 $e = 'non';
-                //dd($restant);
+                dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }
@@ -306,9 +306,9 @@ class ControllerVerificateur extends Controller
         // Compter le nombre de pièces soumises dans la demande
         if ($data['pieces_doss'][0] != null) {
             $nbr_piece = count($data['pieces_doss']);
-        } else {
-            $nbr_piece = 0;
+
         }
+        else
         // Mettre à jour la propriété nombre_doc de la demande parente
         $dmd_verificateur->nombre_doc = $nbr_piece;
         $dmd_verificateur->vu_verifi = 1;

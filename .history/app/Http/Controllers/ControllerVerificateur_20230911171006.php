@@ -187,7 +187,7 @@ class ControllerVerificateur extends Controller
             }
             if ((!($bon == $demand->nombre_doc)) && ($libellePiece[0] != null) && ($referencePiece[0] != null)) {
                 $e = 'non';
-                //dd($restant);
+                dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }

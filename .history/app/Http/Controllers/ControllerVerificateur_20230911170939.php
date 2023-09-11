@@ -133,9 +133,9 @@ class ControllerVerificateur extends Controller
                 $restant = $dmd_verificateur->montantrestant;
             }
             //dd($bad);
-            if (($bon == $demand->nombre_doc) /* || ($bad != 0) */ && ($demand->nombre_doc != 0)) {
+            if (($bon == $demand->nombre_doc) || ($bad != 0) && ($demand->nombre_doc != 0)) {
                 $e = 'ok';
-                dd($restant);
+                dd($demand->nombre_doc);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
             if ($demand->nombre_doc == 0) {
@@ -187,7 +187,7 @@ class ControllerVerificateur extends Controller
             }
             if ((!($bon == $demand->nombre_doc)) && ($libellePiece[0] != null) && ($referencePiece[0] != null)) {
                 $e = 'non';
-                //dd($restant);
+                dd($restant);
                 return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
         }

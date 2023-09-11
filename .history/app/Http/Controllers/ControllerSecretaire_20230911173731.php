@@ -215,7 +215,7 @@ class ControllerSecretaire extends Controller
         }
         // Sauvegarde du modèle en base de données
         $dmd_secretaire->update();
-        //dd($id_dmd);
+        dd($d)
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits  
