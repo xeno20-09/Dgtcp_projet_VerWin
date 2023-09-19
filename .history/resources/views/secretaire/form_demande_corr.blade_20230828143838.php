@@ -18,9 +18,9 @@
                 @csrf
         @endforeach
         <div class="row">
-            @foreach ($user as $item)
+            {{--   @foreach ($user as $item)
                 <legend>Bureau du {{ $item->poste }} </legend>
-            @endforeach
+            @endforeach --}}
             <legend>Enregistrement d'une demande</legend>
             <!--<div class="col">
                                                       <div class="form-group">
