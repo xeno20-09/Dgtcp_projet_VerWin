@@ -292,14 +292,7 @@ class ControllerVerificateur extends Controller
 
         // Trouver la demande parente
         $dmd_verificateur = Demande::find($idc);
-        if (!array_key_exists('pieces_doss', $data)) {
-            $data['pieces_doss'][0] = null;
-            $data['ref_doss'][0] = null;
-            $data['exp_pieces'][0] = null;
-            $data['montantligne'][0] = null;
-
-        }
-
+dd($x)
         // Mettre à jour les propriétés de la demande parente
         $dmd_verificateur->nom_benefi = $data['nom_benifi'];
         $dmd_verificateur->prenom_benefi = $data['prenom_benifi'];
@@ -308,6 +301,9 @@ class ControllerVerificateur extends Controller
         $dmd_verificateur->banque_benefi = $data['banque_benifi'];
         $dmd_verificateur->num_compt_benefi = $data['num_compt_benifi'];
         $dmd_verificateur->id_verifi = $id;
+        if (!array_key_exists('pieces_doss', $data)) {
+            echo 00;
+        }
 
         // Compter le nombre de pièces soumises dans la demande
         if ($data['pieces_doss'][0] != null) {

@@ -183,8 +183,8 @@ class ControllerVerificateur extends Controller
                 $dmd_back = Demande::where('back_verifi', 1)->count();
 
                 // Return the view with the necessary data
-                return redirect('/ListeDemandes_verificateur')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
-            }
+                return redirect('/ListeDemandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
+                ListeDemandes_verificateur            }
             if ((!($bon == $demand->nombre_doc)) && ($libellePiece[0] != null) && ($referencePiece[0] != null)) {
                 $e = 'non';
                 //dd($restant);
@@ -280,7 +280,8 @@ class ControllerVerificateur extends Controller
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        return view('Listepiece', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
+
+        return view('verificateur.recap_pieces', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
 
     public function store(Request $request, $idc)
@@ -292,13 +293,6 @@ class ControllerVerificateur extends Controller
 
         // Trouver la demande parente
         $dmd_verificateur = Demande::find($idc);
-        if (!array_key_exists('pieces_doss', $data)) {
-            $data['pieces_doss'][0] = null;
-            $data['ref_doss'][0] = null;
-            $data['exp_pieces'][0] = null;
-            $data['montantligne'][0] = null;
-
-        }
 
         // Mettre à jour les propriétés de la demande parente
         $dmd_verificateur->nom_benefi = $data['nom_benifi'];

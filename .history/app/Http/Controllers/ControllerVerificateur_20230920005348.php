@@ -280,7 +280,7 @@ class ControllerVerificateur extends Controller
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        return view('Listepiece', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
+        return view('verificateur.recap_pieces', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
 
     public function store(Request $request, $idc)
@@ -292,13 +292,6 @@ class ControllerVerificateur extends Controller
 
         // Trouver la demande parente
         $dmd_verificateur = Demande::find($idc);
-        if (!array_key_exists('pieces_doss', $data)) {
-            $data['pieces_doss'][0] = null;
-            $data['ref_doss'][0] = null;
-            $data['exp_pieces'][0] = null;
-            $data['montantligne'][0] = null;
-
-        }
 
         // Mettre à jour les propriétés de la demande parente
         $dmd_verificateur->nom_benefi = $data['nom_benifi'];

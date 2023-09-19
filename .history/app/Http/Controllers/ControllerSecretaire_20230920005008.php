@@ -225,6 +225,7 @@ class ControllerSecretaire extends Controller
         $dmd_back = count(demande::where('back_secret', '=', 1)->where('vu_secret', '=', 0)->get());
         $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         return redirect('/ListeDemandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
+
         //return view('secretaire.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
 
         // Sauvegarde du modèle en base de données

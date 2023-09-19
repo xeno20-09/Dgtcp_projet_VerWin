@@ -306,10 +306,12 @@ btn2.name='btn2';
        
         });
         boutonRetirer.addEventListener("click", function () {
+            var piece = clonedRow.querySelector("#pieces");
 
             var rows = container.querySelectorAll(".row");
                 var lastRow = rows[rows.length - 1];
             container.removeChild(lastRow).remove();
+            piece.value = "pieces_doss[]=null";
 
         });
     });

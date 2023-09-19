@@ -296,7 +296,7 @@ class ControllerVerificateur extends Controller
             $data['pieces_doss'][0] = null;
             $data['ref_doss'][0] = null;
             $data['exp_pieces'][0] = null;
-            $data['montantligne'][0] = null;
+            $data['exp_pieces'][0] = null;
 
         }
 

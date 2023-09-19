@@ -294,10 +294,8 @@ class ControllerVerificateur extends Controller
         $dmd_verificateur = Demande::find($idc);
         if (!array_key_exists('pieces_doss', $data)) {
             $data['pieces_doss'][0] = null;
-            $data['ref_doss'][0] = null;
-            $data['exp_pieces'][0] = null;
-            $data['montantligne'][0] = null;
-
+            $data['pieces_doss'][0] = null;
+            $data['pieces_doss'][0] = null;
         }
 
         // Mettre à jour les propriétés de la demande parente

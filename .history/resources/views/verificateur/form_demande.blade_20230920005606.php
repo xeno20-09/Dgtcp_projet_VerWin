@@ -183,7 +183,7 @@
                         <div class="form-group">
                             <label for="" class="form-label mt-4">Numéro de compte beneficiaire</label>
 
-                            <input maxlength="12" minlength="12" name="num_compt_benifi" type="number"
+                            <input maxlength="12" minlength="12" name="num_compt_benifi" type=""
                                 class="form-control" id="" placeholder="Numéro de compte">
 
                         </div>
@@ -306,7 +306,6 @@ btn2.name='btn2';
        
         });
         boutonRetirer.addEventListener("click", function () {
-
             var rows = container.querySelectorAll(".row");
                 var lastRow = rows[rows.length - 1];
             container.removeChild(lastRow).remove();

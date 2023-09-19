@@ -183,7 +183,7 @@
                         <div class="form-group">
                             <label for="" class="form-label mt-4">Numéro de compte beneficiaire</label>
 
-                            <input maxlength="12" minlength="12" name="num_compt_benifi" type="number"
+                            <input maxlength="12" minlength="12" name="num_compt_benifi" type="text"
                                 class="form-control" id="" placeholder="Numéro de compte">
 
                         </div>
@@ -243,8 +243,7 @@
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
-            <a href="{{ route('retour_s', $item_c->id) }}"><button class="btn btn-danger">Retournez la
-                    demande au Secretaire </button></a>
+      
         @endforeach
 
 
@@ -306,7 +305,6 @@ btn2.name='btn2';
        
         });
         boutonRetirer.addEventListener("click", function () {
-
             var rows = container.querySelectorAll(".row");
                 var lastRow = rows[rows.length - 1];
             container.removeChild(lastRow).remove();
