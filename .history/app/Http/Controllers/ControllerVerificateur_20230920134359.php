@@ -196,7 +196,7 @@ class ControllerVerificateur extends Controller
             }
             if ((($bon == 0)) && ($bad == 0)) {
 
-                //dd($restant);
+                dd($restant);
 
                 $e = 'non';
 

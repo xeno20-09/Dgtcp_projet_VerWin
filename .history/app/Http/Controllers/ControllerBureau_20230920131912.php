@@ -63,7 +63,7 @@ class ControllerBureau extends Controller
 
         $dmd_n_lu = count(demande::where('vu_chef_bureau', '=', 0)->where('vu_chef_division', '=', 1)->get());
         $dmd_back = count(demande::where('back_chef_bureau', '=', 1)->get());
-        return view('chef_bureau.form_demande', compact('demande','piece', 'user', 'dmd_back', 'dmd_n_lu'));
+        return view('chef_bureau.form_demande', compact('demande', 'user', 'dmd_back', 'dmd_n_lu'));
     }
     public function  form(Request $request, $id_dmd)
     {

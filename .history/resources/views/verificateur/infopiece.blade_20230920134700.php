@@ -82,15 +82,12 @@
                         @endif
                         <div class="col">
                             <div class="form-group">
-                              
-                             
-                                @if (( ($restant<=$montantligne[$i])||($montantdmd<=$montantligne[$i]))&&(($e!='fin')||($e!='non') ))  
-                                <label for='montantdmd'>Montant de la demande</label>
-                                <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
-                                    id='montantdmd' style='background-color:skyblue' placeholder='Montant de la demande'
-                                    class='form-control'readonly>
-    
-                                @endif
+                                @if (($restant!=0)&&( $restant>$montantligne[$i])&&($restant!='r'))
+                                    <label for='montantdmd'>Montant de la demande</label>
+                                    <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
+                                        id='montantdmd' placeholder='Montant de la demande'
+                                        class='form-control'readonly>
+                                        @endif    
                                             
                                         @if ( ((($restant>=$montantligne[$i])||($montantdmd>=$montantligne[$i])||($e!='fin'))&&($e!='non')) ) 
                                         <label for='montantdmd'>Montant de la demande</label>
@@ -100,6 +97,13 @@
                                             
                                 @endif
                        
+                             
+                                @if (( ($restant<=$montantligne[$i])||($montantdmd<=$montantligne[$i]))&&(($e!='fin')||($e!='non') ))                                 <label for='montantdmd'>Montant de la demande</label>
+                                <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
+                                    id='montantdmd' style='background-color:skyblue' placeholder='Montant de la demande'
+                                    class='form-control'readonly>
+    
+                                @endif
                             </div>
                         </div>
                              <div class='col'>
@@ -120,7 +124,7 @@
                  
                 @for ($i = 0; $i < $item_c->nombre_doc; $i++)
 
-                @if (( ($restant<=$montantligne[$i])||($montantdmd<=$montantligne[$i]))&&(($e!='fin')||($e!='non') ))                               
+                @if (( ($restant<=$montantligne[$i])||($montantdmd<=$montantligne[$i]))&&(($e!='fin')||($e!='non') ))                                 <label for='montantdmd'>Montant de la demande</label>
                 <div class="row mt-5">
                     <div class="col">
                         <div class="form-group">

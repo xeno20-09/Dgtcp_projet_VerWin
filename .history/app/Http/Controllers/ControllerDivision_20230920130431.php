@@ -55,14 +55,16 @@ class ControllerDivision extends Controller
         $demande = demande::where('id', '=', $id)->get();
         $le_n_dmd = count($demande);
         $dmd_n_lu = count(demande::where('vu_chef_division', '=', 0)->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->get());
-
+        $dmd_chef_division = demande::find($id);
+        $dmd_chef_division->vu_chef_division =  1;
+        $dmd_chef_division->update();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $demandes = demande::where('id', '=', $id)->first();
 
         $id_dmd = $demandes->id;
-        $piece = piece::where('id_dmd', '=', $id_dmd)->get();
+        // $piece = piece::where('id_dmd', '=', $id_dmd)->get();
 
-        return view('chef_division.form_demande', compact('demande', 'dmd_back', 'piece', 'user', 'dmd_n_lu'));
+        return view('chef_division.form_demande', compact('demande', 'dmd_back', /* 'piece', */ 'user', 'dmd_n_lu'));
     }
 
     public function  form(Request $request, $id_dmd)
@@ -95,8 +97,6 @@ class ControllerDivision extends Controller
         } else {
             $dmd_chef_division->back_chef_division = 0;
         }
-        $dmd_chef_division = demande::find($id);
-        $dmd_chef_division->vu_chef_division =  1;
         // Sauvegarde du modèle en base de données
         $dmd_chef_division->update();
         $dmd_n_lu = count(demande::where('vu_chef_division', '=', 0)->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->get());

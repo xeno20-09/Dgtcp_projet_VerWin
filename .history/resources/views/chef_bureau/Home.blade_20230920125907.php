@@ -14,7 +14,7 @@
           <h5 class="card-title"><i class="fas fa-clock"></i> Demandes en cours</h5>
           <p class="card-text">Nombre de demandes en attente</p>
           <span class="badge bg-primary">{{$le_n_dmd_c}}</span>
-       {{--    <a style="width: auto; height:fit-content;" href="" class="btn btn-primary">Voir</a> --}}
+       {{--    <a style="width: auto; height:fit-content;" href="" class="btn btn-primary">Voir</a --}}
 
         </div>
       </div>

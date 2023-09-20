@@ -191,8 +191,8 @@ class ControllerVerificateur extends Controller
                 //dd($restant);
                 if ($restant == 0) {
                     $e = 'fin';
-                    return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
                 }
+                return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'referencePiece', 'datePiece', 'montantdmd', 'restant', 'referencesPieces', 'e', 'dmd_back', 'date', 'demande', 'dmd_n_lu', 'user'));
             }
             if ((($bon == 0)) && ($bad == 0)) {
 
