@@ -216,12 +216,28 @@
                                     <input name="exp_pieces[]" value="{{ $item_d->dateexpi }}"  type="date" class="form-control" id="expi" placeholder="date expiration pieces">
                                 </div>
                             </div>
-                     
+                        {{-- </div>
+                        <div class="row"> --}}
+                          
+                            
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="" class="form-label mt-4">Ajouter une autre piece</label>
+                                    <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
+                                </div>
+                            </div>
+                            <div class="col" id="retirer">
+                                <div class="form-group">
+                                    <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
+                                    <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
+                                </div>
+                            </div>
+                        </div>
                         
-                    </div> </div>
+                    </div>
                     @endforeach
                     <br>
-               </div>
+                </div>
 
 
 

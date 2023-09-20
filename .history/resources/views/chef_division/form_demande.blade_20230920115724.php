@@ -216,12 +216,17 @@
                                     <input name="exp_pieces[]" value="{{ $item_d->dateexpi }}"  type="date" class="form-control" id="expi" placeholder="date expiration pieces">
                                 </div>
                             </div>
-                     
+                        {{-- </div>
+                        <div class="row"> --}}
+                          
+                            
+                          
+                        </div>
                         
-                    </div> </div>
+                    </div>
                     @endforeach
                     <br>
-               </div>
+                </div>
 
 
 

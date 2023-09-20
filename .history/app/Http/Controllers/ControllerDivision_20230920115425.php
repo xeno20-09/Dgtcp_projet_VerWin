@@ -7,8 +7,6 @@ use App\Models\user as user;
 use App\Models\demandes as demande;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\pieces as piece;
-
 
 class ControllerDivision extends Controller
 {
@@ -59,12 +57,8 @@ class ControllerDivision extends Controller
         $dmd_chef_division->vu_chef_division =  1;
         $dmd_chef_division->update();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $demandes = demande::where('id', '=', $id)->first();
 
-        $id_dmd = $demandes->id;
-        $piece = piece::where('id_dmd', '=', $id_dmd)->get();
-
-        return view('chef_division.form_demande', compact('demande', 'dmd_back', 'piece', 'user', 'dmd_n_lu'));
+        return view('chef_division.form_demande', compact('demande', 'dmd_back', 'user', 'dmd_n_lu'));
     }
 
     public function  form(Request $request, $id_dmd)
@@ -77,7 +71,7 @@ class ControllerDivision extends Controller
         $piece = piece::where('id_dmd', '=', $id_dmd)->get();
 
 
-        return view('chef_division.formcd_demande_mj', compact('demande', 'piece', 'dmd_back', 'dmd_n_lu', 'user'));
+        return view('chef_division.formcd_demande_mj', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
 
     public function stores(Request $request, $idc)
@@ -112,7 +106,7 @@ class ControllerDivision extends Controller
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
 
-        return redirect('liste_demandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1');
+        return view('chef_division.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1'));
     }
     public function liste_demandes(Request $request)
     {
@@ -153,10 +147,9 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
-        $pieces = $piece->libellepiece;
 
-        return view('chef_division.detaille_demande', compact('demande', 'pieces', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
+
+        return view('chef_division.detaille_demande', compact('demande', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
     }
     public function retour(Request $request, $idc)
     {

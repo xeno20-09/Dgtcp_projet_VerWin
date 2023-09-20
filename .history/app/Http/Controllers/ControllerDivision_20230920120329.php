@@ -112,7 +112,7 @@ class ControllerDivision extends Controller
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
 
-        return redirect('liste_demandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1');
+        return view('liste_demandes', compact('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1'));
     }
     public function liste_demandes(Request $request)
     {
@@ -153,10 +153,9 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
-        $pieces = $piece->libellepiece;
 
-        return view('chef_division.detaille_demande', compact('demande', 'pieces', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
+
+        return view('chef_division.detaille_demande', compact('demande', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
     }
     public function retour(Request $request, $idc)
     {

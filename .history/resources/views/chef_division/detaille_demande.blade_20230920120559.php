@@ -43,8 +43,8 @@
                                    Il y a aucune pièces assimilées à ce dossier.
                                @endif --}}
 
-                               @if ($pieces)
-                               {{ $pieces }}
+                               @if ($piece)
+                               {{ $piece }}
                               
                                @else
                                Il n'y a pas de pieces joints 

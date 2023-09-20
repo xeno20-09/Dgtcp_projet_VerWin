@@ -7,7 +7,7 @@
                     style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
-        <h1>Liste des demandes à revoir </h1>
+        <h1>Liste des demandes </h1>
 
         <table class="table ">
             <thead>

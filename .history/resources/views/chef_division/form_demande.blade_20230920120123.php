@@ -221,7 +221,7 @@
                     </div> </div>
                     @endforeach
                     <br>
-               </div>
+               
 
 
 
@@ -241,6 +241,21 @@
                     </div>
 
 
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="" class="form-label mt-4">Date de decision</label>
+                            <input name="date_decision" type="date" class="form-control" id=""
+                                placeholder="Date de decision">
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="" class="form-label mt-4">Date de decision</label>
+                            <input name="date_decision" type="date" class="form-control" id=""
+                                placeholder="Date de decision">
+                        </div>
+                    </div>
                 </div>
 
 

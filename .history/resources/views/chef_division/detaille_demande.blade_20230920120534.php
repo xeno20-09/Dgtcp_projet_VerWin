@@ -29,7 +29,6 @@
                         $items = json_decode($i, true);
                     @endphp --}}
 
-                   
                     <li class="list-group-item">Pieces joint:
                         {{--        @if ($items)
                                    @foreach ($items as $file)
@@ -42,16 +41,11 @@
                                @else
                                    Il y a aucune pièces assimilées à ce dossier.
                                @endif --}}
-
-                               @if ($pieces)
-                               {{ $pieces }}
-                              
+                               @if ($item['pieces'])
+                               {{ $item['pieces'] }}
                                @else
                                Il n'y a pas de pieces joints 
-                               @endif                          </li>
-                             
-
-
+                               @endif                           </li>
 
                     <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>
                     <li class="list-group-item">Prenom du beneficiaire: {{ $item['prenom_benefi'] }}</li>

@@ -218,10 +218,10 @@
                             </div>
                      
                         
-                    </div> </div>
+                    </div>
                     @endforeach
                     <br>
-               </div>
+                </div>
 
 
 

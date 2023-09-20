@@ -153,8 +153,8 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
-        $pieces = $piece->libellepiece;
+        $piece = piece::where('id_dmd', '=', $id)->get();
+$pieces=
 
         return view('chef_division.detaille_demande', compact('demande', 'pieces', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
     }

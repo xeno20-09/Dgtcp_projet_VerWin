@@ -29,29 +29,7 @@
                         $items = json_decode($i, true);
                     @endphp --}}
 
-                   
-                    <li class="list-group-item">Pieces joint:
-                        {{--        @if ($items)
-                                   @foreach ($items as $file)
-                                       <a style=" color:black; text-decoration: none ; display:block;text-align:center;"
-                                           href="{{ asset('files/' . $file) }}" target="_blank">{{ $file }}<img
-                                               style="height: 20px;
-             width: 22px;" src="{{ asset('images/eye.png') }}"
-                                               alt="Mon Image"></a><br>
-                                   @endforeach
-                               @else
-                                   Il y a aucune pièces assimilées à ce dossier.
-                               @endif --}}
-
-                               @if ($pieces)
-                               {{ $pieces }}
-                              
-                               @else
-                               Il n'y a pas de pieces joints 
-                               @endif                          </li>
-                             
-
-
+                   resources/views/verificateur/detaille_demande.blade.php
 
                     <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>
                     <li class="list-group-item">Prenom du beneficiaire: {{ $item['prenom_benefi'] }}</li>
