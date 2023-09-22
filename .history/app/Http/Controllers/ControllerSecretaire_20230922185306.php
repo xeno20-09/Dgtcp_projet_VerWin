@@ -103,23 +103,38 @@ class ControllerSecretaire extends Controller
             ->to($data['currency_to'])
             ->amount($data['montant_in']);
         $montant_con = $convertedObj->get();
-        $fromCurrency = $data['currency_from'];
+        /*     require_once('vendor/autoload.php');
+        //  require_once  '..\vendor\autoload.php';
+        $fromCurrency = "Usd";
+        $toCurrency = "Xof";
+        $amount = 10;
         $apiKey = "532a95fca3-4671419311-s1e6v8";
-        $toCurrency = "XOF";
-        $amount = $data['montant_in'];
-        /*https://fastforex.readme.io/reference/get_convert
+
+        //  $url = "https://api.fastforex.io/convert?from=" . $fromCurrency . "&to=" . $toCurrency . "&amount=" . $amount . "&api_key=" . $apiKey;
+        $url = "https://api.fastforex.io/convert?from=Usd&to=Xof&amount=10&api_key=532a95fca3-4671419311-s1e6v8";
+        $client = new Client();
+
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'accept' => 'application/json',
+            ],
+        ]);
+        $responses = $response->getBody();
+
+
+        dd($response); */
+
+/*https://fastforex.readme.io/reference/get_convert
 
 https://console.fastforex.io/#
 
 
-https://fastforex.readme.io/reference/introduction*/
+https://fastforex.readme.io/reference/introduction
         $curl = curl_init();
-        $url = "https://api.fastforex.io/convert?from=" . $fromCurrency . "&to=" . $toCurrency . "&amount=" . $amount . "&api_key=" . $apiKey;
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            /*             "https://api.fastforex.io/convert?from=Usd&to=Xof&amount=100&api_key=532a95fca3-4671419311-s1e6v8",
- */            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => "https://api.fastforex.io/convert?from=Usd&to=Xof&amount=100&api_key=532a95fca3-4671419311-s1e6v8",
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
@@ -137,14 +152,13 @@ https://fastforex.readme.io/reference/introduction*/
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            $data1 = json_decode($response, true);
-            //dd($data);
-            $montant_con = $data1['result']['XOF'];
+            $data = json_decode($response, true);
+            dd($data['base']);
         }
         //dd($convertedObj);
         $dmd_secretaire->montant_con = $montant_con;
         //dd($convertedObj);
-        $dmd_secretaire->devise = $fromCurrency;
+        $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->nom_client = $data['nom_client'];
         $dmd_secretaire->prenom_client = $data['prenom_client'];
         $dmd_secretaire->profess_client = $data['profess_client'];

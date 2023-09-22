@@ -104,7 +104,7 @@ class ControllerSecretaire extends Controller
             ->amount($data['montant_in']);
         $montant_con = $convertedObj->get();
         $fromCurrency = $data['currency_from'];
-        $apiKey = "532a95fca3-4671419311-s1e6v8";
+        $apiKey = "32a95fca3-4671419311-s1e6v8";
         $toCurrency = "XOF";
         $amount = $data['montant_in'];
         /*https://fastforex.readme.io/reference/get_convert
@@ -137,14 +137,13 @@ https://fastforex.readme.io/reference/introduction*/
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            $data1 = json_decode($response, true);
-            //dd($data);
-            $montant_con = $data1['result']['XOF'];
+            $data = json_decode($response, true);
+            dd($data);
         }
         //dd($convertedObj);
         $dmd_secretaire->montant_con = $montant_con;
         //dd($convertedObj);
-        $dmd_secretaire->devise = $fromCurrency;
+        $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->nom_client = $data['nom_client'];
         $dmd_secretaire->prenom_client = $data['prenom_client'];
         $dmd_secretaire->profess_client = $data['profess_client'];

@@ -137,14 +137,15 @@ https://fastforex.readme.io/reference/introduction*/
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            $data1 = json_decode($response, true);
+            $data = json_decode($response, true);
             //dd($data);
-            $montant_con = $data1['result']['XOF'];
+            $montant_con = $data['result']['XOF'];
+            
         }
         //dd($convertedObj);
         $dmd_secretaire->montant_con = $montant_con;
         //dd($convertedObj);
-        $dmd_secretaire->devise = $fromCurrency;
+        $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->nom_client = $data['nom_client'];
         $dmd_secretaire->prenom_client = $data['prenom_client'];
         $dmd_secretaire->profess_client = $data['profess_client'];

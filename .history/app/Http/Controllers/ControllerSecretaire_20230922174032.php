@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
-use App\Models\user as user;
-use Illuminate\Http\Request;
-use App\Models\pieces as piece;
-use Illuminate\Support\Facades\DB;
-use App\Models\demandes as demande;
 use Illuminate\Support\Facades\Auth;
+use App\Models\user as user;
+use App\Models\demandes as demande;
+use Illuminate\Http\Request;
 use AmrShawky\LaravelCurrency\Facade\Currency;
-
+use Illuminate\Support\Facades\DB;
+use App\Models\pieces as piece;
 
 class ControllerSecretaire extends Controller
 {
@@ -103,48 +101,28 @@ class ControllerSecretaire extends Controller
             ->to($data['currency_to'])
             ->amount($data['montant_in']);
         $montant_con = $convertedObj->get();
-        $fromCurrency = $data['currency_from'];
+        $fromCurrency = "Usd";
+        $toCurrency = "Xof";
+        $amount = 10;
         $apiKey = "532a95fca3-4671419311-s1e6v8";
-        $toCurrency = "XOF";
-        $amount = $data['montant_in'];
-        /*https://fastforex.readme.io/reference/get_convert
 
-https://console.fastforex.io/#
+        //  $url = "https://api.fastforex.io/convert?from=" . $fromCurrency . "&to=" . $toCurrency . "&amount=" . $amount . "&api_key=" . $apiKey;
+        $url = "https://api.fastforex.io/convert?from=Usd&to=Xof&amount=10&api_key=532a95fca3-4671419311-s1e6v8";
+        $client = new \GuzzleHttp\Client();
 
-
-https://fastforex.readme.io/reference/introduction*/
-        $curl = curl_init();
-        $url = "https://api.fastforex.io/convert?from=" . $fromCurrency . "&to=" . $toCurrency . "&amount=" . $amount . "&api_key=" . $apiKey;
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            /*             "https://api.fastforex.io/convert?from=Usd&to=Xof&amount=100&api_key=532a95fca3-4671419311-s1e6v8",
- */            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => [
-                "accept: application/json"
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'accept' => 'application/json',
             ],
         ]);
+        $responses = $response->getBody();
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
 
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            $data1 = json_decode($response, true);
-            //dd($data);
-            $montant_con = $data1['result']['XOF'];
-        }
+        dd($responses);
         //dd($convertedObj);
         $dmd_secretaire->montant_con = $montant_con;
         //dd($convertedObj);
-        $dmd_secretaire->devise = $fromCurrency;
+        $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->nom_client = $data['nom_client'];
         $dmd_secretaire->prenom_client = $data['prenom_client'];
         $dmd_secretaire->profess_client = $data['profess_client'];
