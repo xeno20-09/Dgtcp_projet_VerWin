@@ -1,4 +1,4 @@
-@extends('layout.chef_division.header')
+@extends('layout.chef_bureau.header')
 @section('content')
     <div class="container">
         <h1 style="text-align: center;">
@@ -15,19 +15,20 @@
 
                     <th scope="col">N°Dossier:</th>
                     <th scope="col">Nom du client:</th>
-                    <th scope="col">Prenom du client:</th>
+
+                    <th scope="col">Date:</th>
+                    <th scope="col">Nom Secretaire:</th>
+                    <th scope="col">Nom Beneficiere:</th>
+
+                    <th scope="col">Nom Verificateur:</th>
+                    <th scope="col">Date decision :</th>
+                    <th scope="col">Nom Chef Division:</th>
                     <th scope="col">Montant:</th>
                     <th scope="col">Devise:</th>
                     <th scope="col">Contre Montant en FCFA:</th>
-                    <th scope="col">Date:</th>
-                    <th scope="col">Nom Secretaire:</th>
-                    <th scope="col">Nom Verificateur:</th>
-
-                    <th scope="col">Nom Beneficiere:</th>
-                    <th scope="col">Prenom Beneficiere:</th>
-                
                     <th scope="col">Status:</th>
                     <th scope="col">Actions</span></th>
+
 
                 </tr>
             </thead>
@@ -208,6 +209,11 @@ class="btn btn-primary">Voir</a>
                                     <td> {{ $itemd->name }}</td>
                                     @break
                                 @endforeach
+     <td>{{ $item->date_decision }}</td>
+                @foreach ($jointure2 as $iteme)
+                    <td> {{ $iteme->name }}</td>
+              @break
+            @endforeach
                                       <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->prenom_benefi }}</td>
                         <td>{{ $item->status_dmd }}</td>
@@ -235,6 +241,7 @@ class="btn btn-primary">Voir</a>
 </table>
 
 </div>
+
 
 <br>
 <br>

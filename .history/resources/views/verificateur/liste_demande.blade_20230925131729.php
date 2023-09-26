@@ -9,9 +9,8 @@
         </h1>
 
         <h1>Liste des demandes </h1>
-   {{--  <legend style="position: relative; display: flex;
+    <legend style="position: relative; display: flex;
     gap: 20%;">
-    
       <div style=
 "height: 45px;
   width: 26px;
@@ -43,7 +42,7 @@
   -moz-transform: rotate(-90deg); ">
         </div>
     </legend>
-        --}}
+       
         <table class="table ">
             <thead>
                 <tr>

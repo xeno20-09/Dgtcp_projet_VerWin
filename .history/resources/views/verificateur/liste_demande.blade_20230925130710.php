@@ -7,43 +7,8 @@
                     style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
             @endforeach
         </h1>
-
         <h1>Liste des demandes </h1>
-   {{--  <legend style="position: relative; display: flex;
-    gap: 20%;">
-    
-      <div style=
-"height: 45px;
-  width: 26px;
-  background-color: black;
-  -moz-transform: rotate(-90deg); ">
-        </div>
 
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(187, 187, 244);
-  -moz-transform: rotate(-90deg); "> 
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 179, 179);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 243, 189);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(209, 248, 209);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-    </legend>
-        --}}
         <table class="table ">
             <thead>
                 <tr>
@@ -233,7 +198,35 @@
             @endforeach
         </tbody>
     </table>
+        <div style="height: 100px;
+        width: 30px;
+        background-color:black;
+        -moz-transform: rotate(45deg); ">
+        </div>
 
+        <div style="height: 100px;
+        width: 30px;
+        background-color:skyblue;
+        -moz-transform: rotate(45deg); ">
+        </div>
+
+        <div style="height: 100px;
+        width: 30px;
+        background-color:whiteyellow;
+        -moz-transform: rotate(45deg); ">
+        </div>
+
+        <div style="height: 100px;
+        width: 30px;
+        background-color:black;
+        -moz-transform: rotate(45deg); ">
+        </div>
+
+        <div style="height: 100px;
+        width: 30px;
+        background-color:black;
+        -moz-transform: rotate(45deg); ">
+        </div>
 </div>
 
 

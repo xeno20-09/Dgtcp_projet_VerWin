@@ -154,8 +154,8 @@
                                 
 
                 </tr>
-                @elseif($motif == 'Rejetée pour incorformité au niveau des montants')
-                <tr class="table-dark"> <td> {{ $item->numero_doss }}</td>
+                @elseif($verif == 'Suspendu')
+                <tr class="table-warning">  <td> {{ $item->numero_doss }}</td>
                     <td> {{ $item->nom_client }}</td>
                     <td> {{ $item->prenom_client }}</td>
                     <td> {{ $item['montant'] }}</td>

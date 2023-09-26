@@ -7,43 +7,8 @@
                     style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
             @endforeach
         </h1>
-
         <h1>Liste des demandes </h1>
-   {{--  <legend style="position: relative; display: flex;
-    gap: 20%;">
-    
-      <div style=
-"height: 45px;
-  width: 26px;
-  background-color: black;
-  -moz-transform: rotate(-90deg); ">
-        </div>
 
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(187, 187, 244);
-  -moz-transform: rotate(-90deg); "> 
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 179, 179);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 243, 189);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(209, 248, 209);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-    </legend>
-        --}}
         <table class="table ">
             <thead>
                 <tr>
@@ -68,7 +33,6 @@
             @foreach ($demande as $item)
                <?php
                     $verif = $item['status_dmd'];
-                    $motif=$item['motif'];
                     ?>
 
                 @if ($verif == 'En cours')
@@ -164,8 +128,8 @@
                     </td>
                 </tr>
 
-                @elseif($motif == 'Rejetée pour incorformité au niveau des montants')
-                <tr class="table-dark">  <td> {{ $item->numero_doss }}</td>
+                @elseif($verif == 'Rejetée pour incorformité au niveau des montants')
+                <tr class="table-">  <td> {{ $item->numero_doss }}</td>
                     <td> {{ $item->nom_client }}</td>
                     <td> {{ $item->prenom_client }}</td>
                     <td> {{ $item['montant'] }}</td>

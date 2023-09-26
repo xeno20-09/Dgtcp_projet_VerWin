@@ -7,43 +7,8 @@
                     style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
             @endforeach
         </h1>
-
         <h1>Liste des demandes </h1>
-   {{--  <legend style="position: relative; display: flex;
-    gap: 20%;">
-    
-      <div style=
-"height: 45px;
-  width: 26px;
-  background-color: black;
-  -moz-transform: rotate(-90deg); ">
-        </div>
 
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(187, 187, 244);
-  -moz-transform: rotate(-90deg); "> 
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 179, 179);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(243, 243, 189);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-
-        <div style="height: 45px;
-  width: 26px;
-  background-color: rgb(209, 248, 209);
-  -moz-transform: rotate(-90deg); ">
-        </div>
-    </legend>
-        --}}
         <table class="table ">
             <thead>
                 <tr>
@@ -65,12 +30,7 @@
             </thead>
             <tbody>
 
-            @foreach ($demande as $item)
-               <?php
-                    $verif = $item['status_dmd'];
-                    $motif=$item['motif'];
-                    ?>
-
+                @foreach ($demande as $item)
                 @if ($verif == 'En cours')
                 <tr class="table-primary">
                     <td> {{ $item->numero_doss }}</td>
@@ -82,8 +42,7 @@
                     <td> {{ $item->date }}</td>
                     @foreach ($jointure as $itemc)
                         <td> {{ $itemc->name }}</td>
-                        @break
-                    @endforeach
+                    @
                       <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
                     <td>
@@ -101,7 +60,7 @@
                         <a style="width: auto; height:fit-content;" href="{{ url('detaille', ['id' => $item->id]) }}"
                             class="btn btn-primary">Voir</a>
                     </td>
-                </tr>
+
                 @elseif($verif == 'Autorisée')
                 <tr class="table-success">
                         <td> {{ $item->numero_doss }}</td>
@@ -114,7 +73,6 @@
                         @foreach ($jointure as $itemc)
                             <td> {{ $itemc->name }}</td>
                         @break
-                        @endforeach
                           <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
                     <td>
@@ -132,7 +90,7 @@
                         <a style="width: auto; height:fit-content;" href="{{ url('detaille', ['id' => $item->id]) }}"
                             class="btn btn-primary">Voir</a>
                     </td>
-                </tr>
+
                         @elseif($verif == 'Suspendu')
                         <tr class="table-warning">  <td> {{ $item->numero_doss }}</td>
                             <td> {{ $item->nom_client }}</td>
@@ -144,7 +102,6 @@
                             @foreach ($jointure as $itemc)
                                 <td> {{ $itemc->name }}</td>
                             @break
-                            @endforeach
                               <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
                     <td>
@@ -162,38 +119,7 @@
                         <a style="width: auto; height:fit-content;" href="{{ url('detaille', ['id' => $item->id]) }}"
                             class="btn btn-primary">Voir</a>
                     </td>
-                </tr>
 
-                @elseif($motif == 'Rejetée pour incorformité au niveau des montants')
-                <tr class="table-dark">  <td> {{ $item->numero_doss }}</td>
-                    <td> {{ $item->nom_client }}</td>
-                    <td> {{ $item->prenom_client }}</td>
-                    <td> {{ $item['montant'] }}</td>
-                    <td>{{ $item['devise'] }}</td>
-                    <td>{{ $item['montant_con'] }}</td>
-                    <td> {{ $item->date }}</td>
-                    @foreach ($jointure as $itemc)
-                        <td> {{ $itemc->name }}</td>
-                    @break
-                    @endforeach
-                      <td>{{ $item->nom_benefi }}</td>
-            <td>{{ $item->status_dmd }}</td>
-            <td>
-
-                <a href="{{ route('get_update_form_ask_verificateur', ['id' => $item['id']]) }} "
-                    class="table-link">
-                    <span class="fa-stack">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
-
-            </td>
-            <td>
-                <a style="width: auto; height:fit-content;" href="{{ url('detaille', ['id' => $item->id]) }}"
-                    class="btn btn-primary">Voir</a>
-            </td>
-        </tr>
                             
 
                             @else
@@ -208,7 +134,6 @@
                                 @foreach ($jointure as $itemc)
                                     <td> {{ $itemc->name }}</td>
                                 @break
-                                @endforeach
 
                                   <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
@@ -227,9 +152,17 @@
                         <a style="width: auto; height:fit-content;" href="{{ url('detaille', ['id' => $item->id]) }}"
                             class="btn btn-primary">Voir</a>
                     </td>
-                </tr>
 
-                @endif
+                             
+
+                       
+                                    @endif
+
+                  
+
+
+
+                </tr>
             @endforeach
         </tbody>
     </table>
