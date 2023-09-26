@@ -124,7 +124,7 @@ class ControllerAdminSGBD extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_n_lu = count(demande::where('vu_damf', '=', 0)->where('vu_chef_bureau', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
+        $piece = piece::where('id_dmd', '=', $id)->get();
 
 
 

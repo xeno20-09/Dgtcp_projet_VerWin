@@ -41,12 +41,11 @@
                                @else
                                    Il y a aucune pièces assimilées à ce dossier.
                                @endif --}}
-                               @if ($piece)
-                               {{ $piece->libellepiece }}
+                               @if ($item['pieces'])
+                               {{ $item['pieces'] }}
                                @else
                                Il n'y a pas de pieces joints 
                                @endif                           </li>
-
                     <li class="list-group-item">Nom du beneficiaire: {{ $item['nom_benefi'] }}</li>
                     <li class="list-group-item">Prenom du beneficiaire: {{ $item['prenom_benefi'] }}</li>
                     <li class="list-group-item">Banque du beneficiaire: {{ $item['banque_benefi'] }}</li>

@@ -169,9 +169,9 @@ class ControllerBureau extends Controller
             ->get();
         $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', 1)->where('vu_chef_bureau', '=', 0)->get());
         $dmd_back = count(demande::where('back_chef_bureau', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
+        $piece = piece::where('id_dmd', '=', $id)->get();
 
-        return view('chef_bureau.detaille_demande', compact('demande', 'piece', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2'));
+        return view('chef_bureau.detaille_demande', compact('demande', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2'));
     }
 
     public function retour(Request $request, $idc)

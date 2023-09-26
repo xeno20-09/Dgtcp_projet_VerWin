@@ -42,7 +42,7 @@
                                    Il y a aucune pièces assimilées à ce dossier.
                                @endif --}}
                                @if ($piece)
-                               {{ $piece->libellepiece }}
+                               {{ $piece->libelle }}
                                @else
                                Il n'y a pas de pieces joints 
                                @endif                           </li>

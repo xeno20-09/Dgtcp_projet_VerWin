@@ -16,7 +16,6 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
-use App\Models\pieces as piece;
 
 class ControllerAdminSGBD extends Controller
 {
@@ -124,7 +123,7 @@ class ControllerAdminSGBD extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_n_lu = count(demande::where('vu_damf', '=', 0)->where('vu_chef_bureau', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
+        $piece = piece::where('id_dmd', '=', $id)->get();
 
 
 
