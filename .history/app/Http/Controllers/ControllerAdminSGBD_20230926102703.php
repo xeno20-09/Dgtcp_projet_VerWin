@@ -139,7 +139,7 @@ class ControllerAdminSGBD extends Controller
         $user->delete();
         // Effectuer une action supplémentaire après la suppression de l'utilisateur si nécessaire
         $user = User::orderBy('created_at', 'desc')->paginate(3);
-        return redirect('/Admin')->with('user');
+        return view('Admin_SGBD.liste', compact( 'user', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
     }
 
 
