@@ -77,10 +77,10 @@
 
                             @if ($piece->montantligne!=0)
     
-                            <td>{{ $piece->referencespiece}}</td>
-                            <td>{{$piece->montantinitial}}</td>
-                            <td>{{$piece->montantligne}}</td>
-                            <td>{{$piece->montantrestant}}</td>
+                            <th>{{ $piece->referencespiece}}</th>
+                            <th>{{$piece->montantinitial:</th>
+                            <th>{{$piece->montantligne}}</th>
+                            <th>{{$piece->montantrestant}}</th>
     @endif
                             <td>{{ $item->nom_benefi }}</td>
                             <td>{{ $item->prenom_benefi }}</td>

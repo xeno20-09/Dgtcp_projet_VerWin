@@ -740,7 +740,7 @@
 
 
                 </div>
-                @if ($piece!=null)
+                @if ($piece!=0)
                 @foreach ($piece as $item_d)
                 
                 <div id="container" style="  width: 1362px;">
@@ -788,16 +788,15 @@
                         </div>
                     </div>
                     
-                </div> 
-                     @php
+                </div>
+                @endforeach
+                <br>
+                @php
                     $pi=count($piece);
                     if($pi==0) {
 echo "  <h3>Il y a pas de pieces joint pour cette demande</h3>  ";
                     }
                 @endphp
-                @endforeach
-                <br>
-          
            <br>
 
         
@@ -851,7 +850,7 @@ echo "  <h3>Il y a pas de pieces joint pour cette demande</h3>  ";
                 </div>
                 
                 <br>
-                @endif
+
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>

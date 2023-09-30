@@ -35,14 +35,6 @@
                         <th>Banque du client</th>
                         <th>Numéro de compte du client</th>
                         <th>Pieces joint</th>
-                        @if ($piece->montantligne!=0)
-    
-                        <th>References pieces:</th>
-                        <th>Montant initial:</th>
-                        <th>Montant ligne:</th>
-                        <th>Montant restant:</th>
-@endif
-
                         <th>Nom du beneficiaire</th>
                         <th>Prenom du beneficiaire</th>
                         <th>Banque du beneficiaire</th>
@@ -74,14 +66,6 @@
                                     Il n'y a pas de pièces jointes
                                 @endif
                             </td>
-
-                            @if ($piece->montantligne!=0)
-    
-                            <td>{{ $piece->referencespiece}}</td>
-                            <td>{{$piece->montantinitial}}</td>
-                            <td>{{$piece->montantligne}}</td>
-                            <td>{{$piece->montantrestant}}</td>
-    @endif
                             <td>{{ $item->nom_benefi }}</td>
                             <td>{{ $item->prenom_benefi }}</td>
                             <td>{{ $item->banque_benefi }}</td>

@@ -788,8 +788,7 @@
                         </div>
                     </div>
                     
-                </div> 
-                     @php
+                </div>      @php
                     $pi=count($piece);
                     if($pi==0) {
 echo "  <h3>Il y a pas de pieces joint pour cette demande</h3>  ";

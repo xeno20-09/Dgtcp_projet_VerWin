@@ -37,6 +37,7 @@
                         <th>Pieces joint</th>
                         @if ($piece->montantligne!=0)
     
+                        <th>Libellé pieces:</th>
                         <th>References pieces:</th>
                         <th>Montant initial:</th>
                         <th>Montant ligne:</th>
@@ -74,14 +75,6 @@
                                     Il n'y a pas de pièces jointes
                                 @endif
                             </td>
-
-                            @if ($piece->montantligne!=0)
-    
-                            <td>{{ $piece->referencespiece}}</td>
-                            <td>{{$piece->montantinitial}}</td>
-                            <td>{{$piece->montantligne}}</td>
-                            <td>{{$piece->montantrestant}}</td>
-    @endif
                             <td>{{ $item->nom_benefi }}</td>
                             <td>{{ $item->prenom_benefi }}</td>
                             <td>{{ $item->banque_benefi }}</td>

@@ -37,6 +37,7 @@
                         <th>Pieces joint</th>
                         @if ($piece->montantligne!=0)
     
+                        <th>Libellé pieces:</th>
                         <th>References pieces:</th>
                         <th>Montant initial:</th>
                         <th>Montant ligne:</th>
@@ -77,10 +78,11 @@
 
                             @if ($piece->montantligne!=0)
     
-                            <td>{{ $piece->referencespiece}}</td>
-                            <td>{{$piece->montantinitial}}</td>
-                            <td>{{$piece->montantligne}}</td>
-                            <td>{{$piece->montantrestant}}</td>
+                            <th>Libellé pieces:</th>
+                            <th>References pieces:</th>
+                            <th>Montant initial:</th>
+                            <th>Montant ligne:</th>
+                            <th>Montant restant:</th>
     @endif
                             <td>{{ $item->nom_benefi }}</td>
                             <td>{{ $item->prenom_benefi }}</td>

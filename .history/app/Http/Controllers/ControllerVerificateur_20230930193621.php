@@ -56,9 +56,8 @@ class ControllerVerificateur extends Controller
 
         $dmd_n_lu = count(demande::where('id_verifi', '=', $id)->where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->get();
 
-        return view('verificateur.form_demande', compact('demande', 'piece', 'dmd_back', 'user', 'dmd_n_lu'));
+        return view('verificateur.form_demande', compact('demande', 'dmd_back', 'user', 'dmd_n_lu'));
     }
 
     public function  form(Request $request, $id_dmd)

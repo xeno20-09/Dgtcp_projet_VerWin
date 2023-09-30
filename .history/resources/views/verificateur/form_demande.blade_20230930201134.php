@@ -670,9 +670,12 @@
                  <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Banque beneficiaire</label>
+                        <input name="banque_benifi" type="text" class="form-control" id=""
+                            placeholder="Banque" value="{{ $item_c->banque_benefi }}">
+
                             <select style="top: 0px;" class="form-select position-relative" name="banque_benifi"
                             aria-label="Default select example" required>
-            <option value="{{ $item_c->banque_benefi }}">{{ $item_c->banque_benefi }}</option>
+            <option value="null">{{ $item_c->banque_benefi }}</option>
             <option value="Bank of Africa Bénin">Bank of Africa Bénin</option>
             <option value="Banque internationale du Bénin">Banque internationale du Bénin</option>
             <option value="Banque de l'habitat du Bénin">Banque de l'habitat du Bénin</option>
@@ -733,76 +736,13 @@
                             <label for="" class="form-label mt-4">Numéro de compte beneficiaire</label>
 
                             <input maxlength="12" minlength="12" name="num_compt_benifi" type="number"
-                                class="form-control" id="" placeholder="Numéro de compte" value="{{ $item_c->num_compt_benefi }}">
+                                class="form-control" id="" placeholder="Numéro de compte">
 
                         </div>
                     </div>
 
 
                 </div>
-                @if ($piece!=null)
-                @foreach ($piece as $item_d)
-                
-                <div id="container" style="  width: 1362px;">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4">Pieces</label>
-                                <input name="pieces_doss[]" type="text" value="{{ $item_d->libellepiece }}" class="form-control" id="pieces" placeholder="pieces">
-                            </div>
-                        </div>
-                        
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4">Reference piece</label>
-                                <input name="ref_doss[]" type="text" class="form-control"value="{{ $item_d->referencespiece }}" id="refs" placeholder="ref pieces">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4">Montant ligne</label>
-                                <input name="montantligne[]" type="number" class="form-control" value="{{ $item_d->montantligne }}" id="mligne" placeholder="Montant ligne">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4">Date d'expiration de la piece</label>
-                                <input name="exp_pieces[]" value="{{ $item_d->dateexpi }}"  type="date" class="form-control" id="expi" placeholder="date expiration pieces">
-                            </div>
-                        </div>
-                    {{-- </div>
-                    <div class="row"> --}}
-                      
-                        
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
-                            </div>
-                        </div>
-                        <div class="col" id="retirer">
-                            <div class="form-group">
-                                <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                                <button  style="position: relative; top: 36px; right: 100px;" type="button" class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div> 
-                     @php
-                    $pi=count($piece);
-                    if($pi==0) {
-echo "  <h3>Il y a pas de pieces joint pour cette demande</h3>  ";
-                    }
-                @endphp
-                @endforeach
-                <br>
-          
-           <br>
-
-        
-               @else
-          
                 <div id="container" style="  width: 1362px;">
                     <div class="row">
                         <div class="col">
@@ -851,7 +791,7 @@ echo "  <h3>Il y a pas de pieces joint pour cette demande</h3>  ";
                 </div>
                 
                 <br>
-                @endif
+
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>

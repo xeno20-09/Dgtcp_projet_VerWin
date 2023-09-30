@@ -64,11 +64,8 @@ Route::post('/VerificateurS_Mj/{id}', [App\Http\Controllers\ControllerVerificate
 Route::post('/FVerifica{id}', [App\Http\Controllers\ControllerVerificateur::class, 'store_piece_dmd'])->name('store_form_piece_verificateur');
 Route::get('/retour_s{id}', [App\Http\Controllers\ControllerVerificateur::class, 'retour'])->name('retour_s');
 Route::get('/ListeBackv', [App\Http\Controllers\ControllerVerificateur::class, 'listeretour'])->name('get_list_back_v');
-Route::get('/VerificateurCorrection{id}', [App\Http\Controllers\ControllerVerificateur::class, 'formulaire'])->name('get_correction_form_ask_verificateur');
-
 /* Route::get('/VerificateurCorrection{id}', [App\Http\Controllers\ControllerVerificateur::class, 'form_corre'])->name('get_correction_form_ask_verificateur');
- */
-Route::post('/Verifica/{id}', [App\Http\Controllers\ControllerVerificateur::class, 'checkref'])->name('store_search');
+ */Route::post('/Verifica/{id}', [App\Http\Controllers\ControllerVerificateur::class, 'checkref'])->name('store_search');
 Route::get('/rejtpieces{id}', [App\Http\Controllers\ControllerVerificateur::class, 'rejet'])->name('rejet_piece_verificateur');
 
 Route::post('/VerificateurS_corr/{id}', [App\Http\Controllers\ControllerVerificateur::class, 'store_corr'])->name('le_store_corr');
