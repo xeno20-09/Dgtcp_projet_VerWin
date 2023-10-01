@@ -1,0 +1,92 @@
+@extends('layout.client.header')
+@section('content')
+<h1 style="text-align: center;">
+    @foreach ($user as $item)
+    <a class="nav-link" href="#"> Mr/Mrs {{ $item->name}} </a>
+    @endforeach
+</h1>
+<div class="container">
+    @if ($pic==1)
+    <div class="table-responsive">
+        <style>
+            .table-responsive {
+overflow-x: auto;
+max-width: 100%;
+}
+
+        </style>
+        <table class="table-bordered">
+            <thead>
+            <tr>
+        <tr>
+            <th>N°Dossier</th>
+            <th>Date d'enregistrement</th>
+            <th>Nature des produits</th>
+            <th>Nature des opérations</th>
+            <th>Montant en Devise</th>
+            <th>Contre montant en FCFA</th>
+            <th>Nom du client</th>
+            <th>Prénom du client</th>
+            <th>Banque du client</th>
+            <th>Numéro de compte du client</th>
+            <th>Nom du bénéficiaire</th>
+            <th>Prénom du bénéficiaire</th>
+            <th>Banque du bénéficiaire</th>
+            <th>Numéro de compte du bénéficiaire</th>
+            <th>Statut de la demande</th>
+            @foreach ($demande as $item)
+
+            @if ($item['status_dmd'] != 'Autorisée')
+
+            <th>Motif de la demande</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($demande as $item)
+        <tr>
+            <td>{{ $item->numero_doss }}</td>
+            <td>{{ $item->date }}</td>
+            <td>{{ $item->nature_p }}</td>
+            <td>{{ $item->nature_op }}</td>
+            <td>{{ $item->devise }} {{ $item->montant }}</td>
+            <td>{{ $item->montant_con }}</td>
+            <td>{{ $item->nom_client }}</td>
+            <td>{{ $item->prenom_client }}</td>
+            <td>{{ $item->banque_client }}</td>
+            <td>{{ $item->num_compt_client }}</td>
+            <td>{{ $item['nom_benefi'] }}</td>
+            <td>{{ $item['prenom_benefi'] }}</td>
+            <td>{{ $item['banque_benefi'] }}</td>
+            <td>{{ $item['num_compt_benefi'] }}</td>
+            <td>{{ $item['status_dmd'] }}</td>
+            <td>
+                @if ($item['status_dmd'] != 'Autorisée')
+                {{ $item['motif'] }}
+                @endif
+            </td>
+    
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+        @else
+Votre demande n'est pas prete , revenez plus tard
+        @endif
+
+    </div>
+    <br><br>
+<div class="test" style="display: flex;
+flex-direction: row;
+justify-content: space-between;">
+    @foreach ($user as $item)
+  <a style="width: auto; height:fit-content;" href="{{ url('Client')}}" class="btn btn-primary">Home</a>
+  @endforeach
+  @foreach ($demande as $item)
+
+    <a class="btn btn-primary"
+        href="{{ URL::to('/demande/pdf', ['id' => $item->numero_doss]) }}">Export demande to PDF</a>
+        @endforeach
+</div>
+</div>
+
+@endsection
