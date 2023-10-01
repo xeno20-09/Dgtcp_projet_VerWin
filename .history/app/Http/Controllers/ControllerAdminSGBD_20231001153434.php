@@ -32,7 +32,7 @@ class ControllerAdminSGBD extends Controller
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
         $date = now();
-
+        $all=
         return view('Admin_SGBD.etats', compact('user', 'date'));
     }
 
