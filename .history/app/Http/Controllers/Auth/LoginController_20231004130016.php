@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
 
-        if (Auth::check() && Auth::user()->poste == 'Agent de saisir') {
+        if (Auth::check() && Auth::user()->poste == 'Sécretaire') {
 
             return '/HSecretaire';
         }
@@ -51,7 +51,7 @@ class LoginController extends Controller
 
             return '/HVerificateur';
         }
-        if (Auth::check() && Auth::user()->poste == 'Chef service') {
+        if (Auth::check() && Auth::user()->poste == 'Chef ') {
 
             return '/HChef_division';
         }

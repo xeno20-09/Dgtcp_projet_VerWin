@@ -33,7 +33,7 @@ class pieces extends Model
     {
         return $this->belongsTo(demandes::class, 'id_dmd');
     }
-   /*  public function n_dmdeur()
+    public function n_dmdeur()
     {
         return $this->belongsTo(demandes::class, 'nom_d');
     }
@@ -44,7 +44,7 @@ class pieces extends Model
     public function n_verifi()
     {
         return $this->belongsTo(demandes::class, 'nom_v');
-    } */
+    }
     public function m_ini()
     {
         return $this->belongsTo(demandes::class, 'montantinitial');

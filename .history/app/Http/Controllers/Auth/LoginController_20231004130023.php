@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
 
-        if (Auth::check() && Auth::user()->poste == 'Agent de saisir') {
+        if (Auth::check() && Auth::user()->poste == 'Sécretaire') {
 
             return '/HSecretaire';
         }

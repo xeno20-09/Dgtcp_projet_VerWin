@@ -29,7 +29,7 @@
            <select value="{{ $item_c->poste}}" name="poste" class="form-select" id="exampleDisabledSelect1">
             <option>Agent de saisir</option>
             <option>Vérificateur</option>
-            <option>Chef service</option>
+            <option>Chef division</option>
             <option>Chef bureau</option>
             <option>Damf</option>
             <option>Client</option>

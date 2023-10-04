@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::create('pieces', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_dmd')->default(0);
@@ -32,8 +31,7 @@ return new class extends Migration
 
             $table->rememberToken();
             $table->timestamps();
-        });
-    }
+        });    }
 
     /**
      * Reverse the migrations.

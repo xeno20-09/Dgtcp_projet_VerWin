@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('pieces', function (Blueprint $table) {
+        Schema::create('devise', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_dmd')->default(0);
             $table->foreign('id_dmd')->references('id')->on('demandes');
 /*             $table->string('nom_d')->nullable();
             $table->string('nom_b')->nullable();
@@ -32,14 +30,13 @@ return new class extends Migration
 
             $table->rememberToken();
             $table->timestamps();
-        });
-    }
+        });    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('pieces');
+        Schema::dropIfExists('devise');
     }
 };

@@ -57,7 +57,8 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-
+        $test=demande::create($data);
+        dd()
 
         if (request()->validate([
             'num_compt_client' => 'required|min:11|max:12',

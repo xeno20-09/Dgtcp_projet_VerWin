@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class devises extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+
+        'id_user',
+  'date'
+        'devise',
+        'valeur',
+        'montantligne',
+        'libellepiece',
+        'referencespiece',
+        'date',
+        'dateexpi',
+        /*         'numero_doss',
+ */
+    ];
+}
