@@ -507,7 +507,7 @@ class ControllerAdminSGBD extends Controller
             view()->share([
                 'grouped' => $grouped,
                 'test' => $test,
-                'devis' => $devis,
+                'devis'=>$devis,
             ]);
             /*             foreach ($grouped as $group) {
                 $nationalite = $group->nationalite;
@@ -520,7 +520,7 @@ class ControllerAdminSGBD extends Controller
             }
  */
 
-            $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $grouped = ['devise', 'nationalite', 'montant', 'nomsociete'], $devis = ['devise', 'nationalite', 'montant']);
+            $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $grouped = ['devise', 'nationalite', 'montant', 'nomsociete'],$devis= $grouped = ['devise', 'nationalite', 'montant']);
             return $pdf->download('listeetats.pdf');
         }
 

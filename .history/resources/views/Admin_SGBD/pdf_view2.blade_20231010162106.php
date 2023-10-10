@@ -83,7 +83,7 @@
             </thead>
             <tbody>    
                 @php
-                $processedNationalities=[]; // Ajouter la nationalité traitée
+                $processedNationalities[]; // Ajouter la nationalité traitée
                @endphp
                 @foreach ($grouped as $item)
             

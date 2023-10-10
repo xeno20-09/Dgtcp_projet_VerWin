@@ -72,55 +72,45 @@
     </div>
 @endif
     @if ($test=='Pays')
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Pays</th>
-                    <th scope="col">Montant</th>
-                    <th scope="col">Montant total :</th>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Pays</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Montant total :</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($grouped as $item)
+                <tr class="table">
+                    <td>{{ $item->nationalite }}</td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tbody>
+                                @php
+                                    $totalMontant = 0;
+                                @endphp
+                                @foreach ($devise as $d)
+                                    @if ($item->nationalite == $d->nationalite)
+                                        <tr>
+                                            <td>{{ $d->montant }} {{ $d->devise }}</td>
+                                        </tr>
+                                        @php
+                                            $totalMontant += $d->montant; // Ajouter le montant à la somme
+                                        @endphp
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>{{ $totalMontant }}</td>
                 </tr>
-            </thead>
-            <tbody>    
-                @php
-                $processedNationalities=[]; // Ajouter la nationalité traitée
-               @endphp
-                @foreach ($grouped as $item)
-            
-                @if (!in_array($item->nationalite, $processedNationalities))
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-                    <tr class="table">
-                        <td>{{ $item->nationalite }}</td>
-                        <td>
-                            <table class="table table-bordered">
-                                <tbody>
-                                    @php
-                                        $totalMontant = 0;
-                                    @endphp
-                                    @foreach ($devis as $d)
-                                        @if ($item->nationalite == $d->nationalite)
-                                            <tr>
-                                                <td>{{ $d->montant }} {{ $d->devise }}</td>
-                                            </tr>
-                                            @php
-                                                $totalMontant += $d->montant; // Ajouter le montant à la somme
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </td>
-                        <td>{{ $totalMontant }}</td>
-                    </tr>
-                    @php
-                    $processedNationalities[] = $item->nationalite; // Ajouter la nationalité traitée
-                @endphp
-            @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    
         @endif
         @if ($test=='Société')
 

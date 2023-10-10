@@ -81,14 +81,8 @@
                     <th scope="col">Montant total :</th>
                 </tr>
             </thead>
-            <tbody>    
-                @php
-                $processedNationalities=[]; // Ajouter la nationalité traitée
-               @endphp
+            <tbody>
                 @foreach ($grouped as $item)
-            
-                @if (!in_array($item->nationalite, $processedNationalities))
-
                     <tr class="table">
                         <td>{{ $item->nationalite }}</td>
                         <td>
@@ -97,7 +91,7 @@
                                     @php
                                         $totalMontant = 0;
                                     @endphp
-                                    @foreach ($devis as $d)
+                                    @foreach ($grouped as $d)
                                         @if ($item->nationalite == $d->nationalite)
                                             <tr>
                                                 <td>{{ $d->montant }} {{ $d->devise }}</td>
@@ -112,10 +106,6 @@
                         </td>
                         <td>{{ $totalMontant }}</td>
                     </tr>
-                    @php
-                    $processedNationalities[] = $item->nationalite; // Ajouter la nationalité traitée
-                @endphp
-            @endif
                 @endforeach
             </tbody>
         </table>

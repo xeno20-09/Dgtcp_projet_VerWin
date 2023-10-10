@@ -81,10 +81,7 @@
                     <th scope="col">Montant total :</th>
                 </tr>
             </thead>
-            <tbody>    
-                @php
-                $processedNationalities=[]; // Ajouter la nationalité traitée
-               @endphp
+            <tbody>
                 @foreach ($grouped as $item)
             
                 @if (!in_array($item->nationalite, $processedNationalities))

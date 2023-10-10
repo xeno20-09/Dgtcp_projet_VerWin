@@ -501,13 +501,12 @@ class ControllerAdminSGBD extends Controller
 
             $liste = listedevise::all();
             $devis = demande::all();
-            $grouped = demandes::select('nationalite', 'montant', 'devise')
+            $grouped = demandes::select('nationalite', 'montant', 'devise', DB::raw('SUM(montant) as total'))
                 ->groupBy('nationalite', 'montant', 'devise')
                 ->get();
             view()->share([
                 'grouped' => $grouped,
                 'test' => $test,
-                'devis' => $devis,
             ]);
             /*             foreach ($grouped as $group) {
                 $nationalite = $group->nationalite;
@@ -520,7 +519,7 @@ class ControllerAdminSGBD extends Controller
             }
  */
 
-            $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $grouped = ['devise', 'nationalite', 'montant', 'nomsociete'], $devis = ['devise', 'nationalite', 'montant']);
+            $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $grouped = ['devise', 'nationalite', 'montant', 'nomsociete', 'total']);
             return $pdf->download('listeetats.pdf');
         }
 
