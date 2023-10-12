@@ -119,13 +119,7 @@
                 <tbody>
                     @foreach ($devises as $dev)
                     @if ($dev->date!=$ladate)
-                    <tr  style="background-color: #797676; ">
-                        <td>{{ $dev->date}}</td>
-                        <td>{{ $dev->devise }}</td>
-                        <td>{{ $dev->valeur }}</td>
-                    </tr>
-                    @else
-                    <tr  style="background-color: #007bff; ">
+                    <tr class="table-danger" style="">
                         <td>{{ $dev->date}}</td>
                         <td>{{ $dev->devise }}</td>
                         <td>{{ $dev->valeur }}</td>

@@ -133,7 +133,6 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $devises = devises::orderBy('date', 'desc')->get();
 
         return view('chef_division.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1'));
     }
@@ -147,10 +146,9 @@ class ControllerDivision extends Controller
         $date = now();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $devise = listedevise::all();
-        $devises = devises::orderBy('date', 'desc')->get();
-        $ladate = now()->format('Y-m-d');
+        $devises = devises::ordeyBy('date','asc')->get;
 
-        return view('chef_division.form_devis', compact('user', 'ladate', 'devises', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
+        return view('chef_division.form_devis', compact('user', 'devises', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
     public function addc(Request $request, $id)
     {
@@ -176,10 +174,8 @@ class ControllerDivision extends Controller
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $dmd_chef_division->save();
         $devise = listedevise::all();
-        $devises = devises::orderBy('date', 'desc')->get();
-        $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('ladate', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise', 'devises'));
+        return view('chef_division.form_devis', compact('user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
     public function adddevise(Request $request, $id)
     {
@@ -200,10 +196,8 @@ class ControllerDivision extends Controller
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $dmd_chef_division->save();
         $devise = listedevise::all();
-        $devises = devises::orderBy('date', 'desc')->get();
-        $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('ladate', 'devises', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
+        return view('chef_division.form_devis', compact('user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
 
     public function   detailles(Request $request, $id)

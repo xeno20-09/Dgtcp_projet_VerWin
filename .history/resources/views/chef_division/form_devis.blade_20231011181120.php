@@ -107,31 +107,29 @@
     }
     
                 </style>
-                <table class="table">
+                <table class="table-bordered">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Devise</th>
-                            <th>Valeur</th>
-
+                            <th>N° Dossier</th>
+                            <th>Date d'enregistrement</th>
+                            <th>Nature des produits</th>
+                            <th>Nature des opérations</th>
+                            <th>Montant (Devise)</th>
+                            <th>Contre montant (FCFA)</th>
+                         
                         </tr>
                 </thead>
                 <tbody>
-                    @foreach ($devises as $dev)
-                    @if ($dev->date!=$ladate)
-                    <tr  style="background-color: #797676; ">
-                        <td>{{ $dev->date}}</td>
-                        <td>{{ $dev->devise }}</td>
-                        <td>{{ $dev->valeur }}</td>
-                    </tr>
-                    @else
-                    <tr  style="background-color: #007bff; ">
-                        <td>{{ $dev->date}}</td>
-                        <td>{{ $dev->devise }}</td>
-                        <td>{{ $dev->valeur }}</td>
-                    </tr>
-                    @endif
-                    
+                    @foreach ($demande as $item)
+                        <tr>
+                            <td>{{ $item->numero_doss }}</td>
+                            <td>{{ $item->date }}</td>
+                            <td>{{ $item->nature_p }}</td>
+                            <td>{{ $item->nature_op }}</td>
+                            <td>{{ $item->montant }}</td>
+                            <td>{{ $item->montant_con }} ({{ $item->devise }})</td>
+                            
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

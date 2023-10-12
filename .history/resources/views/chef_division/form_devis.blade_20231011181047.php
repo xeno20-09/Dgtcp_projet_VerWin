@@ -1,0 +1,301 @@
+@extends('layout.chef_division.header')
+@section('content')
+
+<button type="button" style="position: relative;top: 100px; left:100px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertionModal">
+    Ajouter une devise             
+ </button>
+
+ <div class="modal fade" id="insertionModal" tabindex="-1" aria-labelledby="insertionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertionModalLabel">Ajouter de la devise</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @foreach ($user as $item)
+            <form action="{{ route('adddevises', ['id' => $item->id]) }}" method="POST" class="card-body cardbody-color p-lg-5">
+               @endforeach
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="devise">Devise</label>
+                        <input type="text" class="form-control" id="devise" name="devise" placeholder="Entrez le nom de la devise" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times"></i> Annuler</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <h1 style="text-align: center;">
+            @foreach ($user as $item)
+                <a class="nav-link" href="#"> Mr/Mrs  {{ $item['firstname'] }} {{ $item['lastname'] }}  <span
+                        class="badge rounded-pill badge-notification bg-danger"
+                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
+            @endforeach
+        </h1>
+     
+
+ {{--        <a href="{{ route('adddevises', ['id' => $item->id]) }}" data-bs-toggle="modal">
+            <button type="button" data-bs-toggle="modal" class="btn btn-primary">Ajouter une devise</button>
+        </a> --}}
+
+          
+            
+            <form action="{{ route('addcours', ['id' => $item->id]) }}" method="Post"
+                class="card-body cardbody-color p-lg-5">
+
+                @csrf
+                <legend>Cours des devises contre Franc CFA à appliquer aux transferts</legend>
+
+                <div class="row">
+                    <hr>
+
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="" class="form-label mt-4">Date </label>
+                            <input  name="date" type="date" class="form-control"
+                                id="" aria-describedby="" placeholder="Date">
+                        </div>
+                    </div>
+                    <div class="col">                        
+                        <div class="form-group">
+                            <label for="" class="form-label mt-4">Devises</label>
+                            <select style="top: 0px;" class="form-select position-relative" name="devise"
+                            aria-label="Default select example" required>
+                            <option value="null">devises?</option>
+                            @foreach ($devise as $name )
+                            <option value="{{$name->nom}}">{{$name->nom}}</option>
+                            @endforeach
+   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="" class="form-label mt-4">Valeurs</label>
+
+                            <input value="" name="valeur" type="text" class="form-control" id="" placeholder="Cours">
+
+                           
+
+                        </div>
+                    </div>
+
+                </div>
+             
+
+
+
+                <br>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+           
+       
+
+            <div class="table-responsive">
+                <style>
+                    .table-responsive {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+    
+                </style>
+                <table class="table-bordered">
+                    <thead>
+                        <tr>
+                            <th>N° Dossier</th>
+                            <th>Date d'enregistrement</th>
+                            <th>Nature des produits</th>
+                            <th>Nature des opérations</th>
+                            <th>Montant (Devise)</th>
+                            <th>Contre montant (FCFA)</th>
+                            @foreach ($demande as $item)
+                            @if ($item->nom_client)
+                            <th>Nom du client</th>
+                            <th>Prénom du client</th>
+                            <th>Profession du client</th>
+                            <th>Téléphone du client</th>
+                            <th>Banque du client</th>
+                            <th>Numéro de compte du client</th>
+                            @endif
+                            @endforeach
+                            @foreach ($demande as $item)
+                            @if ($item->nomsociete)
+                            <th>Nom societé</th>
+                            <th>Categorie</th>
+                            <th>Adresse</th>
+                            <th>Téléphone </th>
+        
+                            <th>Banque</th>
+                            
+                            <th>Numéro de compte </th>
+                            @endif
+                            @endforeach
+                            <th>Pieces jointes</th>
+                            @if ($pieces)
+            
+                            <th>References pieces:</th>
+                            <th>Montant initial:</th>
+                            <th>Montant ligne:</th>
+                            <th>Montant restant:</th>
+                            
+        @endif
+        
+                            <th>Nom du beneficiaire</th>
+                            <th>Prenom du beneficiaire</th>
+                            <th>Banque du beneficiaire</th>
+                            <th>Pays du beneficiaire</th>
+                            <th>Numéro de compte du beneficiaire</th>
+                            <th>Position de la demande</th>
+                {{--             <th>Motif</th>
+                            <th>Vu par le vérificateur</th>
+                            <th>Vu par le chef division</th>
+                            <th>Date de décision</th>
+                            <th>Vu par le chef bureau</th>
+                            <th>Vu par le DAMF</th> --}}
+                        </tr>
+                </thead>
+                <tbody>
+                    @foreach ($demande as $item)
+                        <tr>
+                            <td>{{ $item->numero_doss }}</td>
+                            <td>{{ $item->date }}</td>
+                            <td>{{ $item->nature_p }}</td>
+                            <td>{{ $item->nature_op }}</td>
+                            <td>{{ $item->montant }}</td>
+                            <td>{{ $item->montant_con }} ({{ $item->devise }})</td>
+                            @if ($item->nom_client)
+                            <td>{{ $item['nom_client'] }}</td>
+                            <td>{{ $item['prenom_client'] }}</td>
+                            <td>{{ $item['profess_client'] }}</td>
+                            <td>{{ $item['tel_client'] }}</td>
+                            <td>{{ $item['banque_client'] }}</td>
+                            <td>{{ $item['num_compt_client'] }}</td>
+                            @endif
+                          
+                            @if ($item->nomsociete)
+                            <td>{{ $item['nomsociete'] }}</td>
+                            <td>{{ $item['categorie'] }}</td>
+    
+                            <td>{{ $item['adresse'] }}</td>
+    
+                            <td>{{ $item['tel_client'] }}</td>
+                            <td>{{ $item['banque_client'] }}</td>
+                            <td>{{ $item['num_compt_client'] }}</td>
+    @endif
+                                    <td>
+                                    @if ($pieces)
+                                        {{ $pieces }}
+                                    @else
+                                        Il n'y a pas de pièces jointes
+                                    @endif
+                                </td>
+    
+                                @if ($piece)
+        
+                                <td>{{ $piece->referencespiece}}</td>
+                                <td>{{$piece->montantinitial}}</td>
+                                <td>{{$piece->montantligne}}</td>
+                                <td>{{$piece->montantrestant}}</td>
+        @endif
+                  
+                            <td>{{ $item->nom_benefi }}</td>
+                            <td>{{ $item->prenom_benefi }}</td>
+                            <td>{{ $item->banque_benefi }}</td>
+                            <td>{{ $item->pays_benifi }}</td>
+                            <td>{{ $item->num_compt_benefi }}</td>
+                                
+                    
+                            @php
+                            $status_dmd = " ";
+                            if (
+                                ($item['vu_secret'] == 1) &&
+                                ($item['vu_verifi'] == 0) &&
+                                ($item['vu_chef_division'] == 0) &&
+                                ($item['vu_chef_bureau'] == 0) &&
+                                ($item['vu_damf'] == 0)
+                            ) {
+                                $position = "Vérificateur";
+                                echo "<td>$position</td>";
+                            }
+                            if (
+                                ($item['vu_secret'] == 1) &&
+                                ($item['vu_verifi'] == 1) &&
+                                ($item['vu_chef_division'] == 0) &&
+                                ($item['vu_chef_bureau'] == 0) &&
+                                ($item['vu_damf'] == 0)
+                            ) {
+                                $position = "Chef division";
+                                echo "<td>$position</td>";
+                            }
+                            if (
+                                ($item['vu_secret'] == 1) &&
+                                ($item['vu_verifi'] == 1) &&
+                                ($item['vu_chef_division'] == 1) &&
+                                ($item['vu_chef_bureau'] == 0) &&
+                                ($item['vu_damf'] == 0)
+                            ) {
+                                $position = "Chef service";
+                                echo "<td>$position</td>";
+                            }
+                            if (
+                                ($item['vu_secret'] == 1) &&
+                                ($item['vu_verifi'] == 1) &&
+                                ($item['vu_chef_division'] == 1) &&
+                                ($item['vu_chef_bureau'] == 1) &&
+                                ($item['vu_damf'] == 0)
+                            ) {
+                                $position = "Directeur";
+                                echo "<td>$position</td>";
+                            }
+                            if (
+                                ($item['vu_secret'] == 1) &&
+                                ($item['vu_verifi'] == 1) &&
+                                ($item['vu_chef_division'] == 1) &&
+                                ($item['vu_chef_bureau'] == 1) &&
+                                ($item['vu_damf'] == 1)
+                            ) {
+                                echo "<td>{$item['status_dmd']}</td>";
+                            }
+                            @endphp
+                            
+                      {{--                              <td>{{ $item->status_dmd }}</td>
+    
+                      <td>
+                                @if ($item->vu_verifi != 0)
+                                    Vu par le chef division
+                                @else
+                                    Non vu par le chef division
+                                @endif
+                            </td>
+                            @foreach ($jointure as $row)
+                                <td>{{ $row->name }}</td>
+                                @break
+                            @endforeach
+                            @foreach ($jointure1 as $row1)
+                                <td>{{ $row1->name }}</td>
+                                @break
+                            @endforeach --}}
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    
+    </div>
+
+
+
+
+    </div>
+
+
+    <br>
+    <br>
+@endsection

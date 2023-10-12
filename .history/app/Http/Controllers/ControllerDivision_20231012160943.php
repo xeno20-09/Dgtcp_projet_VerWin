@@ -150,7 +150,7 @@ class ControllerDivision extends Controller
         $devises = devises::orderBy('date', 'desc')->get();
         $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('user', 'ladate', 'devises', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
+        return view('chef_division.form_devis', compact('user','ladate', 'devises', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
     public function addc(Request $request, $id)
     {
@@ -177,9 +177,8 @@ class ControllerDivision extends Controller
         $dmd_chef_division->save();
         $devise = listedevise::all();
         $devises = devises::orderBy('date', 'desc')->get();
-        $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('ladate', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise', 'devises'));
+        return view('chef_division.form_devis', compact('user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
     public function adddevise(Request $request, $id)
     {
@@ -201,9 +200,8 @@ class ControllerDivision extends Controller
         $dmd_chef_division->save();
         $devise = listedevise::all();
         $devises = devises::orderBy('date', 'desc')->get();
-        $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('ladate', 'devises', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
+        return view('chef_division.form_devis', compact('devises','user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
 
     public function   detailles(Request $request, $id)

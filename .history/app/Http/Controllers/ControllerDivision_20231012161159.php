@@ -179,7 +179,7 @@ class ControllerDivision extends Controller
         $devises = devises::orderBy('date', 'desc')->get();
         $ladate = now()->format('Y-m-d');
 
-        return view('chef_division.form_devis', compact('ladate', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise', 'devises'));
+        return view('chef_division.form_devis', compact('ladate', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise', 'devise'));
     }
     public function adddevise(Request $request, $id)
     {

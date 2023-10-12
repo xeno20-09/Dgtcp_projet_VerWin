@@ -124,12 +124,6 @@
                         <td>{{ $dev->devise }}</td>
                         <td>{{ $dev->valeur }}</td>
                     </tr>
-                    @else
-                    <tr  style="background-color: #007bff; ">
-                        <td>{{ $dev->date}}</td>
-                        <td>{{ $dev->devise }}</td>
-                        <td>{{ $dev->valeur }}</td>
-                    </tr>
                     @endif
                     
                     @endforeach
