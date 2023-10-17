@@ -120,8 +120,7 @@
 
 
  
-@if ( $item_c->nombre_doc==$found)
-Il restait <span style="background-color: slategray">{{ $restant }}</span> pour cette demande.<br>
+@if ( $item_c->nombre_doc==$notfound)
 @for ($i = 0; $i < $item_c->nombre_doc; $i++)
 <div>
     <hr>                </div>

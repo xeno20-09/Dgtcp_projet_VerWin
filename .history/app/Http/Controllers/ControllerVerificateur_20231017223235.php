@@ -108,9 +108,9 @@ class ControllerVerificateur extends Controller
             $restant = array_sum($montantligne) - $montantdmd;
         }
         if (count($referencePiece) == $found) {
-            // $lesrestant= $dmd_verificateur->montantrestant;
 
-            $restant = $dmd_verificateur->montantrestant;
+            $restant = $montantdmd - $dmd_verificateur->montantrestant;
+            $lesrestant=
         }
         //dd($restant);
         //
@@ -119,7 +119,7 @@ class ControllerVerificateur extends Controller
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $demande = (demande::where('id', '=', $idm)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        return view('verificateur.infopiece', compact('montantligne'/* , 'lesrestant' */, 'restant', 'found', 'notfound', 'libellePiece', 'datePiece', 'montantdmd', 'referencePiece', 'dmd_back', 'demande', 'dmd_n_lu', 'user'));
+        return view('verificateur.infopiece', compact('montantligne', 'restant', 'found', 'notfound', 'libellePiece', 'datePiece', 'montantdmd', 'referencePiece', 'dmd_back', 'demande', 'dmd_n_lu', 'user'));
     }
 
     public function store_piece_dmd(Request $request, $id_d)
@@ -154,40 +154,59 @@ class ControllerVerificateur extends Controller
             $dmd_pieces = new Piece();
             $dmd_pieces->id_dmd = $id_d;
             $dmd_pieces->libellepiece = $data['libellepiece'][$key];
-            $dmd_pieces->referencespiece = $data['referencespiece'][$key];
-        
+            $dmd_pieces->referencespiece =  $data['referencespiece'][$key];
+            // $dmd_pieces->$libellePiece[$key];
             if (isset($data['montantligne'][$key])) {
-                $dmd_pieces->montantligne = $data['montantligne'][$key];
-            } else {
-                $dmd_pieces->montantligne = null;
+
+                $dmd_pieces->montantligne =  $data['montantligne'][$key];
             }
-        
-            $dmd_pieces->date = $data['date_piece'][$key];
-        
-            if (isset($data['date_expi'][$key])) {
-                $dmd_pieces->dateexpi = $data['date_expi'][$key];
+            $dmd_pieces->date =  $data['date_piece'][$key];
+            //dd($data['date_expi']);
+            if (isset($data['date_expi'])) {
+                foreach ($data['date_expi'] as $dateExpi) {
+                    $dmd_pieces->dateexpi =  $dateExpi;
+                }
             }
-        
+
             $n_verificateur = $l_verificateur . " " . $f_verificateur;
             $dmd_pieces->nom_v = $l_verificateur . " " . $f_verificateur;
-        
-            $lastPiece = Piece::where('referencespiece', $data['referencespiece'][$key])->first();
-        
-            if ($lastPiece != null) {
-                if ($lastPiece->montantrestant == 0) {
-                    $dmd_pieces->montantrestant = 0;
-                } else {
+            // Montant initial et Montant restant
+            if (isset($data['montantrestant'][$key])) {
+                $lastPiece = Piece::where('montantrestant', $data['montantrestant'][$key])->latest()->first();
+                // Faites quelque chose avec $lastPiece ici
+            } else {
+                $lastPiece = 0;
+            }
+            $lastPiece_s = Piece::where('id_dmd', $id_d)->orderByDesc('created_at')->first();
+
+            if ($lastPiece != null) { //La piece existe deja 
+                if ($lastPiece && $lastPiece->dateexpi != null) {
                     $dmd_pieces->montantinitial = $lastPiece->montantrestant;
                     $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
+                    //dd($dmd_pieces->montantrestant);
+                } else if ($lastPiece_s && $lastPiece->dateexpi != null) {
+                    $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
+                    $dmd_pieces->montantrestant =    $dmd_verificateur->montant - $themontant;
+                    dd($dmd_pieces->montantrestant);
                 }
-            } else {
-                $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
+            } else {       //Lorsque cest la mtoutes premiere pieces 
+
+                /*valide*/
+                $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
+
+                //dd($themontant);
+                // dd($dmd_verificateur->montant);
+                //dd($dmd_pieces->montantrestant);
+                // dd( $dmd_pieces->montantinitial  ); 
+
+
             }
-        
+            dd($dmd_pieces);
+            // Enregistrez la pièce dans la base de données
             $dmd_pieces->save();
+            // 
         }
-        
         //dd($dmd_pieces);
         $demande = Piece::where('nom_v', $n_verificateur)->get();
         $user = User::where('id', '=', $id)->get();
