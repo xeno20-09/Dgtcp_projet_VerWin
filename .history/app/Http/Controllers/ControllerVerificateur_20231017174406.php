@@ -120,7 +120,6 @@ class ControllerVerificateur extends Controller
         $l_verificateur = $verificateur->lastname;
         $f_verificateur = $verificateur->firstname;
 
-
         // Récupération de toutes les données du formulaire soumises par l'utilisateur
 
         // Supposons que les données du formulaire sont correctement structurées
@@ -200,6 +199,7 @@ class ControllerVerificateur extends Controller
         }
         //dd($dmd_pieces);
         $demande = Piece::where('nom_v', $n_verificateur)->get();
+        dd($demande);
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
@@ -361,17 +361,14 @@ class ControllerVerificateur extends Controller
     public function listep()
     {
         $id = Auth::id();
-        $users = user::find($id);
+        $users = User::where('id', '=', $id)->first();
         $user = User::where('id', '=', $id)->get();
 
-
-        $l_verificateur = $users->lastname;
-        $f_verificateur = $users->firstname;
-        $n_verificateur = $l_verificateur . " " . $f_verificateur;
-        $pieces = piece::where('nom_v', '=', $n_verificateur)->get();
+        $name_v =  $users->name;
+        $pieces = piece::where('nom_v', '=', $name_v)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        $name_v = $n_verificateur;
+
 
         return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));
     }

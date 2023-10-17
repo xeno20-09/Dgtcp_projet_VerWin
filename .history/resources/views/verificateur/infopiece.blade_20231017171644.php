@@ -17,7 +17,7 @@
 {{ $notfound }}
 @php
     $date=now();
-    $e='ok';
+    
 @endphp
 <form action="{{ route('store_form_piece_verificateur', $item_c->id) }}" method="post">
                 @csrf
@@ -67,8 +67,13 @@
     <div class="row">
    
         @if ($montantligne[$i] == null)
-    
-        
+        <div class="col">
+            <div class="form-group">
+                <label for="montantligne">Montant de la ligne</label>
+                <input type="number" name="montantligne[]" id="montantligne"
+                    placeholder="Montant de la ligne" value="{{$montantligne[$i]}}" class="form-control">
+            </div>
+        </div>
         @elseif ($montantligne[$i] != null)
         <div class="col">
             <div class="form-group">
@@ -77,7 +82,7 @@
                     placeholder="Montant de la ligne"  value="{{$montantligne[$i]}}" class="form-control"readonly>
             </div>
         </div>
-
+        @endif
         <div class="col">
             <div class="form-group">
               
@@ -111,8 +116,6 @@
                 @endif
             </div>
         </div>
-        @endif
-     
     </div>
   
 @endfor

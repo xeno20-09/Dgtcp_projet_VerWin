@@ -361,12 +361,11 @@ class ControllerVerificateur extends Controller
     public function listep()
     {
         $id = Auth::id();
-        $users = user::find($id);
-        $user = User::where('id', '=', $id)->get();
+        $user = user::find($id);
+        $user = user::find($id);
 
-
-        $l_verificateur = $users->lastname;
-        $f_verificateur = $users->firstname;
+        $l_verificateur = $user->lastname;
+        $f_verificateur = $user->firstname;
         $n_verificateur = $l_verificateur . " " . $f_verificateur;
         $pieces = piece::where('nom_v', '=', $n_verificateur)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());

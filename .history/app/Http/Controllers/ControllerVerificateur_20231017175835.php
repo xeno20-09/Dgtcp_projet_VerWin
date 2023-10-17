@@ -364,6 +364,7 @@ class ControllerVerificateur extends Controller
         $users = user::find($id);
         $user = User::where('id', '=', $id)->get();
 
+        $user = user::find($id);
 
         $l_verificateur = $users->lastname;
         $f_verificateur = $users->firstname;

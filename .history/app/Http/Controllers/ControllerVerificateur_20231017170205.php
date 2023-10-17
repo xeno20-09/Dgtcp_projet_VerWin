@@ -88,39 +88,29 @@ class ControllerVerificateur extends Controller
     }
     public function checkref($libellePiece, $referencePiece, $datePiece, $montantligne,  $dateExpi, $idm)
     {
-        $found = 0;
-        $notfound = 0;
-
-        for ($i = count($referencePiece) - 1; $i >= 0; $i--) {
+$found=0;
+$notfound=0;
+                 for ($i = count($referencePiece) - 1; $i >= 0; $i--) {
             $dmd_verificateur = piece::where('referencespiece', '=', $referencePiece[$i])
-                //->latest('id') // Triez par ordre décroissant de la colonne 'id'
+                ->latest('id') // Triez par ordre décroissant de la colonne 'id'
                 ->first(); // Obtenez le premier résultat, qui est le dernier enregistrement
-            if ($dmd_verificateur) {
-                $found++;
-            } else {
-                $notfound++;
-            }
-        }
+if()
+        } 
         $montant = demande::where('id', '=', $idm)->first();
         $montantdmd = $montant->montant;
-        $restant = array_sum($montantligne) - $montantdmd;
-
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $demande = (demande::where('id', '=', $idm)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        return view('verificateur.infopiece', compact('montantligne', 'restant', 'found', 'notfound', 'libellePiece', 'datePiece', 'montantdmd', 'referencePiece', 'dmd_back', 'demande', 'dmd_n_lu', 'user'));
+        return view('verificateur.infopiece', compact('montantligne', 'libellePiece', 'datePiece', 'montantdmd', 'referencePiece', 'dmd_back', 'demande', 'dmd_n_lu', 'user'));
     }
 
     public function store_piece_dmd(Request $request, $id_d)
     {      // Supposons que l'ID de l'utilisateur connecté est 1
         $id = Auth::id();
         $verificateur = user::find($id);
-        $l_verificateur = $verificateur->lastname;
-        $f_verificateur = $verificateur->firstname;
-
-
+        $n_verificateur = $verificateur->name;
         // Récupération de toutes les données du formulaire soumises par l'utilisateur
 
         // Supposons que les données du formulaire sont correctement structurées
@@ -128,7 +118,7 @@ class ControllerVerificateur extends Controller
         // Récupération des données de la demande parente
         $dmd_verificateur = Demande::find($id_d);
         $data = $request->all();
-        //dd($data);
+
         // Supposons que vous avez déjà effectué des vérifications sur l'existence des pièces avec les références fournies
         $themontant = 0;
         // Parcourez toutes les pièces soumises
@@ -141,16 +131,14 @@ class ControllerVerificateur extends Controller
 
         //dd(count($data['libellepiece']));
         // Parcourez toutes les pièces soumises
-        for ($key = 0; $key <= count($data['libellepiece']) - 1; $key++) {
+        for ($key = 0; $key < count($data['libellepiece']); $key++) {
             $dmd_pieces = new Piece();
             $dmd_pieces->id_dmd = $id_d;
             $dmd_pieces->libellepiece = $data['libellepiece'][$key];
             $dmd_pieces->referencespiece =  $data['referencespiece'][$key];
             // $dmd_pieces->$libellePiece[$key];
-            if (isset($data['montantligne'][$key])) {
+            $dmd_pieces->montantligne =  $data['montantligne'][$key];
 
-                $dmd_pieces->montantligne =  $data['montantligne'][$key];
-            }
             $dmd_pieces->date =  $data['date_piece'][$key];
             //dd($data['date_expi']);
             if (isset($data['date_expi'])) {
@@ -159,8 +147,8 @@ class ControllerVerificateur extends Controller
                 }
             }
 
-            $n_verificateur = $l_verificateur . " " . $f_verificateur;
-            $dmd_pieces->nom_v = $l_verificateur . " " . $f_verificateur;
+
+            $dmd_pieces->nom_v = $n_verificateur;
             // Montant initial et Montant restant
             if (isset($data['montantrestant'][$key])) {
                 $lastPiece = Piece::where('montantrestant', $data['montantrestant'][$key])->latest()->first();
@@ -170,18 +158,18 @@ class ControllerVerificateur extends Controller
             }
             $lastPiece_s = Piece::where('id_dmd', $id_d)->orderByDesc('created_at')->first();
 
-            if ($lastPiece != null) { //La piece existe deja 
-                if ($lastPiece && $lastPiece->dateexpi != null) {
-                    $dmd_pieces->montantinitial = $lastPiece->montantrestant;
-                    $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
-                    //dd($dmd_pieces->montantrestant);
-                } else if ($lastPiece_s && $lastPiece->dateexpi != null) {
-                    $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
-                    $dmd_pieces->montantrestant =    $dmd_verificateur->montant - $themontant;
-                    dd($dmd_pieces->montantrestant);
-                }
-            } else {       //Lorsque cest la mtoutes premiere pieces 
-
+            //La piece existe deja 
+            if ($lastPiece && $lastPiece->dateexpi != null) {
+                $dmd_pieces->montantinitial = $lastPiece->montantrestant;
+                $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
+                //dd($dmd_pieces->montantrestant);
+            } else if ($lastPiece_s && $lastPiece->dateexpi != null) {
+                $dmd_pieces->montantinitial = $lastPiece_s->montantrestant;
+                $dmd_pieces->montantrestant =    $dmd_verificateur->montant - $themontant;
+                dd($dmd_pieces->montantrestant);
+            }
+            //Lorsque cest la mtoutes premiere pieces 
+            else {
                 /*valide*/
                 $dmd_pieces->montantrestant = $themontant -  $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
@@ -190,15 +178,13 @@ class ControllerVerificateur extends Controller
                 // dd($dmd_verificateur->montant);
                 //dd($dmd_pieces->montantrestant);
                 // dd( $dmd_pieces->montantinitial  ); 
-
-
             }
             //dd($dmd_pieces);
             // Enregistrez la pièce dans la base de données
             $dmd_pieces->save();
             // 
         }
-        //dd($dmd_pieces);
+        // dd($dmd_pieces);
         $demande = Piece::where('nom_v', $n_verificateur)->get();
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
@@ -361,17 +347,14 @@ class ControllerVerificateur extends Controller
     public function listep()
     {
         $id = Auth::id();
-        $users = user::find($id);
+        $users = User::where('id', '=', $id)->first();
         $user = User::where('id', '=', $id)->get();
 
-
-        $l_verificateur = $users->lastname;
-        $f_verificateur = $users->firstname;
-        $n_verificateur = $l_verificateur . " " . $f_verificateur;
-        $pieces = piece::where('nom_v', '=', $n_verificateur)->get();
+        $name_v =  $users->name;
+        $pieces = piece::where('nom_v', '=', $name_v)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        $name_v = $n_verificateur;
+
 
         return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));
     }

@@ -17,6 +17,7 @@
 {{ $notfound }}
 @php
     $date=now();
+    $restant=0;
     $e='ok';
 @endphp
 <form action="{{ route('store_form_piece_verificateur', $item_c->id) }}" method="post">
@@ -67,48 +68,19 @@
     <div class="row">
    
         @if ($montantligne[$i] == null)
-    
-        
+        <div class="col">
+            <div class="form-group">
+                <label for="montantligne">Montant de la ligne</label>
+                <input type="number" name="montantligne[]" id="montantligne"
+                    placeholder="Montant de la ligne" value="{{$montantligne[$i]}}" class="form-control">
+            </div>
+        </div>
         @elseif ($montantligne[$i] != null)
         <div class="col">
             <div class="form-group">
                 <label for="montantligne">Montant de la ligne</label>
                 <input type="number" name="montantligne[]" id="montantligne"
                     placeholder="Montant de la ligne"  value="{{$montantligne[$i]}}" class="form-control"readonly>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-group">
-              
-             
-                @if (( ($restant<=$montantligne[$i])&&($montantdmd<=$montantligne[$i]))&&(($e!='non') ))                               
-                <label for='montantdmd'>Montant de la demande</label>
-                <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
-                    id='montantdmd' style='background-color:skyblue' placeholder='Montant de la demande'
-                    class='form-control'readonly>
-
-                @endif
-      
-                @if ( ((($restant>$montantligne[$i])||($montantdmd>$montantligne[$i])||(($e=='non')))&&($montantligne[$i]!=null)) ) 
-                <label for='montantdmd'>Montant de la demande</label>
-                        <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
-                            id='montantdmd' style='background-color: red' placeholder='Montant de la demande'
-                            class='form-control'readonly>
-                            
-                @endif
-       
-            </div>
-        </div>
-        
-             <div class='col'>
-            <div class='form-group'>
-                @if (($e == 'ok')||($e == 'non'))
-                    <label for='montantrestant'>Montant  Restant</label>
-                    <input type='number' value='{{ $restant }}' name='montantrestant[]'
-                        id='montantrestant' style='background-color: skyblue'
-                        placeholder='Montant de la Restant' class='form-control'readonly>
-                @endif
             </div>
         </div>
         @endif

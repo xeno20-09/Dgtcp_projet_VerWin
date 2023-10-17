@@ -17,6 +17,7 @@
 {{ $notfound }}
 @php
     $date=now();
+    $restant=0;
     $e='ok';
 @endphp
 <form action="{{ route('store_form_piece_verificateur', $item_c->id) }}" method="post">
@@ -68,6 +69,28 @@
    
         @if ($montantligne[$i] == null)
     
+        <div class="col">
+            <div class="form-group">
+                {{ $montantdmd }}
+             
+                @if (( ($restant<=$montantligne[$i])&&($montantdmd<=$montantligne[$i]))&&(($e!='non') ))                               
+                <label for='montantdmd'>Montant de la demande</label>
+                <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
+                    id='montantdmd' style='background-color:skyblue' placeholder='Montant de la demande'
+                    class='form-control'readonly>
+
+                @endif
+      
+                @if ( ((($restant>$montantligne[$i])||($montantdmd>$montantligne[$i])||(($e=='non')))&&($montantligne[$i]!=null)) ) 
+                <label for='montantdmd'>Montant de la demande</label>
+                        <input type='number' value='{{ $montantdmd }}' name='montantdmd[]'
+                            id='montantdmd' style='background-color: red' placeholder='Montant de la demande'
+                            class='form-control'readonly>
+                            
+                @endif
+       
+            </div>
+        </div>
         
         @elseif ($montantligne[$i] != null)
         <div class="col">

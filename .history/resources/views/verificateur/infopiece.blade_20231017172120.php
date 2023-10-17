@@ -17,6 +17,7 @@
 {{ $notfound }}
 @php
     $date=now();
+    $restant=0;
     $e='ok';
 @endphp
 <form action="{{ route('store_form_piece_verificateur', $item_c->id) }}" method="post">
