@@ -159,7 +159,7 @@ class ControllerVerificateur extends Controller
             if (isset($data['montantligne'][$key])) {
                 $dmd_pieces->montantligne = $data['montantligne'][$key];
             } else {
-                $dmd_pieces->montantligne =null;
+                $dmd_pieces->montantligne ='NEANT';
             }
         
             $dmd_pieces->date = $data['date_piece'][$key];
@@ -184,7 +184,6 @@ class ControllerVerificateur extends Controller
                 $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
             }
-            $dmd_pieces->numero_doss=$dmd_verificateur->numero_doss;
         
             $dmd_pieces->save();
         }
@@ -194,7 +193,11 @@ class ControllerVerificateur extends Controller
         $user = User::where('id', '=', $id)->get();
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
-        return redirect('Listepiece')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
+        $rejt = demande::all();
+$id=$re
+ 
+        $num = $rejt->numero_doss;
+        return redirect('Listepiece')->with('demande', 'dmd_back', 'dmd_n_lu', 'user','num');
     }
 
     public function store(Request $request, $idc)
@@ -363,8 +366,12 @@ class ControllerVerificateur extends Controller
         $dmd_n_lu = count(demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)->where('vu_secret', '=', 1)->get());
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
         $name_v = $n_verificateur;
+        $rejt = demande::where('id', '=', $id_d)->first();
 
-        return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));
+ 
+        $num = $rejt->numero_doss;
+
+        return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user','num'));
     }
     public function liste(Request $request)
     {
@@ -520,20 +527,6 @@ class ControllerVerificateur extends Controller
     
         $n_verificateur = $l_verificateur . " " . $f_verificateur;
         $dmd_pieces->nom_v = $l_verificateur . " " . $f_verificateur;
-    
-        $lastPiece = Piece::where('referencespiece', $data['referencespiece'][$key])->first();
-    
-        if ($lastPiece != null) {
-            if ($lastPiece->montantrestant == 0) {
-                $dmd_pieces->montantrestant = 0;
-            } else {
-                $dmd_pieces->montantinitial = $lastPiece->montantrestant;
-                $dmd_pieces->montantrestant = $dmd_verificateur->montant - $lastPiece->montantrestant;
-            }
-        } else {
-            $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
-            $dmd_pieces->montantinitial = $dmd_verificateur->montant;
-        }
 
    
     
@@ -548,6 +541,6 @@ class ControllerVerificateur extends Controller
 
 
         //return view('verificateur.listepiece', compact('pieces', 'dmd_back', 'dmd_n_lu', 'name_v', 'user'));
-        return redirect('Listepiece')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
+        return redirect('Listepiece')->with('demande', 'dmd_back', 'dmd_n_lu', 'user','num');
     }
 }

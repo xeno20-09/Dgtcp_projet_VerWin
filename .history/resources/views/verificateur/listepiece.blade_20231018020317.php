@@ -29,16 +29,16 @@
         </thead>
         <tbody>
             @foreach ($pieces as $item)
-       {{--      @if ($currentDmdId !== $item['id_dmd'])
+            @if ($currentDmdId !== $item['referencespiece'])
                 @php
-                    $currentDmdId = $item['id_dmd'];
+                    $currentDmdId = $item['referencespiece'];
                 @endphp
                 <tr class="table-info">
                     <td colspan="10" style="text-align: center;">
                         Demande N° {{ $item['numero_doss'] }}
                     </td>
-                </tr> 
-            @endif--}}
+                </tr>
+            @endif
             @if ($item['montantrestant'] < 0)
             <tr class="table-danger">
                 <td>{{ $item['numero_doss'] }}</td>

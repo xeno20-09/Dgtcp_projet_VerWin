@@ -467,6 +467,7 @@
                     <option value="Dollar des États-Unis">Dollar us</option>
                     <option value="Yen japonais">Yen japonais</option>
                     <option value="Livre sterling">Livre sterling</option>
+                    <option value="Franc suisse">Franc suisse</option>
                     <option value="Dollar canadien">Dollar canadien</option>
                     <option value="Yuan chinois">Yuan chinois</option>
                     <option value="Dirham des Émirats arabes unis">Dirham Emirats Arabes Unis</option>  

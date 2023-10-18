@@ -159,7 +159,7 @@ class ControllerVerificateur extends Controller
             if (isset($data['montantligne'][$key])) {
                 $dmd_pieces->montantligne = $data['montantligne'][$key];
             } else {
-                $dmd_pieces->montantligne =null;
+                $dmd_pieces->montantligne ='NEANT';
             }
         
             $dmd_pieces->date = $data['date_piece'][$key];
@@ -184,7 +184,7 @@ class ControllerVerificateur extends Controller
                 $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
             }
-            $dmd_pieces->numero_doss=$dmd_verificateur->numero_doss;
+            $dmd_pieces->
         
             $dmd_pieces->save();
         }

@@ -26,8 +26,8 @@ class pieces extends Model
         'referencespiece',
         'date',
         'dateexpi',
-        'numero_doss',
-
+        /*         'numero_doss',
+ 
     ];
     public function piece()
     {

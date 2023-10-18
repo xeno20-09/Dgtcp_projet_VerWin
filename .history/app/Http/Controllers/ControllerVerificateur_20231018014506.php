@@ -159,7 +159,7 @@ class ControllerVerificateur extends Controller
             if (isset($data['montantligne'][$key])) {
                 $dmd_pieces->montantligne = $data['montantligne'][$key];
             } else {
-                $dmd_pieces->montantligne =null;
+                $dmd_pieces->montantligne ='NEANT';
             }
         
             $dmd_pieces->date = $data['date_piece'][$key];

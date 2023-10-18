@@ -240,8 +240,7 @@ Il restait <span style="background-color: slategray">{{ $restant }}</span> pour 
 </div>
 </div>
 @endif
-@endfor
-@for ($i = 0; $i < $item_c->nombre_doc; $i++)
+@endfor@for ($i = 0; $i < $item_c->nombre_doc; $i++)
 <br>
 
 @if ( ((($restant>$montantligne[$i])||($montantdmd>$montantligne[$i])||(($e=='non')))&&($montantligne[$i]!=null)) ) 

@@ -10,9 +10,6 @@
         @endforeach
     </h1>
     <h1>Liste des pièces</h1>
-    @php
-    $currentDmdId = null;
-@endphp
     <table class="table">
         <thead>
             <tr>
@@ -29,16 +26,17 @@
         </thead>
         <tbody>
             @foreach ($pieces as $item)
-       {{--      @if ($currentDmdId !== $item['id_dmd'])
+            @if ($currentDmdId !== $item['id_dmd'])
                 @php
                     $currentDmdId = $item['id_dmd'];
                 @endphp
                 <tr class="table-info">
-                    <td colspan="10" style="text-align: center;">
+                    <td colspan="10">
                         Demande N° {{ $item['numero_doss'] }}
                     </td>
-                </tr> 
-            @endif--}}
+                </tr>
+            @endif
+            @foreach ($pieces as $item)
             @if ($item['montantrestant'] < 0)
             <tr class="table-danger">
                 <td>{{ $item['numero_doss'] }}</td>

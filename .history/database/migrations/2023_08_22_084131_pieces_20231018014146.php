@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('dateexpi')->nullable();
 
-            $table->string('numero_doss')->nullable();
-
+            /            $table->string('numero_doss')->nullable();
+ 
             $table->bigInteger('montantligne')->nullable();
             $table->bigInteger('montantinitial')->nullable();
             $table->bigInteger('montantrestant')->nullable();

@@ -37,8 +37,8 @@
                     <td colspan="10" style="text-align: center;">
                         Demande N° {{ $item['numero_doss'] }}
                     </td>
-                </tr> 
-            @endif--}}
+                </tr> --}}
+            @endif
             @if ($item['montantrestant'] < 0)
             <tr class="table-danger">
                 <td>{{ $item['numero_doss'] }}</td>

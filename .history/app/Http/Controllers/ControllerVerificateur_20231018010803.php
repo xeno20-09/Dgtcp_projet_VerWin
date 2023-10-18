@@ -159,7 +159,7 @@ class ControllerVerificateur extends Controller
             if (isset($data['montantligne'][$key])) {
                 $dmd_pieces->montantligne = $data['montantligne'][$key];
             } else {
-                $dmd_pieces->montantligne =null;
+                $dmd_pieces->montantligne ='NEANT';
             }
         
             $dmd_pieces->date = $data['date_piece'][$key];
@@ -184,7 +184,6 @@ class ControllerVerificateur extends Controller
                 $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
                 $dmd_pieces->montantinitial = $dmd_verificateur->montant;
             }
-            $dmd_pieces->numero_doss=$dmd_verificateur->numero_doss;
         
             $dmd_pieces->save();
         }
@@ -483,7 +482,7 @@ class ControllerVerificateur extends Controller
     // Supposons que les données du formulaire sont correctement structurées
 
     // Récupération des données de la demande parente
-    $dmd_verificateur = Demande::find($idm);
+    $dmd_verificateur = Demande::find($id_d);
     $data = $request->all();
     //dd($data);
     // Supposons que vous avez déjà effectué des vérifications sur l'existence des pièces avec les références fournies
@@ -500,14 +499,12 @@ class ControllerVerificateur extends Controller
     // Parcourez toutes les pièces soumises
     for ($key = 0; $key <= count($data['libellepiece']) - 1; $key++) {
         $dmd_pieces = new Piece();
-        $dmd_pieces->id_dmd = $idm;
+        $dmd_pieces->id_dmd = $id_d;
         $dmd_pieces->libellepiece = $data['libellepiece'][$key];
         $dmd_pieces->referencespiece = $data['referencespiece'][$key];
     
         if (isset($data['montantligne'][$key])) {
             $dmd_pieces->montantligne = $data['montantligne'][$key];
-            $dmd_pieces->montantrestant = $data['montantrestant'][$key];
-            $dmd_pieces->montantinitial = $data['montantintial'][$key];
         } else {
             $dmd_pieces->montantligne ='NEANT';
         }
@@ -534,8 +531,6 @@ class ControllerVerificateur extends Controller
             $dmd_pieces->montantrestant = $themontant - $dmd_verificateur->montant;
             $dmd_pieces->montantinitial = $dmd_verificateur->montant;
         }
-
-   
     
         $dmd_pieces->save();
     }

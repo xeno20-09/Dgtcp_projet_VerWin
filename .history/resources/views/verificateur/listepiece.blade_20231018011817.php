@@ -10,16 +10,14 @@
         @endforeach
     </h1>
     <h1>Liste des pièces</h1>
-    @php
-    $currentDmdId = null;
-@endphp
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">N°Dossier:</th>
                 <th scope="col">Date de dépôt:</th>
                 <th scope="col">Nom demandeur:</th>
-              
+                <th scope="col">Nom bénéficiaire:</th>
+                <th scope="col">Nom vérificateur:</th>
                 <th scope="col">Libellé pièces:</th>
                 <th scope="col">Références pièces:</th>
                 <th scope="col">Montant initial:</th>
@@ -29,21 +27,12 @@
         </thead>
         <tbody>
             @foreach ($pieces as $item)
-       {{--      @if ($currentDmdId !== $item['id_dmd'])
-                @php
-                    $currentDmdId = $item['id_dmd'];
-                @endphp
-                <tr class="table-info">
-                    <td colspan="10" style="text-align: center;">
-                        Demande N° {{ $item['numero_doss'] }}
-                    </td>
-                </tr> 
-            @endif--}}
             @if ($item['montantrestant'] < 0)
             <tr class="table-danger">
                 <td>{{ $item['numero_doss'] }}</td>
                 <td>{{ $item['date'] }}</td>
-                
+                <td>{{ $item['nom_d'] }}</td>
+                <td>{{ $item['nom_b'] }}</td>
                 <td>{{ $item['nom_v'] }}</td>
                 <td>{{ $item['libellepiece'] }}</td>
                 <td>{{ $item['referencespiece'] }}</td>
@@ -55,7 +44,8 @@
             <tr class="table-warning">
                 <td>{{ $item['numero_doss'] }}</td>
                 <td>{{ $item['date'] }}</td>
-               
+                <td>{{ $item['nom_d'] }}</td>
+                <td>{{ $item['nom_b'] }}</td>
                 <td>{{ $item['nom_v'] }}</td>
                 <td>{{ $item['libellepiece'] }}</td>
                 <td>{{ $item['referencespiece'] }}</td>
