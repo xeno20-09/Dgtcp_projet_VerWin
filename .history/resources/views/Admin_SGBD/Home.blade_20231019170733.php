@@ -119,7 +119,7 @@
                     @if ($user->hasMorePages())
                         <li class="page-item">
 
-                            <a class="page-link" href="{{ $user->nextPageUrl() }}" rel="next">Suivant</a>
+                            <a class="page-link" href="{{ $user->nextPageUrl() }}" rel="next">Next</a>
 
                         </li>
                     @else

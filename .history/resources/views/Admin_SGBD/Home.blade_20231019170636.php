@@ -11,7 +11,7 @@
                             <thead>
                                 <tr>
                                     <th><span>Utilisateur</span></th>
-                                    <th><span>Crée le </span></th>
+                                    <th><span></span></th>
                                     <th><span>Poste</span></th>
                                     <th class="text-center"><span>Status</span></th>
                                     <th><span>Email</span></th>
@@ -81,7 +81,7 @@
                     @if ($user->onFirstPage())
                         <li class="page-item disabled">
 
-                            <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
 
                         </li>
                     @else
@@ -119,7 +119,7 @@
                     @if ($user->hasMorePages())
                         <li class="page-item">
 
-                            <a class="page-link" href="{{ $user->nextPageUrl() }}" rel="next">Suivant</a>
+                            <a class="page-link" href="{{ $user->nextPageUrl() }}" rel="next">Next</a>
 
                         </li>
                     @else
