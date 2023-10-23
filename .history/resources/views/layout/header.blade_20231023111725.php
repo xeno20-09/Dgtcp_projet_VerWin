@@ -91,7 +91,7 @@
     <main class="py-4">
         @yield('content')
     </main>
-<div style="  height: 125px;"><h2 style="display: none;">ez,kljr</h2></div>
+<div style="display: "></div>
     @extends('layout.footer')
 </body>
 

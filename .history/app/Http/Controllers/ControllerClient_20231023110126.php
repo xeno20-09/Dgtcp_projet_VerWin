@@ -44,6 +44,7 @@ class ControllerClient extends Controller
             ->where('prenom_client', '=', $prenom)
             ->orwhere('nomsociete', '=', $nom)
             ->orwhere('nomsociete', '=', $prenom)
+
             ->first();
         $pic = 0;
         if ($demandes == null) {

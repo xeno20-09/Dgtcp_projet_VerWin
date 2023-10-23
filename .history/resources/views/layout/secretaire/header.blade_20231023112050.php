@@ -25,7 +25,7 @@
 
 </head>
 
-<body >
+<body style="">
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">

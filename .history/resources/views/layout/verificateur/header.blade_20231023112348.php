@@ -18,9 +18,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <title>SAC</title>
-    <link rel="icon" href="https://i.ibb.co/ZV8gVN8/pieces-de-monnaie.png" type="image/x-icon">
 
+
+    <title></title>
 </head>
 
 <body>
@@ -34,17 +34,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
-                    </ul>
-                    <form class="d-flex flex-row gap-3" style="width: 32%;position: relative;left: 120px;top: 72px;"
-                        action="{{ route('info.search.cd', $item->id) }}" method="GET">
-                        <input class="form-control" type="search" name="query"
-                            value="{{ request()->input('query') }}" placeholder="Recherche" aria-label="Recherche">
-                        <button class="btn btn-outline" type="submit"><i class="fas fa-search"
-                                style="font-size:10px;"></i></button>
-                    </form>
+                                 </ul>
+                    @foreach ($user as $item)
+                        <form class="d-flex flex-row gap-3" style="width: 32%;position: relative;left: 120px;top: 72px;"
+                            action="{{ url('RechecherDemande_verificateur', $item->id) }}" method="GET">
+                            <input class="form-control" type="search" name="query"
+                                value="{{ request()->input('query') }}" placeholder="Recherche" aria-label="Recherche">
+                            <button class="btn btn-outline" type="submit"><i class="fas fa-search"
+                                    style="font-size:10px;"></i></button>
+                        </form>
+                    @endforeach
                 </div>
                 <li style="list-style-type: none;" class="nav-item">
-                    <a href="{{ route('get_list_back_d') }}"><i class="fas fa-bell" style="font-size:48px;"></i></a>
+                    <a href="{{ route('get_list_back_v') }}"><i class="fas fa-bell" style="font-size:48px;"></i></a>
                     <style>
                         @keyframes blink {
                             0% {
@@ -65,12 +67,12 @@
                         }
                     </style>
 
-                    <a href="{{ route('get_list_back_d') }}"><span
+                    <a href="{{ route('get_list_back_v') }}"><span
                             class="badge rounded-pill badge-notification bg-danger blink-animation"
                             style="position: relative;bottom: 24px;right: 24px;">
                             {{ $dmd_back }}
-                        </span></a>
-
+                        </span>
+                    </a>
                 </li>
 
                 <img src="{{ asset('images/logo_DGTCP_2_blanc.png') }}" alt="Mon Image">
@@ -81,14 +83,28 @@
     <div class="container">
         <ul class="nav nav-pills mt-3">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('HChef_division') }}">Home</a>
+                <a class="nav-link" href="{{ url('HVerificateur') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('liste_demandes_n') }}">Saisir une demande</a>
+                <a class="nav-link" href="{{ url('ListeDemandesN_verificateur') }}">Saisir une demande</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('liste_demandes') }}">Liste des demandes</a>
+
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    Liste
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('get_list_piece_verificateur') }}">
+                        {{ __('Liste des pieces') }}
+                    </a>
+                    <a class="dropdown-item" href="{{ url('ListeDemandes_verificateur') }}">
+                        {{ __('Liste des demandes') }}
+                    </a>
+                </div>
             </li>
+           
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -102,11 +118,13 @@
         </ul>
     </div>
     <main class="py-4">
+
+
         @yield('content')
     </main>
-    <div style="  height: 155px;"><h2 style="display: none;">ez,kljr</h2></div>
+    <div style="  height: 140px;"><h2 style="display: none;">ez,kljr</h2></div>
 
-    @extends('layout.chef_division.footer')
+    @extends('layout.verificateur.footer')
 </body>
 
 </html>

@@ -25,7 +25,7 @@
 
 </head>
 
-<body >
+<body style="height: max-content">
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
@@ -173,7 +173,6 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script src="{{ asset('js/international-telephone-input.js') }}"></script>
  --}}
- <div style="  height: 125px;"><h2 style="display: none;">ez,kljr</h2></div>
 
 @extends('layout.secretaire.footer')    
 

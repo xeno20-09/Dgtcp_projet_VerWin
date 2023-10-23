@@ -42,8 +42,9 @@ class ControllerClient extends Controller
             ->where('date', '=', $date_depot)
             ->where('nom_client', '=', $nom)
             ->where('prenom_client', '=', $prenom)
-            ->orwhere('nomsociete', '=', $nom)
-            ->orwhere('nomsociete', '=', $prenom)
+            ->orwhere('nom_client', '=', $no)
+            ->orwhere('prenom_client', '=', $prenom)
+
             ->first();
         $pic = 0;
         if ($demandes == null) {
