@@ -50,7 +50,7 @@
                       <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
 
-                    @if ( $item['vu_chef_division']==null)
+                    @if ( $item['vu_verifi']==null)
                     <td>
 
                         <a href="{{ route('get_update_form_ask_verificateur', ['id' => $item['id']]) }} "

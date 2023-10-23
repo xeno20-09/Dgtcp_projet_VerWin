@@ -92,20 +92,30 @@
                           
                         <td>{{ $item->status_dmd }}</td>
 
-                        @if ( $item['vu_chef_bureau']==null)
+                        @if ( $item['vu_chef_division']==null)
                         <td>
-
-                            <a href="{{ route('formulairecd_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+    
+                            <a href="{{ route('get_update_form_ask_verificateur', ['id' => $item['id']]) }} "
+                                class="table-link">
                                 <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
-                        
-                        </td>
+    
+                        </td> 
                    @endif
                         
+<td>
 
+    <a href="{{ route('formulairecd_demande_mj', ['id' => $item['id']]) }} " class="table-link">
+        <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+
+</td>
 <td>
     <a style="width: auto; height:fit-content;"
         href="{{ url('detailles_demandes', ['id' => $item->id]) }}"

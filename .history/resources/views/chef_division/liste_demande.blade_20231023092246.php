@@ -92,7 +92,7 @@
                           
                         <td>{{ $item->status_dmd }}</td>
 
-                        @if ( $item['vu_chef_bureau']==null)
+                        @if ( $item['vu_chef_']==null)
                         <td>
 
                             <a href="{{ route('formulairecd_demande_mj', ['id' => $item['id']]) }} " class="table-link">

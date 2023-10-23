@@ -45,8 +45,10 @@
                         <td>{{ $item['devise'] }}</td>
                         <td>{{ $item['montant_con'] }}</td>
                         <td>{{ $item['status_dmd'] }}</td>
-                        @if ( $item['vu_verifi']==null)
-                             <td>
+                        @if ( $item['numero_doss'])
+                            
+                        @endif
+                        <td>
 
                             <a href="{{ route('get_update_form_ask', ['id_user' => $item['id']]) }} "
                                 class="table-link">
@@ -56,9 +58,7 @@
                                 </span>
                             </a>
 
-                        </td>    
-                        @endif
-                   
+                        </td>
 
                         <td>
                             <a style="width: auto; height:fit-content;"

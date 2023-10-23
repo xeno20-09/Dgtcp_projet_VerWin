@@ -45,7 +45,7 @@
                         <td>{{ $item['devise'] }}</td>
                         <td>{{ $item['montant_con'] }}</td>
                         <td>{{ $item['status_dmd'] }}</td>
-                        @if ( $item['vu_verifi']==null)
+                        @if ( $item['vu_verif']==null)
                              <td>
 
                             <a href="{{ route('get_update_form_ask', ['id_user' => $item['id']]) }} "

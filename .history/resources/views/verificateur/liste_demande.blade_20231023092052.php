@@ -50,18 +50,18 @@
                       <td>{{ $item->nom_benefi }}</td>
                     <td>{{ $item->status_dmd }}</td>
 
-                    @if ( $item['vu_chef_division']==null)
+                    @if ( $item['vu_verifi']==null)
                     <td>
 
-                        <a href="{{ route('get_update_form_ask_verificateur', ['id' => $item['id']]) }} "
-                            class="table-link">
-                            <span class="fa-stack">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                   <a href="{{ route('get_update_form_ask', ['id_user' => $item['id']]) }} "
+                       class="table-link">
+                       <span class="fa-stack">
+                           <i class="fa fa-square fa-stack-2x"></i>
+                           <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
 
-                    </td> 
+               </td>    
                @endif
               
                     <td>
