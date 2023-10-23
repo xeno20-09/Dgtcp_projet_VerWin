@@ -48,6 +48,7 @@ class ControllerSecretaire extends Controller
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
         $date = now();
+        alert($date);
         $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
         $dmd_back = count(demande::where('back_secret', '=', 1)->where('vu_secret', '=', 0)->get());
         $dev = devises::all();

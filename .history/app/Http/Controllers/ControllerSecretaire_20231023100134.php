@@ -58,6 +58,7 @@ class ControllerSecretaire extends Controller
 
     public function getD(Request $request)
     {
+alert()
         $monnaie = $request->input('monnaie');
         $devise = Devises::where('devise', $monnaie)
             ->orderBy('date', 'asc')

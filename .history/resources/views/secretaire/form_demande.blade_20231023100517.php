@@ -16,7 +16,9 @@
             <legend>Bureau du {{ $item->poste }} </legend>
         @endforeach --}}
         <legend>Enregistrement d'une demande</legend>
-
+     @php
+                 alert $date;
+     @endphp
 
         <div class="col">
             <div class="form-group">
