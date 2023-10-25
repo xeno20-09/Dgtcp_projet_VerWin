@@ -158,110 +158,108 @@ class ControllerDivision extends Controller
         $ladev = devises::first();
         if($ladev){
             $day = $ladev->date;
+            $ladate = now()->format('Y-m-d');
 
-        }
-        else{
-            $day=0;
-        }
-        
-        $ladate = now()->format('Y-m-d');
-        /*         $ladate = '26-10-2023';
- */
-        if ($day == $ladate) {
-            $today = 1;
-        } else {
-            $today = 0;
-        }
-        // dd($day);
-
-
-        if ($r['success'] == true) {
-            if ($today == 0) {
-                //dd($r);
-                $q = $r['quotes'];
-                $val = [];
-                $dev = [];
-
-                foreach ($q as $devise => $valeur) {
-                    $val[] = 1 / $valeur;
-                    $dev[] = substr($devise, 3, 6);
-                }
-                // dd($r['success']);
-                $u = array_keys($q);
-
-                $n = count($u);
-
-                $new = [];
-                $valeur = [];
-
-                $codeToDevise = [
-                    "AED" => "Dirham des Émirats arabes unis",
-                    "CAD" => "Dollar canadien",
-
-                    "CNY" => "Yuan chinois",
-                    "DZD" => "Dinar algérien",
-                    "EGP" => "Livre égyptienne",
-
-                    "EUR" => "Euro",
-                    "GBP" => "Livre sterling",
-                    "GHS" => "Cedi ghanéen",
-                    "GNF" => "Franc guinéen",
-                    "GTQ" => "Quetzal guatémaltèque",
-                    "JPY" => "Yen japonais",
-                    "NGN" => "Naira nigérian",
-                    "NZD" => "Dollar néo-zélandais",
-
-                    "RWF" => "Franc rwandais",
-                    "SAR" => "Riyal saoudien",
-
-
-                    "XAF" => "Franc CFA d'Afrique centrale",
-                    "USD" => "Dollar des États-Unis",
-
-
-                ];
-
-                $pays = []; // Créez un tableau pour stocker les noms de devises
-
-                foreach ($u as $key => $value) {
-                    $casse = substr($value, 3, 6);
-                    $new[] = $casse;
-                }
-
-                foreach ($new as $key => $value) {
-                    foreach ($codeToDevise as $key1 => $value1) {
-                        if ($value == $key1) {
-                            $pays[] = $value1;
+            /*         $ladate = '26-10-2023';
+     */
+            if ($day == $ladate) {
+                $today = 1;
+            } else {
+                $today = 0;
+            }
+            // dd($day);
+            if ($r['success'] == true) {
+                if ($today == 0) {
+                    //dd($r);
+                    $q = $r['quotes'];
+                    $val = [];
+                    $dev = [];
+    
+                    foreach ($q as $devise => $valeur) {
+                        $val[] = 1 / $valeur;
+                        $dev[] = substr($devise, 3, 6);
+                    }
+                    // dd($r['success']);
+                    $u = array_keys($q);
+    
+                    $n = count($u);
+    
+                    $new = [];
+                    $valeur = [];
+    
+                    $codeToDevise = [
+                        "AED" => "Dirham des Émirats arabes unis",
+                        "CAD" => "Dollar canadien",
+    
+                        "CNY" => "Yuan chinois",
+                        "DZD" => "Dinar algérien",
+                        "EGP" => "Livre égyptienne",
+    
+                        "EUR" => "Euro",
+                        "GBP" => "Livre sterling",
+                        "GHS" => "Cedi ghanéen",
+                        "GNF" => "Franc guinéen",
+                        "GTQ" => "Quetzal guatémaltèque",
+                        "JPY" => "Yen japonais",
+                        "NGN" => "Naira nigérian",
+                        "NZD" => "Dollar néo-zélandais",
+    
+                        "RWF" => "Franc rwandais",
+                        "SAR" => "Riyal saoudien",
+    
+    
+                        "XAF" => "Franc CFA d'Afrique centrale",
+                        "USD" => "Dollar des États-Unis",
+    
+    
+                    ];
+    
+                    $pays = []; // Créez un tableau pour stocker les noms de devises
+    
+                    foreach ($u as $key => $value) {
+                        $casse = substr($value, 3, 6);
+                        $new[] = $casse;
+                    }
+    
+                    foreach ($new as $key => $value) {
+                        foreach ($codeToDevise as $key1 => $value1) {
+                            if ($value == $key1) {
+                                $pays[] = $value1;
+                            }
                         }
                     }
+    
+                    foreach ($val as $key => $value) {
+                        $valeur[] = $value;
+                    }
+                    //$cmp = array_diff($dev, $pays);
+    
+                    //  dd($cmp, $dev, $pays, $val, $valeur);
+    
+                    foreach ($valeur as $index => $valeur) {
+                        $devise = $pays[$index];
+    
+                        // Créez une nouvelle instance du modèle Devise
+                        $nouvelleDevise = new devises();
+                        $nouvelleDevise->id_user = Auth::user()->id;
+                        $nouvelleDevise->date = $date;
+                        $nouvelleDevise->devise = $devise;
+                        $nouvelleDevise->valeur = $valeur;
+    
+                        // Enregistrez la nouvelle instance dans la base de données
+                        $nouvelleDevise->save();
+                    }
+                    return $this->get_devis_mj();
                 }
-
-                foreach ($val as $key => $value) {
-                    $valeur[] = $value;
-                }
-                //$cmp = array_diff($dev, $pays);
-
-                //  dd($cmp, $dev, $pays, $val, $valeur);
-
-                foreach ($valeur as $index => $valeur) {
-                    $devise = $pays[$index];
-
-                    // Créez une nouvelle instance du modèle Devise
-                    $nouvelleDevise = new devises();
-                    $nouvelleDevise->id_user = Auth::user()->id;
-                    $nouvelleDevise->date = $date;
-                    $nouvelleDevise->devise = $devise;
-                    $nouvelleDevise->valeur = $valeur;
-
-                    // Enregistrez la nouvelle instance dans la base de données
-                    $nouvelleDevise->save();
-                }
+            }
+            if ($today == 1) {
                 return $this->get_devis_mj();
             }
         }
-        if ($today == 1) {
-            return $this->get_devis_mj();
-        }
+      
+
+
+ 
 
         if ($r['success'] != true) {
             $user = User::where('id', '=', $id)->get();

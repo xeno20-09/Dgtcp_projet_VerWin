@@ -158,21 +158,19 @@ class ControllerDivision extends Controller
         $ladev = devises::first();
         if($ladev){
             $day = $ladev->date;
+            $ladate = now()->format('Y-m-d');
+
+            /*         $ladate = '26-10-2023';
+     */
+            if ($day == $ladate) {
+                $today = 1;
+            } else {
+                $today = 0;
+            }
+            // dd($day);
 
         }
-        else{
-            $day=0;
-        }
-        
-        $ladate = now()->format('Y-m-d');
-        /*         $ladate = '26-10-2023';
- */
-        if ($day == $ladate) {
-            $today = 1;
-        } else {
-            $today = 0;
-        }
-        // dd($day);
+      
 
 
         if ($r['success'] == true) {

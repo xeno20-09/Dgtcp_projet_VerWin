@@ -502,10 +502,10 @@ class ControllerAdminSGBD extends Controller
             $liste = listedevise::all();
             $devis = demande::all();
             $x=$devis->nationalite;
+            if($x!=null){
+
+            }
        
-            $grouped = demandes::select('nationalite', 'montant', 'devise')
-                ->groupBy('nationalite', 'montant', 'devise')
-                ->get();
             view()->share([
                 'grouped' => $grouped,
                 'test' => $test,

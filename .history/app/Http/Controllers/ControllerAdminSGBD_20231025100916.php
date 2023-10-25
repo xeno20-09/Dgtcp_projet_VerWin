@@ -502,7 +502,7 @@ class ControllerAdminSGBD extends Controller
             $liste = listedevise::all();
             $devis = demande::all();
             $x=$devis->nationalite;
-       
+            
             $grouped = demandes::select('nationalite', 'montant', 'devise')
                 ->groupBy('nationalite', 'montant', 'devise')
                 ->get();

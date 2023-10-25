@@ -20,7 +20,13 @@
             <tbody>
                 @foreach ($grouped as $dataa)
                     <tr>
-                        
+                        @php
+                            if  ($dataa->nationalite==null){
+                                # code...
+                            }
+                        @endphp
+                        @if ($dataa->nationalite==null)
+                        @endif
                         <td>{{ $dataa->nationalite }}</td>
                         <td>
                             <table class="table table-bordered">

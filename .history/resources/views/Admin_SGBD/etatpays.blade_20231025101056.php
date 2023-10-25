@@ -20,7 +20,9 @@
             <tbody>
                 @foreach ($grouped as $dataa)
                     <tr>
-                        
+                        @if ($dataa->nationalite==null)
+                        $dataa->nationalite='Benin';
+                        @endif
                         <td>{{ $dataa->nationalite }}</td>
                         <td>
                             <table class="table table-bordered">

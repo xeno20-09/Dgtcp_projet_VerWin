@@ -160,11 +160,8 @@ class ControllerDivision extends Controller
             $day = $ladev->date;
 
         }
-        else{
-            $day=0;
-        }
-        
         $ladate = now()->format('Y-m-d');
+
         /*         $ladate = '26-10-2023';
  */
         if ($day == $ladate) {

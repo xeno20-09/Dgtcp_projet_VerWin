@@ -55,8 +55,8 @@
         subtitle: 'Montant Total par Devise',
       },
       bars: 'vertical', // Direction des barres
-      width: 1000, // Largeur du graphique en pixels
-      height: 1000, // Hauteur du graphique en pixels
+      width: 700, // Largeur du graphique en pixels
+      height: 400, // Hauteur du graphique en pixels
       colors: ['#FF5733', '#33FF57', '#3377FF', '#FF33FF'], // Couleurs des barres (vous pouvez ajouter ou supprimer des couleurs)
       hAxis: {
         title: 'Devise', // Titre de l'axe horizontal

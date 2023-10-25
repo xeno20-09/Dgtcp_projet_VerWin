@@ -157,14 +157,12 @@ class ControllerDivision extends Controller
         $r = json_decode($aa, true);
         $ladev = devises::first();
         if($ladev){
-            $day = $ladev->date;
-
+            
         }
-        else{
-            $day=0;
-        }
-        
+        dd($ladev);
+        $day = $ladev->date;
         $ladate = now()->format('Y-m-d');
+
         /*         $ladate = '26-10-2023';
  */
         if ($day == $ladate) {

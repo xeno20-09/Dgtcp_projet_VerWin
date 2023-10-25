@@ -165,6 +165,7 @@ class ControllerDivision extends Controller
         }
         
         $ladate = now()->format('Y-m-d');
+dd($ladate);
         /*         $ladate = '26-10-2023';
  */
         if ($day == $ladate) {
