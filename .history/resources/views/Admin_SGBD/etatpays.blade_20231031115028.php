@@ -70,3 +70,89 @@
 
 
 
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController _hourController = TextEditingController();
+  TextEditingController _minuteController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Enregistrement de l\'heure'),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('Lumina.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Champ de texte pour l'heure
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextField(
+                  controller: _hourController,
+                  decoration: InputDecoration(
+                    labelText: 'Heure',
+                    hintText: 'HH:MM',
+                  ),
+                ),
+              ),
+              // Champ de texte pour les minutes
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextField(
+                  controller: _minuteController,
+                  decoration: InputDecoration(
+                    labelText: 'Minutes',
+                    hintText: '00',
+                  ),
+                ),
+              ),
+              // Bouton pour enregistrer
+              ElevatedButton(
+                onPressed: () {
+                  // Récupérer l'heure et les minutes saisies
+                  String hour = _hourController.text;
+                  String minute = _minuteController.text;
+
+                  // Faites quelque chose avec l'heure et les minutes, par exemple, les imprimer
+                  print('Heure : $hour:$minute');
+                },
+                child: Text('Enregistrer'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
