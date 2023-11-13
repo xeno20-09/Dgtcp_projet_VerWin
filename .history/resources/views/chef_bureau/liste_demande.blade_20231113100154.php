@@ -45,7 +45,6 @@
                         <td> {{ $item['montant'] }}</td>
                         <td>{{ $item['devise'] }}</td>
                         <td>{{ $item['montant_con'] }}</td>
-                        <td> {{ $item->date }}</td>
                         @foreach ($jointure as $itemc)
                         <td> {{ $itemc->firstname }} {{ $itemc->lastname}} </td>                       
                             @break

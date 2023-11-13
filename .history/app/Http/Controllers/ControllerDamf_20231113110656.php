@@ -183,7 +183,7 @@ class ControllerDamf extends Controller
 
         $dmd_damf = demande::find($id);
         $dmd_damf->vu_damf =  1;
-        $dmd_damf->status_dmd = $dmd_damf->status_dmd_cb;
+        $dmd_damf->status_dmd =          $dmd_damf->status_dmd_cb;        ;
 
         $dmd_damf->update();
 

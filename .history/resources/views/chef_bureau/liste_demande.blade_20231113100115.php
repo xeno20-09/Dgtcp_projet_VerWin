@@ -15,16 +15,11 @@
 
                     <th scope="col">N°Dossier:</th>
 
+                    <th scope="col">Date:</th>
 
                     <th scope="col">Montant:</th>
                     <th scope="col">Devise:</th>
                     <th scope="col">Contre Montant en FCFA:</th>
-                    <th scope="col">Date:</th>
-
-                    <th scope="col">Nom Secretaire:</th>
-
-                    <th scope="col">Nom Verificateur:</th>
-                    <th scope="col">Nom Chef Division:</th>
                     <th scope="col">Status:</th>
                     <th scope="col">Actions</span></th>
 

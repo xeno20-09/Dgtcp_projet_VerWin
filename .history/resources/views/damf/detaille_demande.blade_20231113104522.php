@@ -173,7 +173,7 @@
                             ($item['vu_damf'] == 1)
                         ) {
                             echo "<td>{$item['status_dmd_cb']}</td>";
-                        } 
+                        } <td></td>{{ $item['vu_damf'] }}
                         @endphp
                       {{--   <td>{{ $item['status_dmd'] }}</td>
                         <td>

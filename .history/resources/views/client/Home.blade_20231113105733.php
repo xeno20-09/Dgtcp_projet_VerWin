@@ -2,7 +2,7 @@
 @section('content')
     <h1 style="text-align: center;">
         @foreach ($user as $item)
-            <a class="nav-link" href="#"> Mr/Mrs {{ $item->firstname  }} {{ $item->lastname }} </a>
+            <a class="nav-link" href="#"> Mr/Mrs {{ $item->firstname $item->lastname  }} </a>
 
     </h1>
     <div class="container">

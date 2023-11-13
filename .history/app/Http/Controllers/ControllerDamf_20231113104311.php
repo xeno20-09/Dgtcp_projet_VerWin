@@ -34,10 +34,7 @@ class ControllerDamf extends Controller
     {
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
-        /*         $demande = demande::where('vu_chef_bureau', '=', 1)->where('vu_damf', '=', 0)->get();
- */
-        $demande = demande::where('vu_chef_bureau', '=', 1)->get();
-
+        $demande = demande::where('vu_chef_bureau', '=', 1)->where('vu_damf', '=', 0)->get();
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
@@ -65,10 +62,7 @@ class ControllerDamf extends Controller
         $user = User::where('id', '=', $id_c)->get();
         $demande = demande::where('id', '=', $id)->get();
         $le_n_dmd = count($demande);
-        $dmd_n_lu = count(demande::where('vu_damf', '=', 0)->where('vu_chef_bureau', '=', 1)->get());
-        $dmd_damf = demande::find($id);
-        $dmd_damf->vu_damf =  1;
-        $dmd_damf->update();
+c
 
         $piece = piece::where('id_dmd', '=', $id)->get();
 
@@ -181,11 +175,7 @@ class ControllerDamf extends Controller
         $dmd_n_lu = count(demande::where('vu_damf', '=', 0)->where('vu_chef_bureau', '=', 1)->get());
         $piece = piece::where('id_dmd', '=', $id)->first();
 
-        $dmd_damf = demande::find($id);
-        $dmd_damf->vu_damf =  1;
-        $dmd_damf->status_dmd = $dmd_damf->status_dmd_cb;
 
-        $dmd_damf->update();
 
         return view('damf.detaille_demande', compact('demande', 'piece', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
     }

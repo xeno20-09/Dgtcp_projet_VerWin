@@ -33,10 +33,10 @@ max-width: 100%;
             <th>Prénom du bénéficiaire</th>
             <th>Banque du bénéficiaire</th>
             <th>Numéro de compte du bénéficiaire</th>
-            <th>Position de la demande</th>
+            <th>Statut de la demande</th>
             @foreach ($demande as $item)
 
-            @if ($item['status_dmd_cb'] != 'Autorisée')
+            @if ($item['status_dmd'] != 'Autorisée')
 
             <th>Motif de la demande</th>
             @endif
@@ -60,6 +60,7 @@ max-width: 100%;
             <td>{{ $item['prenom_benefi'] }}</td>
             <td>{{ $item['banque_benefi'] }}</td>
             <td>{{ $item['num_compt_benefi'] }}</td>
+            <td>{{ $item['status_dmd_cb'] }}</td>
             @php
                             $status_dmd = " ";
                             if (

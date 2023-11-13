@@ -82,12 +82,11 @@
                 <a class="nav-link" href="{{ url('HDamf') }}">Home</a>
             </li>
             <li class="nav-item">
-{{--                 <a class="nav-link" href="{{ url('liste_dmd_n') }}">Saisir une demande</a>
- --}}                        <a class="nav-link" href="{{ url('liste_dmd_n') }}">Liste des demandes</a>
-    </li>
-  {{--           <li class="nav-item">
+                <a class="nav-link" href="{{ url('liste_dmd_n') }}">Saisir une demande</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('liste_dmd') }}">Liste des demandes</a>
-            </li> --}}
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

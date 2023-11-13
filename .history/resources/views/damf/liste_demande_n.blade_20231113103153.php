@@ -52,16 +52,10 @@
         <td> {{ $item['montant'] }}</td>
         <td>{{ $item['devise'] }}</td>
         <td>{{ $item['montant_con'] }}</td>
-{{--         <td>
+        <td>
             <a style="width: auto; height:fit-content;" href="{{ route('voir_dmd', ['id' => $item->id]) }}"
                 class="btn btn-primary">Voir</a>
-        </td> --}}
-
-        <td>
-            <a style="width: auto; height:fit-content;"
-                href="{{ route('detailles_dmd', ['id' => $item->id]) }}" class="btn btn-primary">Voir</a>
         </td>
-
 @endforeach
 </tr>
 </tbody>

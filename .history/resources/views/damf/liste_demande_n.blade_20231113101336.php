@@ -7,10 +7,8 @@
                     style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
             @endforeach
         </h1>
-{{--         <h1>Liste des demandes non lues </h1>
- --}}     
- <h1>Liste des demandes</h1>
- <table class="table ">
+        <h1>Liste des demandes non lues </h1>
+        <table class="table ">
             <thead>
                 <tr>
                     <th scope="col">N°Dossier:</th>
@@ -52,16 +50,10 @@
         <td> {{ $item['montant'] }}</td>
         <td>{{ $item['devise'] }}</td>
         <td>{{ $item['montant_con'] }}</td>
-{{--         <td>
+        <td>
             <a style="width: auto; height:fit-content;" href="{{ route('voir_dmd', ['id' => $item->id]) }}"
                 class="btn btn-primary">Voir</a>
-        </td> --}}
-
-        <td>
-            <a style="width: auto; height:fit-content;"
-                href="{{ route('detailles_dmd', ['id' => $item->id]) }}" class="btn btn-primary">Voir</a>
         </td>
-
 @endforeach
 </tr>
 </tbody>

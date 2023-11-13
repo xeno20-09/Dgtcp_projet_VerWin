@@ -175,6 +175,7 @@
                             echo "<td>{$item['status_dmd_cb']}</td>";
                         } 
                         @endphp
+                        
                       {{--   <td>{{ $item['status_dmd'] }}</td>
                         <td>
                             @if ($item['vu_damf'] != 0)

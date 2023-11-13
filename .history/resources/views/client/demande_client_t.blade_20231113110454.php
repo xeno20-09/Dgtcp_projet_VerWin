@@ -33,7 +33,7 @@ max-width: 100%;
             <th>Prénom du bénéficiaire</th>
             <th>Banque du bénéficiaire</th>
             <th>Numéro de compte du bénéficiaire</th>
-            <th>Position de la demande</th>
+            <th>Statut de la demande</th>
             @foreach ($demande as $item)
 
             @if ($item['status_dmd_cb'] != 'Autorisée')

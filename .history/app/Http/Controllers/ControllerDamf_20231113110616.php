@@ -183,8 +183,7 @@ class ControllerDamf extends Controller
 
         $dmd_damf = demande::find($id);
         $dmd_damf->vu_damf =  1;
-        $dmd_damf->status_dmd = $dmd_damf->status_dmd_cb;
-
+        
         $dmd_damf->update();
 
         return view('damf.detaille_demande', compact('demande', 'piece', 'user', 'dmd_n_lu', 'jointure', 'jointure1', 'jointure2', 'jointure3'));
