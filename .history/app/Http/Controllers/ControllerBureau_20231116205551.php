@@ -89,7 +89,7 @@ class ControllerBureau extends Controller
         $dmd_chef_bureau = demande::find($idc);
         $dmd_chef_bureau->motif_cb = $data['motif'];
         $dmd_chef_bureau->status_dmd_cb = $data['status'];
-        $dmd_chef_bureau->status_dmd = $data['status'];
+        $dmd_chef_bureau->status_dmd_cb = $data['status'];
 
         if ($dmd_chef_bureau->back_chef_bureau == 1) {
             $dmd_chef_bureau->back_chef_bureau = 0;

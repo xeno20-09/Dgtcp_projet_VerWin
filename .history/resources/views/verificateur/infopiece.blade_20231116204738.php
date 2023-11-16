@@ -12,9 +12,9 @@
 
         @foreach ($demande as $item_c)
             <h1>Demande N° {{ $item_c->numero_doss }} </h1>
-{{-- {{ $found }}
+//{{ $found }}
 
-{{ $notfound }} --}}
+{{ $notfound }}
 @php
     $date=now();
     $e='ok';
