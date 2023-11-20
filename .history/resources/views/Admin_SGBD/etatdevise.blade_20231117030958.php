@@ -3,9 +3,13 @@
 
     <div class="container">
         <h1>Gestion des États sur les devises</h1>
-        <a class="btn btn-primary" href="{{ route('laliste.pdf', ['status' => $status, 'sdate' => $sdate, 'fdate' => $fdate, 'devise' => $devise]) }}">Impression</a>
-
-        <div class="table-responsive">
+        @php
+        $test='Devise';
+   @endphp
+   <br>
+   <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => $test]) }}">Impression</a>
+<br><br>
+  {{--       <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -22,7 +26,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div> --}}
 
 
 
@@ -51,8 +55,8 @@
         subtitle: 'Montant Total par Devise',
       },
       bars: 'vertical', // Direction des barres
-      width: 400, // Largeur du graphique en pixels
-      height: 400, // Hauteur du graphique en pixels
+      width: 1000, // Largeur du graphique en pixels
+      height: 1000, // Hauteur du graphique en pixels
       colors: ['#FF5733', '#33FF57', '#3377FF', '#FF33FF'], // Couleurs des barres (vous pouvez ajouter ou supprimer des couleurs)
       hAxis: {
         title: 'Devise', // Titre de l'axe horizontal

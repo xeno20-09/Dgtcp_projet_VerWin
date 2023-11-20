@@ -9,7 +9,7 @@
    <br>
    <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => $test]) }}">Impression</a>
 <br><br>
-        <div class="table-responsive">
+  {{--       <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -26,7 +26,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div> --}}
 
 
 
