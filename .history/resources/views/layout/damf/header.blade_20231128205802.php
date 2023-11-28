@@ -82,11 +82,42 @@
                 <a class="nav-link" href="{{ url('HDamf') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('liste_dmd_n') }}">Saisir une demande</a>
-            </li>
-            <li class="nav-item">
+{{--                 <a class="nav-link" href="{{ url('liste_dmd_n') }}">Saisir une demande</a>
+ --}}                        <a class="nav-link" href="{{ url('liste_dmd_n') }}">Liste des demandes</a>
+    </li>
+  {{--           <li class="nav-item">
                 <a class="nav-link" href="{{ url('liste_dmd') }}">Liste des demandes</a>
-            </li>
+            </li> --}}
+            <li class="nav-item">
+          
+                <div class="dropdown">
+                    <button
+                      class="btn  dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-mdb-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                    <span style="color:#0d6efd;">Etats des demandes</span> 
+                </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="lesdevis">Etats sur les devises</a></li>
+                      <li><a class="dropdown-item" href="lespays">Etats sur les pays</a></li>
+                      <li><a class="dropdown-item" href="lessocietes">Etats sur les sociétés</a></li>
+                    </ul>
+                  </div>
+              
+               </li>
+               <style>
+                .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+               </style>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
