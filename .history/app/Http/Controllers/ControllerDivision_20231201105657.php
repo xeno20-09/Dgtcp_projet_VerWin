@@ -156,12 +156,14 @@ class ControllerDivision extends Controller
         curl_close($url);
         $r = json_decode($aa, true);
         $ladev = devises::first();
-        if ($ladev) {
+        if($ladev){
             $day = $ladev->date;
-        } else {
-            $day = 0;
-        }
 
+        }
+        else{
+            $day=0;
+        }
+        
         $ladate = now()->format('Y-m-d');
         /*         $ladate = '26-10-2023';
  */
@@ -191,7 +193,6 @@ class ControllerDivision extends Controller
 
                 $new = [];
                 $valeur = [];
-                $valeurs = [2, 5];
 
                 $codeToDevise = [
                     "AED" => "Dirham des Émirats arabes unis",
@@ -217,8 +218,9 @@ class ControllerDivision extends Controller
                     "XAF" => "Franc CFA d'Afrique centrale",
                     "USD" => "Dollar des États-Unis",
 
+$v
                 ];
-                dd($codeToDevise);
+
                 $pays = []; // Créez un tableau pour stocker les noms de devises
 
                 foreach ($u as $key => $value) {

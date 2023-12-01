@@ -56,7 +56,7 @@
 
     <a href="{{ route('devises', $item->id) }}"><button type="button" class="btn btn-danger"><i class="fas fa-exclamation"></i> Mettre à jour les devises</button></a>
   @endforeach
-  <button type="button" style="margin-left: 60px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertionModal">
+  <button type="button" style="justify-content: space-around;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertionModal">
     Ajouter une devise             
   </button>
   

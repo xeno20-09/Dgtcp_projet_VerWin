@@ -51,16 +51,13 @@
     </div>
   </div>
   <br><br>
-  <div style="position:relative;display:flex;flex-direction:row;">
-    @foreach ($user as $item)
+  @foreach ($user as $item)
 
-    <a href="{{ route('devises', $item->id) }}"><button type="button" class="btn btn-danger"><i class="fas fa-exclamation"></i> Mettre à jour les devises</button></a>
-  @endforeach
-  <button type="button" style="margin-left: 60px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertionModal">
-    Ajouter une devise             
-  </button>
-  
-  </div>
+  <a href="{{ route('devises', $item->id) }}"><button type="button" class="btn btn-danger"><i class="fas fa-exclamation"></i> Mettre à jour les devises</button></a>
+@endforeach
+<button type="button" style="position: relative;top: 100px; left:100px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertionModal">
+  Ajouter une devise             
+</button>
 
 <div class="modal fade" id="insertionModal" tabindex="-1" aria-labelledby="insertionModalLabel" aria-hidden="true">
   <div class="modal-dialog">

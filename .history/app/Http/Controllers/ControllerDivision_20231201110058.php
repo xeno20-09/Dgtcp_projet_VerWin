@@ -217,6 +217,7 @@ class ControllerDivision extends Controller
                     "XAF" => "Franc CFA d'Afrique centrale",
                     "USD" => "Dollar des États-Unis",
 
+                    $valeurs,
                 ];
                 dd($codeToDevise);
                 $pays = []; // Créez un tableau pour stocker les noms de devises

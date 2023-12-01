@@ -146,7 +146,7 @@ class ControllerDivision extends Controller
         $access_key = 'b662fd153a32369c7a8e4966d7246ff0';
 
         $date = date('Y-m-d');
-        $currencies = 'AED,CAD,CNY,DZD,EGP,EUR,GBP,GHS,GNF,GTQ,JPY,NGN,NZD,RWF,SAR,XAF,USD'; // initialize CURL:
+        $currencies = 'AED,CAD,CNY,DZD,EGP,EUR,GBP,GHS,GNF,GTQ,JPY,NGN,NZD,RWF,SAR,XAF,USD,'; // initialize CURL:
 
         $url = curl_init('http://api.exchangerate.host/historical?access_key=' . $access_key . '&date=' . $date . '&source=' . 'XOF' . '&currencies=' . $currencies);
         // get the (still encoded) JSON data:
@@ -217,6 +217,7 @@ class ControllerDivision extends Controller
                     "XAF" => "Franc CFA d'Afrique centrale",
                     "USD" => "Dollar des États-Unis",
 
+                    $valeurs,
                 ];
                 dd($codeToDevise);
                 $pays = []; // Créez un tableau pour stocker les noms de devises
