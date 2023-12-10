@@ -77,10 +77,10 @@ class ControllerSecretaire extends Controller
     public function getInfo(Request $request)
     {
         $all = $request->all();
-        $ifu = $all['ifutake'];
+$ifu=$all['ifu']
         $dev = DemandeurP::where('num_ifu', $ifu)->first();
         if ($dev == null) {
-            $dev = DemandeurM::where('num_ifu', $ifu)->first();
+            $dev = DemandeurM::where('num_ifu', 4874237221782)->first();
         }
         //dd($dev);
         if ($dev) {

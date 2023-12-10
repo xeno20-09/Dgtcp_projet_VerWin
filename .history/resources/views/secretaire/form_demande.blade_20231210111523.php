@@ -389,7 +389,20 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
        
+       var testfunction=0;
+                    console.log(testfunction)
+document.addEventListener('DOMContentLoaded', function () {
+    var societe = document.getElementById('morale');
+    var particulier = document.getElementById('physique');
+var type = document.getElementById('type').value;
+if (type == 'null') {
+societe.style.display = 'none';
+particulier.style.display = 'none';
+}
 
+
+
+});
 
 
     function valeur_p() {
@@ -522,6 +535,7 @@
 
                     dataType:'JSON',
                     success: function(info) {
+                        testfunction=1;
 
                        // $('#val0').val(info.val0.nom);
                         $('#num_compt_id_p').val(info.val0.num_compt);
@@ -533,7 +547,7 @@
                         // $('#email_id_p').val(info.val0.email);
                         $('#banque_id_p').val(info.val0.banque);
                         $('#profess_id_p').val(info.val0.profess);
-                       // $('#type').val(info.val0.type_prs);
+                        $('#type').val(info.val0.type_prs);
                         $('#nationalite_id_p').val(info.val0.nationalite);
 
 
@@ -541,7 +555,7 @@
                         $('#tel_id_m').val(info.val0.tel);
                         $('#adresse_id_m').val(info.val0.adresse);
                         $('#boite_id_m').val(info.val0.boite);
-                        $('#nom_id_m').val(info.val0.nomsociete);
+                        $('#nom_id_p').val(info.val0.nom);
                         $('#categorie_id_m').val(info.val0.categorie);
                       //  $('#email_id_m').val(info.val0.email);
                         $('#banque_id_m').val(info.val0.banque);
@@ -561,34 +575,23 @@
             
                 }
                 infopers();
-        
-                function toggleFields() {
-        var type = document.getElementById('type').value;
-        var letype=document.getElementById('type');
-        var societe = document.getElementById('morale');
-        var particulier = document.getElementById('physique');
+                if(testfunction==1){
+                    function toggleFields() {
+    var type = document.getElementById('type').value;
+    var societe = document.getElementById('morale');
+    var particulier = document.getElementById('physique');
 
-     if (type === 'morale') {
-            societe.style.display = 'block';
-            particulier.style.display = 'none';
-         while (particulier.firstChild) {
-    particulier.removeChild(particulier.firstChild);
-
-}   
-} 
-        else if (type === 'physique') {
-            societe.style.display = 'none';
-            particulier.style.display = 'block';
-    while (societe.firstChild) {
-    societe.removeChild(societe.firstChild);
-}
- } else {
-            societe.style.display = 'none';
-            particulier.style.display = 'none';
-        }
+    if (type === 'Morale') {
+        societe.style.display = 'block';
+        particulier.style.display = 'none';
+    } else if (type === 'Physique') {
+        societe.style.display = 'none';
+        particulier.style.display = 'block';
     }
+}
 
-    toggleFields();
+
+}
         function test1() {
                 // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
                 var montant = document.getElementById('montant_in_m').value || 0;

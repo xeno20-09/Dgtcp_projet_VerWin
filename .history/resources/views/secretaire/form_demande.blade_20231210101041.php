@@ -26,6 +26,7 @@
 
             </div>
         </div>
+
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Type personne</label>
@@ -45,7 +46,6 @@
 
             </div>
         </div>
-       
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">N° enregistrement</label>
@@ -55,7 +55,9 @@
             </div>
         </div>
 
- 
+        <div id="boss" style="">
+<input type="text" id="val0" style="">
+        </div>
     </div>
    
 <div id="physique">
@@ -385,12 +387,46 @@
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
 
+    <script>
+     
 
+        function toggleFields() {
+        var type = document.getElementById('type').value;
+        var letype=document.getElementById('type');
+        var societe = document.getElementById('morale');
+        var particulier = document.getElementById('physique');
+
+     if (type === 'morale') {
+            societe.style.display = 'block';
+            particulier.style.display = 'none';
+/*             particulier.innerHTML="";
+ */              while (particulier.firstChild) {
+    particulier.removeChild(particulier.firstChild);
+
+}   
+} 
+        else if (type === 'physique') {
+            societe.style.display = 'none';
+            particulier.style.display = 'block';
+/*             societe.innerHTML="";
+
+ */      while (societe.firstChild) {
+    societe.removeChild(societe.firstChild);
+}
+ } else {
+            societe.style.display = 'none';
+            particulier.style.display = 'none';
+        }
+    }
+
+    // Appeler toggleFields() lors du chargement initial pour cacher les champs appropriés.
+    toggleFields();
+
+</script>
+    
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-       
-
-
 
     function valeur_p() {
             // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -412,7 +448,11 @@
    
         }
         valeur_p();
+         </script>
 
+
+
+<script>
     $(document).ready(function() {
         $('#currency_from_p').on('change', function() {
             var monnaie =document.getElementById('currency_from_p').value;
@@ -443,6 +483,12 @@
     });
 
 
+</script>
+
+
+
+
+<script>
 
     function test() {
             // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -452,11 +498,17 @@
             
             // Calcul de la multiplication des deux nombres.
             var resultat = montant * valeur;
+            console.log (valeur);
             // Mise à jour du champ Résultat avec le résultat de la multiplication.
             document.getElementById('montant_fcfa').value = resultat;
         }
         test();
-       
+         </script>
+
+
+
+          <script>
+
 
             function valeur_m() {
                     // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -502,13 +554,40 @@
 
                 }
                 valeur_m();
-         
+                 </script>
 
+
+
+                 <script>
                     function infopers() {
+                
 
                     var ifutake =document.getElementById('ifu').value;
+                    var num_compt_id_p =document.getElementById('num_compt_id_p').value;
+                    var banque_id_p =document.getElementById('banque_id_p').value;
+                    var tel_id_p =document.getElementById('tel_id_p').value;
+                    var adresse_id_p =document.getElementById('adresse_id_p').value;
+                    var type_prs_id_p =document.getElementById('type_prs_id_p').value;
+                    var nom_id_p =document.getElementById('nom_id_p').value;
+                    var prenom_id_p =document.getElementById('prenom_id_p').value;
+                    var boite_id_p =document.getElementById('boite_id_p').value;
+                    var profess_id_p =document.getElementById('profess_id_p').value;
+                    var nationalite_id_p =document.getElementById('nationalite_id_p').value;
+                   
+                    var num_compt_id_m = document.getElementById('num_compt_id_m').value;
+    var banque_id_m = document.getElementById('banque_id_m').value;
+    var tel_id_m = document.getElementById('tel_id_m').value;
+var adresse_id_m = document.getElementById('adresse_id_m').value;
+var categorie_id_m = document.getElementById('categorie_id_m').value;
+var nom_id_m = document.getElementById('nom_id_m').value;
+var boite_id_m = document.getElementById('boite_id_m').value;
+var type_prs_id_m =document.getElementById('type_prs_id_m').value;
+
+
                     var val =document.getElementById('boss');
 
+
+                
                             if (ifutake !== 'null') {
                                 $.ajax({
                     type: 'POST',
@@ -522,34 +601,37 @@
 
                     dataType:'JSON',
                     success: function(info) {
-
-                       // $('#val0').val(info.val0.nom);
+                        $('#val0').val(info.val0.nom);
                         $('#num_compt_id_p').val(info.val0.num_compt);
                         $('#tel_id_p').val(info.val0.tel);
                         $('#adresse_id_p').val(info.val0.adresse);
                         $('#boite_id_p').val(info.val0.boite);
                         $('#nom_id_p').val(info.val0.nom);
                         $('#prenom_id_p').val(info.val0.prenom);
-                        // $('#email_id_p').val(info.val0.email);
+                        $('#email_id_p').val(info.val0.email);
                         $('#banque_id_p').val(info.val0.banque);
                         $('#profess_id_p').val(info.val0.profess);
-                       // $('#type').val(info.val0.type_prs);
-                        $('#nationalite_id_p').val(info.val0.nationalite);
+                        $('#type_prs_id_p').val(info.val0.type_prs);
+                        $('#val0').val(info.val0.nationalite);
+                        $('#val0').val(info.val0.nom);
+                        $('#val0').val(info.val0.nom);
+                        $('#val0').val(info.val0.nom);
 
 
-                        $('#num_compt_id_m').val(info.val0.num_compt);
-                        $('#tel_id_m').val(info.val0.tel);
-                        $('#adresse_id_m').val(info.val0.adresse);
-                        $('#boite_id_m').val(info.val0.boite);
-                        $('#nom_id_m').val(info.val0.nomsociete);
-                        $('#categorie_id_m').val(info.val0.categorie);
-                      //  $('#email_id_m').val(info.val0.email);
-                        $('#banque_id_m').val(info.val0.banque);
-                        $('#type').val(info.val0.type_prs);
+
+
+
+
+
+
+
+
+
+
+
+
                        console.log(info);
                        val.style.display = 'block';
-                       testfunction=1;
-
 
                     },
                     error: function(response) {
@@ -557,38 +639,13 @@
                     },
                 });
                             } 
-
             
+  
                 }
                 infopers();
-        
-                function toggleFields() {
-        var type = document.getElementById('type').value;
-        var letype=document.getElementById('type');
-        var societe = document.getElementById('morale');
-        var particulier = document.getElementById('physique');
+                 </script>
+    <script>
 
-     if (type === 'morale') {
-            societe.style.display = 'block';
-            particulier.style.display = 'none';
-         while (particulier.firstChild) {
-    particulier.removeChild(particulier.firstChild);
-
-}   
-} 
-        else if (type === 'physique') {
-            societe.style.display = 'none';
-            particulier.style.display = 'block';
-    while (societe.firstChild) {
-    societe.removeChild(societe.firstChild);
-}
- } else {
-            societe.style.display = 'none';
-            particulier.style.display = 'none';
-        }
-    }
-
-    toggleFields();
         function test1() {
                 // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
                 var montant = document.getElementById('montant_in_m').value || 0;
@@ -597,15 +654,11 @@
                 
                 // Calcul de la multiplication des deux nombres.
                 var resultat = montant * valeur;
+                console.log (valeur);
                 // Mise à jour du champ Résultat avec le résultat de la multiplication.
                 document.getElementById('montant_fcfa_m').value = resultat;
             }
             test1();
-
-
-
              </script>
-     
 
-    
 @endsection

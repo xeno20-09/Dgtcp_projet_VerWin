@@ -76,11 +76,11 @@ class ControllerSecretaire extends Controller
 
     public function getInfo(Request $request)
     {
-        $all = $request->all();
-        $ifu = $all['ifutake'];
-        $dev = DemandeurP::where('num_ifu', $ifu)->first();
+        $ifutake = $request->input('ifu');
+
+        $dev = DemandeurP::where('num_ifu', $ifutake)->get();
         if ($dev == null) {
-            $dev = DemandeurM::where('num_ifu', $ifu)->first();
+            $dev = DemandeurM::where('num_ifu', $ifutake)->first();
         }
         //dd($dev);
         if ($dev) {

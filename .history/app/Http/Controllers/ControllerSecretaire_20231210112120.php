@@ -80,7 +80,7 @@ class ControllerSecretaire extends Controller
         $ifu = $all['ifutake'];
         $dev = DemandeurP::where('num_ifu', $ifu)->first();
         if ($dev == null) {
-            $dev = DemandeurM::where('num_ifu', $ifu)->first();
+            $dev = DemandeurM::where('num_ifu', $i)->first();
         }
         //dd($dev);
         if ($dev) {

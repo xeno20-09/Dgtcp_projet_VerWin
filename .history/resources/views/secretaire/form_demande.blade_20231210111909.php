@@ -533,7 +533,7 @@
                         // $('#email_id_p').val(info.val0.email);
                         $('#banque_id_p').val(info.val0.banque);
                         $('#profess_id_p').val(info.val0.profess);
-                       // $('#type').val(info.val0.type_prs);
+                        $('#type').val(info.val0.type_prs);
                         $('#nationalite_id_p').val(info.val0.nationalite);
 
 
@@ -541,7 +541,7 @@
                         $('#tel_id_m').val(info.val0.tel);
                         $('#adresse_id_m').val(info.val0.adresse);
                         $('#boite_id_m').val(info.val0.boite);
-                        $('#nom_id_m').val(info.val0.nomsociete);
+                        $('#nom_id_p').val(info.val0.nom);
                         $('#categorie_id_m').val(info.val0.categorie);
                       //  $('#email_id_m').val(info.val0.email);
                         $('#banque_id_m').val(info.val0.banque);

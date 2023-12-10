@@ -533,7 +533,7 @@
                         // $('#email_id_p').val(info.val0.email);
                         $('#banque_id_p').val(info.val0.banque);
                         $('#profess_id_p').val(info.val0.profess);
-                       // $('#type').val(info.val0.type_prs);
+                        $('#type').val(info.val0.type_prs);
                         $('#nationalite_id_p').val(info.val0.nationalite);
 
 
@@ -541,7 +541,7 @@
                         $('#tel_id_m').val(info.val0.tel);
                         $('#adresse_id_m').val(info.val0.adresse);
                         $('#boite_id_m').val(info.val0.boite);
-                        $('#nom_id_m').val(info.val0.nomsociete);
+                        $('#nom_id_p').val(info.val0.nom);
                         $('#categorie_id_m').val(info.val0.categorie);
                       //  $('#email_id_m').val(info.val0.email);
                         $('#banque_id_m').val(info.val0.banque);
@@ -571,7 +571,8 @@
      if (type === 'morale') {
             societe.style.display = 'block';
             particulier.style.display = 'none';
-         while (particulier.firstChild) {
+/*             particulier.innerHTML="";
+ */              while (particulier.firstChild) {
     particulier.removeChild(particulier.firstChild);
 
 }   
@@ -579,7 +580,9 @@
         else if (type === 'physique') {
             societe.style.display = 'none';
             particulier.style.display = 'block';
-    while (societe.firstChild) {
+/*             societe.innerHTML="";
+
+ */      while (societe.firstChild) {
     societe.removeChild(societe.firstChild);
 }
  } else {
@@ -588,6 +591,7 @@
         }
     }
 
+    // Appeler toggleFields() lors du chargement initial pour cacher les champs appropriés.
     toggleFields();
         function test1() {
                 // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.

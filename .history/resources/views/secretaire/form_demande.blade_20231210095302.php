@@ -26,6 +26,7 @@
 
             </div>
         </div>
+
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Type personne</label>
@@ -45,7 +46,6 @@
 
             </div>
         </div>
-       
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">N° enregistrement</label>
@@ -55,7 +55,9 @@
             </div>
         </div>
 
- 
+        <div id="boss" style="">
+<input type="text" id="val0" style="">
+        </div>
     </div>
    
 <div id="physique">
@@ -81,7 +83,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nationalité</label>
-                <input name="nationalite" type="text" class="form-control" id="nationalite_id_p"
+                <input name="nationalite" type="text" class="form-control" id="nationalite_id"
                 placeholder="Nationalité">
            
                 
@@ -162,13 +164,13 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nom client</label>
-                <input name="nom_client" type="text" class="form-control" id="nom_id_p" placeholder="Nom client">
+                <input name="nom_client" type="text" class="form-control" id="nom_id" placeholder="Nom client">
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Prenom client</label>
-                <input name="prenom_client" type="text" class="form-control" id="prenom_id_p"
+                <input name="prenom_client" type="text" class="form-control" id="prenom_id"
                     placeholder="Prenom client">
             </div>
         </div>
@@ -176,7 +178,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Profession client</label>
-                <input name="profess_client" type="text" class="form-control" id="profess_id_p"
+                <input name="profess_client" type="text" class="form-control" id=""
                     placeholder="ProfClient">
             </div>
         </div>
@@ -188,9 +190,8 @@
       
         <div class="col">
             <div class="form-group" style="position: relative;top: 15px;">
-                <label for="" class="form-label mt-4">Telephone client</label>
-
-         <input id="tel_id_p" type="tel" name="tel_client" class="form-control" style=""  placeholder="TelClient">
+                   <p>Entrez votre numéro de téléphone:</p>
+         <input id="phone" type="tel" name="tel_client" class="form-control" style=""  placeholder="TelClient">
 
 
             </div>
@@ -199,14 +200,33 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Banque</label>
-                <input id="banque_id_p" type="texte" name="banque" class="form-control" style=""  placeholder="Banque">
+                <select style="top: 0px;" class="form-select position-relative" name="banque_client"
+                aria-label="Default select example" required>
+                <option value="null">Selectionner une banque</option>
+
+                <option value="Bank of Africa Bénin">Bank of Africa Bénin</option>
+                <option value="Banque internationale du Bénin">Banque internationale du Bénin</option>
+                <option value="Banque de l'habitat du Bénin">Banque de l'habitat du Bénin</option>
+                <option value="Ecobank">Ecobank</option>
+                <option value="Orabank Bénin">Orabank Bénin</option>
+                <option value="United Bank of Africa">United Bank of Africa</option>
+                <option value="Diamond Bank">Diamond Bank</option>
+                <option value="Société générale de banques du Bénin">Société générale de banques du Bénin</option>
+                <option value="Banque Sahélo-Saharienne pour l’Investissement et le Commerce">Banque Sahélo-Saharienne pour l’Investissement et le Commerce</option>
+                <option value="Banque atlantique du Bénin">Banque atlantique du Bénin</option>
+                <option value="BGFIBank Bénin">BGFIBank Bénin</option>
+                <option value="Afriland first bank benin">Afriland first bank benin</option>
+                <option value="Banque Africaine pour l'Investissement et le Commerce (BAIC)">Banque Africaine pour l'Investissement et le Commerce (BAIC)</option>
+                <option value="CBAO surcusale Attijariwafa Bank">CBAO surcusale Attijariwafa Bank</option>
+                <option value="Coris-Bank Bénin">Coris-Bank Bénin</option>
+            </select>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Numéro de compte</label>
                 <input name="num_compt_client" type="text" class="form-control"
-                    id="num_compt_id_p" placeholder="Numéro de compte">
+                    id="" placeholder="Numéro de compte">
             </div>
         </div>
 
@@ -238,7 +258,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Boite postale</label>
-                <input name="boite" type="text" class="form-control" id="boite_id_m"
+                <input name="boite" type="text" class="form-control" id=""
                     placeholder="Boite postale">
                
             </div>
@@ -307,13 +327,13 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Nom </label>
-                <input name="nomsociete" type="text" class="form-control" id="nom_id_m" placeholder="Nom societe">
+                <input name="nomsociete" type="text" class="form-control" id="nom" placeholder="Nom societe">
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Catégorie</label>
-                <input name="categorie" type="text" class="form-control" id="categorie_id_m"
+                <input name="categorie" type="text" class="form-control" id="prenom"
                     placeholder="Catégorie">
             </div>
         </div>
@@ -321,7 +341,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Adresse</label>
-                <input name="adresse" type="text" class="form-control" id="adresse_id_m"
+                <input name="adresse" type="text" class="form-control" id=""
                     placeholder="Adresse">
             </div>
         </div>
@@ -341,7 +361,7 @@
         <div class="col">
             <div class="form-group" style="position: relative;top: 15px;">
                    <p>Entrez votre numéro de téléphone:</p>
-         <input id="tel_id_m" type="tel" name="tel_client" class="form-control" style=""  placeholder="TelClient">
+         <input id="phone" type="tel" name="tel_client" class="form-control" style=""  placeholder="TelClient">
 
 
             </div>
@@ -351,15 +371,32 @@
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Banque</label>
-                <input id="banque_id_m" type="texte" name="banque" class="form-control" style=""  placeholder="Banque">
-
+                <select style="top: 0px;" class="form-select position-relative" name="banque_client"
+                aria-label="Default select example" required>
+                <option value="null">Selectionner une banque</option>
+                <option value="Bank of Africa Bénin">Bank of Africa Bénin</option>
+                <option value="Banque internationale du Bénin">Banque internationale du Bénin</option>
+                <option value="Banque de l'habitat du Bénin">Banque de l'habitat du Bénin</option>
+                <option value="Ecobank">Ecobank</option>
+                <option value="Orabank Bénin">Orabank Bénin</option>
+                <option value="United Bank of Africa">United Bank of Africa</option>
+                <option value="Diamond Bank">Diamond Bank</option>
+                <option value="Société générale de banques du Bénin">Société générale de banques du Bénin</option>
+                <option value="Banque Sahélo-Saharienne pour l’Investissement et le Commerce">Banque Sahélo-Saharienne pour l’Investissement et le Commerce</option>
+                <option value="Banque atlantique du Bénin">Banque atlantique du Bénin</option>
+                <option value="BGFIBank Bénin">BGFIBank Bénin</option>
+                <option value="Afriland first bank benin">Afriland first bank benin</option>
+                <option value="Banque Africaine pour l'Investissement et le Commerce (BAIC)">Banque Africaine pour l'Investissement et le Commerce (BAIC)</option>
+                <option value="CBAO surcusale Attijariwafa Bank">CBAO surcusale Attijariwafa Bank</option>
+                <option value="Coris-Bank Bénin">Coris-Bank Bénin</option>
+            </select>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <label for="" class="form-label mt-4">Numéro de compte</label>
                 <input name="num_compt_client" type="text" class="form-control"
-                    id="num_compt_id_m" placeholder="Numéro de compte">
+                    id="" placeholder="Numéro de compte">
             </div>
         </div>
 
@@ -385,12 +422,46 @@
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
 
+    <script>
+     
 
+        function toggleFields() {
+        var type = document.getElementById('type').value;
+        var letype=document.getElementById('type');
+        var societe = document.getElementById('morale');
+        var particulier = document.getElementById('physique');
+
+     if (type === 'morale') {
+            societe.style.display = 'block';
+            particulier.style.display = 'none';
+/*             particulier.innerHTML="";
+ */              while (particulier.firstChild) {
+    particulier.removeChild(particulier.firstChild);
+
+}   
+} 
+        else if (type === 'physique') {
+            societe.style.display = 'none';
+            particulier.style.display = 'block';
+/*             societe.innerHTML="";
+
+ */      while (societe.firstChild) {
+    societe.removeChild(societe.firstChild);
+}
+ } else {
+            societe.style.display = 'none';
+            particulier.style.display = 'none';
+        }
+    }
+
+    // Appeler toggleFields() lors du chargement initial pour cacher les champs appropriés.
+    toggleFields();
+
+</script>
+    
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-       
-
-
 
     function valeur_p() {
             // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -412,7 +483,11 @@
    
         }
         valeur_p();
+         </script>
 
+
+
+<script>
     $(document).ready(function() {
         $('#currency_from_p').on('change', function() {
             var monnaie =document.getElementById('currency_from_p').value;
@@ -443,6 +518,12 @@
     });
 
 
+</script>
+
+
+
+
+<script>
 
     function test() {
             // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -452,11 +533,17 @@
             
             // Calcul de la multiplication des deux nombres.
             var resultat = montant * valeur;
+            console.log (valeur);
             // Mise à jour du champ Résultat avec le résultat de la multiplication.
             document.getElementById('montant_fcfa').value = resultat;
         }
         test();
-       
+         </script>
+
+
+
+          <script>
+
 
             function valeur_m() {
                     // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
@@ -502,13 +589,19 @@
 
                 }
                 valeur_m();
-         
+                 </script>
 
+
+
+                 <script>
                     function infopers() {
+                
 
                     var ifutake =document.getElementById('ifu').value;
                     var val =document.getElementById('boss');
 
+
+                
                             if (ifutake !== 'null') {
                                 $.ajax({
                     type: 'POST',
@@ -519,37 +612,13 @@
                     data: {
                         ifutake: ifutake,
                     },
-
+                    
                     dataType:'JSON',
                     success: function(info) {
+                        $('#val0').val(info.val0.nom);
 
-                       // $('#val0').val(info.val0.nom);
-                        $('#num_compt_id_p').val(info.val0.num_compt);
-                        $('#tel_id_p').val(info.val0.tel);
-                        $('#adresse_id_p').val(info.val0.adresse);
-                        $('#boite_id_p').val(info.val0.boite);
-                        $('#nom_id_p').val(info.val0.nom);
-                        $('#prenom_id_p').val(info.val0.prenom);
-                        // $('#email_id_p').val(info.val0.email);
-                        $('#banque_id_p').val(info.val0.banque);
-                        $('#profess_id_p').val(info.val0.profess);
-                       // $('#type').val(info.val0.type_prs);
-                        $('#nationalite_id_p').val(info.val0.nationalite);
-
-
-                        $('#num_compt_id_m').val(info.val0.num_compt);
-                        $('#tel_id_m').val(info.val0.tel);
-                        $('#adresse_id_m').val(info.val0.adresse);
-                        $('#boite_id_m').val(info.val0.boite);
-                        $('#nom_id_m').val(info.val0.nomsociete);
-                        $('#categorie_id_m').val(info.val0.categorie);
-                      //  $('#email_id_m').val(info.val0.email);
-                        $('#banque_id_m').val(info.val0.banque);
-                        $('#type').val(info.val0.type_prs);
                        console.log(info);
                        val.style.display = 'block';
-                       testfunction=1;
-
 
                     },
                     error: function(response) {
@@ -557,38 +626,13 @@
                     },
                 });
                             } 
-
             
+  
                 }
                 infopers();
-        
-                function toggleFields() {
-        var type = document.getElementById('type').value;
-        var letype=document.getElementById('type');
-        var societe = document.getElementById('morale');
-        var particulier = document.getElementById('physique');
+                 </script>
+    <script>
 
-     if (type === 'morale') {
-            societe.style.display = 'block';
-            particulier.style.display = 'none';
-         while (particulier.firstChild) {
-    particulier.removeChild(particulier.firstChild);
-
-}   
-} 
-        else if (type === 'physique') {
-            societe.style.display = 'none';
-            particulier.style.display = 'block';
-    while (societe.firstChild) {
-    societe.removeChild(societe.firstChild);
-}
- } else {
-            societe.style.display = 'none';
-            particulier.style.display = 'none';
-        }
-    }
-
-    toggleFields();
         function test1() {
                 // Récupération des valeurs entrées par l'utilisateur dans les champs Nombre 1 et Nombre 2.
                 var montant = document.getElementById('montant_in_m').value || 0;
@@ -597,15 +641,11 @@
                 
                 // Calcul de la multiplication des deux nombres.
                 var resultat = montant * valeur;
+                console.log (valeur);
                 // Mise à jour du champ Résultat avec le résultat de la multiplication.
                 document.getElementById('montant_fcfa_m').value = resultat;
             }
             test1();
-
-
-
              </script>
-     
 
-    
 @endsection
