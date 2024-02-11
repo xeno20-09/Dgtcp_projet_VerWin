@@ -11,13 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\pieces as piece;
 
-
 class ControllerDivision extends Controller
 {
     public function home()
     {
-
-
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
         $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
@@ -28,7 +25,14 @@ class ControllerDivision extends Controller
         $le_n_dmd_v = count($demande_valider);
         $le_n_dmd_e = count($demande_echec);
         $le_n_dmd_s = count($demande_suspendre);
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         return view('chef_division.Home', compact('user', 'dmd_back', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu'));
     }
@@ -37,7 +41,12 @@ class ControllerDivision extends Controller
     {
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
-        $demande = demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get();
+        $demande = demande::where('status_dmd', '=', 'En cours')
+            ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+            ->where('vu_verifi', '=', 1)
+            ->where('back_verifi', '=', 0)
+            ->where('date_decision', '=', null)
+            ->get();
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
@@ -46,7 +55,14 @@ class ControllerDivision extends Controller
             ->join('demandes', 'users.id', '=', 'demandes.id_verifi')
             ->select('demandes.*', 'users.*')
             ->get();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
 
         return view('chef_division.liste_demande_n', compact('user', 'dmd_back', 'demande', 'jointure', 'jointure1', 'dmd_n_lu'));
@@ -58,7 +74,14 @@ class ControllerDivision extends Controller
         $user = User::where('id', '=', $id_c)->get();
         $demande = demande::where('id', '=', $id)->get();
         $le_n_dmd = count($demande);
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
 
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $demandes = demande::where('id', '=', $id)->first();
@@ -69,12 +92,19 @@ class ControllerDivision extends Controller
         return view('chef_division.form_demande', compact('demande', 'dmd_back', 'piece', 'user', 'dmd_n_lu'));
     }
 
-    public function  form(Request $request, $id_dmd)
+    public function form(Request $request, $id_dmd)
     {
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
-        $demande = (demande::where('id', '=', $id_dmd)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
+        $demande = demande::where('id', '=', $id_dmd)->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $piece = piece::where('id_dmd', '=', $id_dmd)->get();
         //  dd($piece);
@@ -88,12 +118,11 @@ class ControllerDivision extends Controller
         // Récupérer toutes les données du formulaire
         $data = $request->all();
 
-
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_chef_division = demande::find($idc);
         $dmd_chef_division->date_decision = $data['date_decision'];
 
-        $dmd_chef_division->id_chef_division =  $id;
+        $dmd_chef_division->id_chef_division = $id;
         if ($dmd_chef_division->back_chef_division == 1) {
             $dmd_chef_division->back_chef_division = 0;
         } else {
@@ -102,7 +131,14 @@ class ControllerDivision extends Controller
         $dmd_chef_division->vu_chef_division = 1;
         // Sauvegarde du modèle en base de données
         $dmd_chef_division->update();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $user = User::where('id', '=', $id)->get();
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
@@ -113,7 +149,9 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $demande = demande::where('id_chef_division', '=', $id)->where('vu_chef_division', '=', 1)->get();
+        $demande = demande::where('id_chef_division', '=', $id)
+            ->where('vu_chef_division', '=', 1)
+            ->get();
 
         return redirect('liste_demandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1');
     }
@@ -122,10 +160,17 @@ class ControllerDivision extends Controller
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
 
-        // Redirection vers la page de liste des produits  
+        // Redirection vers la page de liste des produits
         $demande = demande::where('id_chef_division', '=', $id)->get();
         $le_n_dmd = count($demande);
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
@@ -140,13 +185,13 @@ class ControllerDivision extends Controller
         return view('chef_division.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure', 'jointure1'));
     }
 
-
-    public function   devise(Request $request, $id)
-    {           // set API Endpoint, access key, required parameters
+    public function devise(Request $request, $id)
+    {
+        // set API Endpoint, access key, required parameters
         $access_key = 'b662fd153a32369c7a8e4966d7246ff0';
 
         $date = date('Y-m-d');
-        $currencies = 'AED,CAD,CNY,DZD,EGP,EUR,GBP,GHS,GNF,GTQ,JPY,NGN,NZD,RWF,SAR,XAF,USD,'$''; // initialize CURL:
+        $currencies = 'AED,CAD,CNY,DZD,EGP,EUR,GBP,GHS,GNF,GTQ,JPY,NGN,NZD,RWF,SAR,XAF,USD'; // initialize CURL:
 
         $url = curl_init('http://api.exchangerate.host/historical?access_key=' . $access_key . '&date=' . $date . '&source=' . 'XOF' . '&currencies=' . $currencies);
         // get the (still encoded) JSON data:
@@ -164,14 +209,13 @@ class ControllerDivision extends Controller
 
         $ladate = now()->format('Y-m-d');
         /*         $ladate = '26-10-2023';
- */
+         */
         if ($day == $ladate) {
             $today = 1;
         } else {
             $today = 0;
         }
         // dd($day);
-
 
         if ($r['success'] == true) {
             if ($today == 0) {
@@ -194,32 +238,29 @@ class ControllerDivision extends Controller
                 $valeurs = [2, 5];
 
                 $codeToDevise = [
-                    "AED" => "Dirham des Émirats arabes unis",
-                    "CAD" => "Dollar canadien",
+                    'AED' => 'Dirham des Émirats arabes unis',
+                    'CAD' => 'Dollar canadien',
 
-                    "CNY" => "Yuan chinois",
-                    "DZD" => "Dinar algérien",
-                    "EGP" => "Livre égyptienne",
+                    'CNY' => 'Yuan chinois',
+                    'DZD' => 'Dinar algérien',
+                    'EGP' => 'Livre égyptienne',
 
-                    "EUR" => "Euro",
-                    "GBP" => "Livre sterling",
-                    "GHS" => "Cedi ghanéen",
-                    "GNF" => "Franc guinéen",
-                    "GTQ" => "Quetzal guatémaltèque",
-                    "JPY" => "Yen japonais",
-                    "NGN" => "Naira nigérian",
-                    "NZD" => "Dollar néo-zélandais",
+                    'EUR' => 'Euro',
+                    'GBP' => 'Livre sterling',
+                    'GHS' => 'Cedi ghanéen',
+                    'GNF' => 'Franc guinéen',
+                    'GTQ' => 'Quetzal guatémaltèque',
+                    'JPY' => 'Yen japonais',
+                    'NGN' => 'Naira nigérian',
+                    'NZD' => 'Dollar néo-zélandais',
 
-                    "RWF" => "Franc rwandais",
-                    "SAR" => "Riyal saoudien",
+                    'RWF' => 'Franc rwandais',
+                    'SAR' => 'Riyal saoudien',
 
-
-                    "XAF" => "Franc CFA d'Afrique centrale",
-                    "USD" => "Dollar des États-Unis",
-
-                    $valeurs,
+                    'XAF' => "Franc CFA d'Afrique centrale",
+                    'USD' => 'Dollar des États-Unis',
                 ];
-                dd($codeToDevise);
+                //  dd($codeToDevise);
                 $pays = []; // Créez un tableau pour stocker les noms de devises
 
                 foreach ($u as $key => $value) {
@@ -264,7 +305,14 @@ class ControllerDivision extends Controller
 
         if ($r['success'] != true) {
             $user = User::where('id', '=', $id)->get();
-            $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+            $dmd_n_lu = count(
+                demande::where('status_dmd', '=', 'En cours')
+                    ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                    ->where('vu_verifi', '=', 1)
+                    ->where('back_verifi', '=', 0)
+                    ->where('date_decision', '=', null)
+                    ->get(),
+            );
             $date = now();
             $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
             $devise = listedevise::all();
@@ -277,7 +325,14 @@ class ControllerDivision extends Controller
     {
         $id = Auth::user()->id;
         $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $date = now();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $devises = devises::orderBy('date', 'desc')->get();
@@ -291,7 +346,6 @@ class ControllerDivision extends Controller
         // Récupérer toutes les données du formulaire
         $data = $request->all();
 
-
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_chef_division = new devises();
 
@@ -303,7 +357,14 @@ class ControllerDivision extends Controller
         $dmd_chef_division->id_user = Auth::id();
 
         $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $date = now();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $dmd_chef_division->save();
@@ -314,11 +375,9 @@ class ControllerDivision extends Controller
     }
     public function adddevise(Request $request, $id)
     {
-
         $id = Auth::id();
         // Récupérer toutes les données du formulaire
         $data = $request->all();
-
 
         // Création d'un nouveau modèle avec les données du formulaire
         $dmd_chef_division = new listedevise();
@@ -326,7 +385,14 @@ class ControllerDivision extends Controller
         $dmd_chef_division->nom = $data['devise'];
 
         $user = User::where('id', '=', $id)->get();
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $date = now();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         $dmd_chef_division->save();
@@ -337,14 +403,21 @@ class ControllerDivision extends Controller
         return view('chef_division.form_devis', compact('ladate', 'devises', 'user', 'dmd_n_lu', 'date', 'dmd_back', 'devise'));
     }
 
-    public function   detailles(Request $request, $id)
+    public function detailles(Request $request, $id)
     {
         $id_c = Auth::id();
         $user = User::where('id', '=', $id_c)->get();
         $demande = demande::where('id', '=', $id)->get();
         $le_n_dmd = count($demande);
 
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
@@ -369,7 +442,6 @@ class ControllerDivision extends Controller
         $demande = demande::find($idc);
         $demande->back_verifi = 1;
 
-
         $demande->vu_chef_division = 0;
         //dd($demande);
 
@@ -377,7 +449,7 @@ class ControllerDivision extends Controller
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
 
-        // Redirection vers la page de liste des produits  
+        // Redirection vers la page de liste des produits
         $demande = demande::where('id_chef_division', '=', $id)->get();
         $le_n_dmd = count($demande);
 
@@ -398,7 +470,14 @@ class ControllerDivision extends Controller
         $le_n_dmd_v = count($demande_valider);
         $le_n_dmd_e = count($demande_echec);
         $le_n_dmd_s = count($demande_suspendre);
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
         return view('chef_division.Home', compact('user', 'dmd_back', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu'));
     }
@@ -408,10 +487,19 @@ class ControllerDivision extends Controller
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
 
-        // Redirection vers la page de liste des produits  
-        $demande = demande::where('id_chef_division', '=', $id)->where('back_chef_division', '=', 1)->get();
+        // Redirection vers la page de liste des produits
+        $demande = demande::where('id_chef_division', '=', $id)
+            ->where('back_chef_division', '=', 1)
+            ->get();
         $le_n_dmd = count($demande);
-        $dmd_n_lu = count(demande::where('status_dmd', '=', 'En cours')->where('vu_chef_division', '=', '0')/* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */->where('vu_verifi', '=', 1)->where('back_verifi', '=', 0)->where('date_decision', '=', null)->get());
+        $dmd_n_lu = count(
+            demande::where('status_dmd', '=', 'En cours')
+                ->where('vu_chef_division', '=', '0') /* ->orwhere('motif', '=', 'Rejetée pour incorformité au niveau des montants') */
+                ->where('vu_verifi', '=', 1)
+                ->where('back_verifi', '=', 0)
+                ->where('date_decision', '=', null)
+                ->get(),
+        );
 
         $jointure = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')

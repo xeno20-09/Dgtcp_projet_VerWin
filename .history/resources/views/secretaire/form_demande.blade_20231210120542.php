@@ -362,7 +362,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="" class="form-label mt-4">Banque</label>
-                    <input id="banque_id_m" type="texte" name="banque_client" class="form-control" style=""
+                    <input id="banque_id_m" type="texte" name="banque" class="form-control" style=""
                         placeholder="Banque">
 
                 </div>
@@ -550,7 +550,7 @@
                     $('#categorie_id_m').val(info.val0.categorie);
                     //  $('#email_id_m').val(info.val0.email);
                     $('#banque_id_m').val(info.val0.banque);
-                    // $('#type').val(info.val0.type_prs);
+                    $('#type').val(info.val0.type_prs);
                     console.log(info);
                     val.style.display = 'block';
                     testfunction = 1;

@@ -362,7 +362,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="" class="form-label mt-4">Banque</label>
-                    <input id="banque_id_m" type="texte" name="banque_client" class="form-control" style=""
+                    <input id="banque_id_m" type="texte" name="banque" class="form-control" style=""
                         placeholder="Banque">
 
                 </div>
