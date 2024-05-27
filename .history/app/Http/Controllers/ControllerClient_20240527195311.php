@@ -42,44 +42,38 @@ class ControllerClient extends Controller
             // Handle the case where no matching record is found
             $type_prs = null; // or some default value
         }
-        //  dd($type_prs);
+      //  dd($type_prs);
 
         
         $data = $request->all();
         $num_doss = $data['numero_dossier'];
         $date_depot = $data['date_depot'];
 
-   
-        if($type_prs=='morale') {
+        $demande = demande::where('numero_doss', '=', $num_doss)
+            ->where('date', '=', $date_depot)
+            ->get();
+        $test = count($demande);
+if($type_prs=='morale'){
     
-            $demandes = demande::where('numero_doss', '=', $num_doss)
-                ->where('date', '=', $date_depot)
+    $demandes = demande::where('numero_doss', '=', $num_doss)
 
-                ->where('nomsociete', '=', $nom)
-                ->where('nomsociete', '=', $prenom)
-                ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
-            $test = count($demande);
-        }
-        else{
+    ->orwhere('nomsociete', '=', $nom)
+    ->orwhere('nomsociete', '=', $prenom)
+    ->first();
+}
+else{
     
-            $demandes = demande::where('numero_doss', '=', $num_doss)
-                ->where('date', '=', $date_depot)
-                ->where('nom_client', '=', $nom)
-                ->where('prenom_client', '=', $prenom)
+    $demandes = demande::where('numero_doss', '=', $num_doss)
+    ->where('date', '=', $date_depot)
+    ->where('nom_client', '=', $nom)
+    ->where('prenom_client', '=', $prenom)
 
-                ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
-            $test = count($demande);
-        }
+    ->first();
+}
            // dd($demandes);
         $pic = 0;
-        if ($demandes == null || $test == 0) {
-            $message = 'La demande n\'est pas la votre désolé ou  La demande n\'exite pas désolé !';
+        if ($demandes == null) {
+            $message = 'La demande n\'est pas la votre désolé';
             return view('client.demande_client_i', compact('user', 'message'));
         }
         if ($demandes->status_dmd == 'Autorisée' || $demandes->status_dmd == 'Rejetée' || $demandes->status_dmd == 'Suspendu') {
@@ -90,7 +84,10 @@ class ControllerClient extends Controller
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }
-
+        if ($test == 0) {
+            $message = 'La demande n\'exite pas désolé';
+            return view('client.demande_client_i', compact('user', 'message'));
+        }
     }
     // Generate PDF
     public function createPDF(Request $request, $id)

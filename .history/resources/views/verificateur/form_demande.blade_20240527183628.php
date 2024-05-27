@@ -1002,7 +1002,7 @@
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <input name="montantligne[]" type="number" class="form-control" id="mligne"
-                            placeholder="Montant ligne" required>
+                            placeholder="Montant ligne">
                     </div>
                 </div>
                 <div class="col">

@@ -995,14 +995,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Reference piece</label>
-                        <input name="ref_doss[]" type="text" class="form-control" id="refs" placeholder="ref pieces" required>
+                        <input name="ref_doss[]" type="text" class="form-control" id="refs" placeholder="ref pieces" re>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <input name="montantligne[]" type="number" class="form-control" id="mligne"
-                            placeholder="Montant ligne" required>
+                            placeholder="Montant ligne">
                     </div>
                 </div>
                 <div class="col">

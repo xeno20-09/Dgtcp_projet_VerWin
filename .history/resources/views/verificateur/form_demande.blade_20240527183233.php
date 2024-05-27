@@ -944,14 +944,14 @@
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Reference piece</label>
                         <input name="ref_doss[]" type="text" class="form-control" value="{{ $item_d->referencespiece }}"
-                            id="refs" placeholder="ref pieces">
+                            id="refs" placeholder="ref pieces" required>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <input name="montantligne[]" type="number" class="form-control"
-                            value="{{ $item_d->montantligne }}" id="mligne" placeholder="Montant ligne">
+                            value="{{ $item_d->montantligne }}" id="mligne" placeholder="Montant ligne" required>
                     </div>
                 </div>
                 <div class="col">
@@ -988,21 +988,21 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Pieces</label>
-                        <input name="pieces_doss[]" type="text" class="form-control" id="pieces" placeholder="pieces" required>
+                        <input name="pieces_doss[]" type="text" class="form-control" id="pieces" placeholder="pieces">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Reference piece</label>
-                        <input name="ref_doss[]" type="text" class="form-control" id="refs" placeholder="ref pieces" required>
+                        <input name="ref_doss[]" type="text" class="form-control" id="refs" placeholder="ref pieces">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <input name="montantligne[]" type="number" class="form-control" id="mligne"
-                            placeholder="Montant ligne" required>
+                            placeholder="Montant ligne">
                     </div>
                 </div>
                 <div class="col">
@@ -1038,7 +1038,7 @@
 
 
 
-        {{-- @if (empty($piece))
+        @if (empty($piece))
 
         <div id="container" style="  width: 1362px;">
             <div class="row">
@@ -1092,7 +1092,7 @@
         <br>
         <br>
         @endif
-        --}}
+
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
     <a href="{{ route('retour_s', $item_c->id) }}"><button class="btn btn-danger">Retournez la

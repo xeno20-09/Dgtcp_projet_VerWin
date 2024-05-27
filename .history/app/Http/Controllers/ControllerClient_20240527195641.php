@@ -90,7 +90,10 @@ class ControllerClient extends Controller
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }
-
+        if () {
+            $message = '';
+            return view('client.demande_client_i', compact('user', 'message'));
+        }
     }
     // Generate PDF
     public function createPDF(Request $request, $id)

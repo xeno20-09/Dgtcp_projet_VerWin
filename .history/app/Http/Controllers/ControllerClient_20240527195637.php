@@ -78,7 +78,7 @@ class ControllerClient extends Controller
         }
            // dd($demandes);
         $pic = 0;
-        if ($demandes == null || $test == 0) {
+        if ($demandes == null ) {
             $message = 'La demande n\'est pas la votre désolé ou  La demande n\'exite pas désolé !';
             return view('client.demande_client_i', compact('user', 'message'));
         }
@@ -90,7 +90,10 @@ class ControllerClient extends Controller
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }
-
+        if () {
+            $message = '';
+            return view('client.demande_client_i', compact('user', 'message'));
+        }
     }
     // Generate PDF
     public function createPDF(Request $request, $id)

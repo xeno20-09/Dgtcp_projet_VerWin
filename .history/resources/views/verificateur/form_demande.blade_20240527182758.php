@@ -927,7 +927,7 @@
 
 
         </div>
-        @if (empty($piece))
+        @if (!empty($piece))
         @foreach ($piece as $item_d)
 
         <div id="container" style="  width: 1362px;">
@@ -936,7 +936,7 @@
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Pieces</label>
                         <input name="pieces_doss[]" type="text" value="{{ $item_d->libellepiece }}" class="form-control"
-                            id="pieces" placeholder="pieces">
+                            id="pieces" placeholder="pieces" >
                     </div>
                 </div>
 
@@ -944,14 +944,14 @@
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Reference piece</label>
                         <input name="ref_doss[]" type="text" class="form-control" value="{{ $item_d->referencespiece }}"
-                            id="refs" placeholder="ref pieces">
+                            id="refs" placeholder="ref pieces" required>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <input name="montantligne[]" type="number" class="form-control"
-                            value="{{ $item_d->montantligne }}" id="mligne" placeholder="Montant ligne">
+                            value="{{ $item_d->montantligne }}" id="mligne" placeholder="Montant ligne" required>
                     </div>
                 </div>
                 <div class="col">
@@ -977,68 +977,19 @@
                 </div>
             </div>
         </div>
-
         @endforeach
 
 
-        {{--<h3>Il y a pas de pieces joint pour cette demande</h3> --}}
         @else
-        <div id="container" style="  width: 1362px;">
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4">Pieces</label>
-                        <input name="pieces_doss[]" type="text" class="form-control" id="pieces" placeholder="pieces" required>
-                    </div>
-                </div>
 
-                <div class="col">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4">Reference piece</label>
-                        <input name="ref_doss[]" type="text" class="form-control" id="refs" placeholder="ref pieces" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4">Montant ligne</label>
-                        <input name="montantligne[]" type="number" class="form-control" id="mligne"
-                            placeholder="Montant ligne" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4">Date d'expiration de la piece</label>
-                        <input name="exp_pieces[]" value=" " type="date" class="form-control" id="expi"
-                            placeholder="date expiration pieces">
-                    </div>
-                </div>
-
-
-
-                <div class="col">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4">Ajouter une autre piece</label>
-                        <button style="position: relative; top: 36px; right: 100px;" type="button"
-                            class="btn btn-primary" name="btn1" id="ajouterChamp">+</button>
-                    </div>
-                </div>
-                <div class="col" id="retirer">
-                    <div class="form-group">
-                        <label for="" class="form-label mt-4" id="lretirerChamp">Retirer la piece</label>
-                        <button style="position: relative; top: 36px; right: 100px;" type="button"
-                            class="btn btn-danger" name="btn2" id="retirerChamp">-</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <h3>Il y a pas de pieces joint pour cette demande</h3>
         <br>
         <br>
         @endif
 
 
 
-        {{-- @if (empty($piece))
+        @if (empty($test))
 
         <div id="container" style="  width: 1362px;">
             <div class="row">
@@ -1092,7 +1043,7 @@
         <br>
         <br>
         @endif
-        --}}
+
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
     <a href="{{ route('retour_s', $item_c->id) }}"><button class="btn btn-danger">Retournez la

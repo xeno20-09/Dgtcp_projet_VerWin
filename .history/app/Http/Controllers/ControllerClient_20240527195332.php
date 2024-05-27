@@ -49,19 +49,18 @@ class ControllerClient extends Controller
         $num_doss = $data['numero_dossier'];
         $date_depot = $data['date_depot'];
 
-   
+        $demande = demande::where('numero_doss', '=', $num_doss)
+            ->where('date', '=', $date_depot)
+            ->get();
+        $test = count($demande);
         if($type_prs=='morale') {
     
             $demandes = demande::where('numero_doss', '=', $num_doss)
-                ->where('date', '=', $date_depot)
+            ->where('date', '=', $date_depot)
 
                 ->where('nomsociete', '=', $nom)
-                ->where('nomsociete', '=', $prenom)
+                ->orwhere('nomsociete', '=', $prenom)
                 ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
-            $test = count($demande);
         }
         else{
     
@@ -71,15 +70,11 @@ class ControllerClient extends Controller
                 ->where('prenom_client', '=', $prenom)
 
                 ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
-            $test = count($demande);
         }
            // dd($demandes);
         $pic = 0;
-        if ($demandes == null || $test == 0) {
-            $message = 'La demande n\'est pas la votre désolé ou  La demande n\'exite pas désolé !';
+        if ($demandes == null) {
+            $message = 'La demande n\'est pas la votre désolé';
             return view('client.demande_client_i', compact('user', 'message'));
         }
         if ($demandes->status_dmd == 'Autorisée' || $demandes->status_dmd == 'Rejetée' || $demandes->status_dmd == 'Suspendu') {
@@ -90,7 +85,10 @@ class ControllerClient extends Controller
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }
-
+        if ($test == 0) {
+            $message = 'La demande n\'exite pas désolé';
+            return view('client.demande_client_i', compact('user', 'message'));
+        }
     }
     // Generate PDF
     public function createPDF(Request $request, $id)
