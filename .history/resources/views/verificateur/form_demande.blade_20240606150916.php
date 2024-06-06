@@ -1003,13 +1003,13 @@
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
                         <div class="row" style="position: relative;">
-                            <div class="col-7">
+                            <div class="col-6">
                                 <input name="montantligne[]" type="number" class="form-control" id="mligne"
                                     placeholder="Montant ligne">
                             </div>
-                            <div class="col-5">
-                                <input name="devise" type="text" class="form-control" id="devise" placeholder=""
-                                    value="{{ $item_c->devise }}" readonly>
+                            <div class="col-6">
+                                <input name="devise" type="text" class="form-control" id="devise"
+                                    placeholder="">
                             </div>
                         </div>
                     </div>

@@ -1007,7 +1007,7 @@
                                 <input name="montantligne[]" type="number" class="form-control" id="mligne"
                                     placeholder="Montant ligne">
                             </div>
-                            <div class="col-5">
+                            <div class="col-4">
                                 <input name="devise" type="text" class="form-control" id="devise" placeholder=""
                                     value="{{ $item_c->devise }}" readonly>
                             </div>

@@ -81,6 +81,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Devise</label>
+
                         <input name="currency_from" value="{{ $item_c->devise }}" type="text" class="form-control"
                             readonly>
                     </div>
@@ -1002,20 +1003,17 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Montant ligne</label>
-                        <div class="row" style="position: relative;">
-                            <div class="col-7">
-                                <input name="montantligne[]" type="number" class="form-control" id="mligne"
-                                    placeholder="Montant ligne">
-                            </div>
-                            <div class="col-5">
-                                <input name="devise" type="text" class="form-control" id="devise" placeholder=""
-                                    value="{{ $item_c->devise }}" readonly>
-                            </div>
-                        </div>
+                        <input name="montantligne[]" type="number" class="form-control" id="mligne"
+                            placeholder="Montant ligne" >
                     </div>
                 </div>
-
-
+                <div class="col">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-4">Devise</label>
+                        <input name="devise" type="texte" class="form-control" id="devise"
+                            placeholder="Devise" >
+                    </div>
+                </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="" class="form-label mt-4">Date d'expiration de la pièce</label>
