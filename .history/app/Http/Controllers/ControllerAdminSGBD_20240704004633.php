@@ -1,4 +1,14 @@
 <?php
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
 
 namespace App\Http\Controllers;
 

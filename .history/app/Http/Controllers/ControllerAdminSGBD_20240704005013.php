@@ -1,6 +1,28 @@
 <?php
 
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
+
 namespace App\Http\Controllers;
+
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
 
 use App\Models\demandes;
 use App\Models\user as user;
@@ -20,8 +42,24 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
 use App\Models\pieces as piece;
 
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
+
 class ControllerAdminSGBD extends Controller
 {
+    /**
+     * Display the client's home page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function home()
     {
         $id = Auth::id();
@@ -31,6 +69,11 @@ class ControllerAdminSGBD extends Controller
         return view('Admin_SGBD.Home', compact('user', 'admin'));
     }
 
+    /**
+     * Display the client's etat des demandes page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function getetatdmd()
     {
         $id = Auth::id();
@@ -54,6 +97,11 @@ class ControllerAdminSGBD extends Controller
         return view('Admin_SGBD.etats', compact('user', 'liste', 'date', 'devise', 'admin'));
     }
 
+    /**
+     * Display the client's test page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function test()
     {
         $id = Auth::id();
@@ -68,6 +116,11 @@ class ControllerAdminSGBD extends Controller
         return view('Admin_SGBD.test', compact('categories', 'admin'));
     }
 
+    /**
+     * Display the client's avoir les pays page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function getpays()
     {
         $id = Auth::id();
@@ -104,6 +157,11 @@ class ControllerAdminSGBD extends Controller
         return view('Admin_SGBD.etatpays', compact('grouped', 'devise', 'user', 'le_n_dmd_c', 'dmd_back', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu', 'admin'));
     }
 
+    /**
+     * Display the client's avoir des devises page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function getdevis()
     {
         $id = Auth::id();
@@ -562,7 +620,8 @@ class ControllerAdminSGBD extends Controller
 
     // Generate PDF
     public function createPDF()
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // retreive all records from db
         $data = user::all();
@@ -574,7 +633,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function listePDF($status, $sdate, $fdate)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -633,7 +693,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalistePDF($status, $sdate, $fdate, $devise)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -694,7 +755,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalisteetatsPDF($test)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // dd($test);
 
@@ -708,8 +770,8 @@ class ControllerAdminSGBD extends Controller
 
             view()->share(
                 [
-                'devise' => $devise,
-                'test' => $test,
+                    'devise' => $devise,
+                    'test' => $test,
                 ]
             );
 
@@ -727,9 +789,9 @@ class ControllerAdminSGBD extends Controller
                 ->get();
             view()->share(
                 [
-                'grouped' => $grouped,
-                'test' => $test,
-                'devis' => $devis,
+                    'grouped' => $grouped,
+                    'test' => $test,
+                    'devis' => $devis,
                 ]
             );
             /*             foreach ($grouped as $group) {
@@ -756,8 +818,8 @@ class ControllerAdminSGBD extends Controller
 
             view()->share(
                 [
-                'group' => $group,
-                'test' => $test,
+                    'group' => $group,
+                    'test' => $test,
                 ]
             );
             $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $group = ['devise', 'montant', 'nomsociete']);

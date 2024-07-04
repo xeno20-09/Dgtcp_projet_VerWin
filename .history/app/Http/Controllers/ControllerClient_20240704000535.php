@@ -1,6 +1,13 @@
 <?php
 
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @package App\Http\Controllers\ControllerClient
+ */
+
 namespace App\Http\Controllers;
+
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\user as user;
@@ -10,7 +17,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
-
+/**
+ * ControllerClient handles client-related requests and actions.
+ */
 class ControllerClient extends Controller
 {
     public function home()

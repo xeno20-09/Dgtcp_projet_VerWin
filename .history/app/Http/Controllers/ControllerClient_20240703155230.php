@@ -1,5 +1,12 @@
 <?php
+/**
+ * @file
+ * Description of what this module (or file) is doing.
+ */
 
+/**
+ * Implements hook_help().
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;

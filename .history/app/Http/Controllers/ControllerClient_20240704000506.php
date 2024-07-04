@@ -1,6 +1,13 @@
 <?php
 
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @package App\Http\Controllers\
+ */
+
 namespace App\Http\Controllers;
+
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\user as user;

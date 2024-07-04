@@ -1,6 +1,26 @@
 <?php
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
 
 namespace App\Http\Controllers;
+/**
+ * ControllerClient handles client-related requests and actions.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ * @author   Allégresse CAKPO <allegressecakpo93@gmail.com>
+ * @license  MIT License
+ * @link     http://example.com
+ * @version  GIT: <git_id>
+ */
 
 use App\Models\demandes;
 use App\Models\user as user;
@@ -22,6 +42,11 @@ use App\Models\pieces as piece;
 
 class ControllerAdminSGBD extends Controller
 {
+        /**
+         * Display the client's home page.
+         *
+         * @return \Illuminate\View\View
+         */
     public function home()
     {
         $id = Auth::id();
@@ -562,7 +587,8 @@ class ControllerAdminSGBD extends Controller
 
     // Generate PDF
     public function createPDF()
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // retreive all records from db
         $data = user::all();
@@ -574,7 +600,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function listePDF($status, $sdate, $fdate)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -633,7 +660,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalistePDF($status, $sdate, $fdate, $devise)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -694,7 +722,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalisteetatsPDF($test)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // dd($test);
 
