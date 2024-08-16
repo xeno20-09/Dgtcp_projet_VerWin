@@ -210,7 +210,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="" class="form-label mt-4">Numéro de compte du demandeur</label>
-                    <input name="num_compt_client" type="text" class="form-control" id="num_compt_id_p"
+                    <input name="num_compt_client" type="text" min="11" max="12" class="form-control" id="num_compt_id_p"
                         placeholder="Numéro de compte">
                 </div>
             </div>

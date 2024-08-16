@@ -40,9 +40,10 @@
         <img src="https://i.ibb.co/vwVQTCb/1.jpg" style="height:50px;" alt="white-Official-Logo-removebg-preview">
 
         <img src="https://i.ibb.co/mbbqYPz/2.jpg" alt="iso" style="height:50px;margin-left:100px;">
-        <img src="https://i.ibb.co/TY3L6CF/3.jpg" style="height:50px;margin-left:150px;"
-            alt="logo-DGTCP-2-blanc-removebg-preview">
 
+        {{--         <img src="{{ asset('images/logo_DGTCP_2_blanc.png') }}" style="height:50px;margin-left:150px;" alt="logo-DGTCP-2-blanc-removebg-preview">
+ --}} <img src="https://i.ibb.co/zrLR5Q1/logo-DGTCP-2-blanc.png"
+            style="height:50px;margin-left:150px;" alt="logo-DGTCP-2-blanc-removebg-preview">
     </div>
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">

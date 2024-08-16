@@ -2,58 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use GuzzleHttp\Client;
+use Illuminate\Support\Str;
+
 use App\Models\devises;
 use App\Models\demandeurM;
 use App\Models\demandeurP;
 use App\Models\listedevise;
 use App\Models\user as user;
+use App\Models\demandes as demande;
+
 use Illuminate\Http\Request;
 use App\Models\pieces as piece;
-use Illuminate\Support\Facades\DB;
-use App\Models\demandes as demande;
-use Illuminate\Support\Facades\Log;
-use libphonenumber\PhoneNumberUtil;
-use Illuminate\Support\Facades\Auth;
-use AmrShawky\LaravelCurrency\Facade\Currency;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Database\Seeders\DemandeurPSeeder;
 
-use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\RegisterService;
+use App\Services\InfosBaseAgentsService;
+use Spatie\LaravelPdf\Facades\Pdf as SpatiePdf;
 
 class ControllerSecretaire extends Controller
 {
- 
+
+    protected $registerService;
+    protected $infosBaseAgentsService;
+    public $passwordGlobal;
+    public $emailGlobal;
+    public $dataGlobal;
+
+    public function __construct(RegisterService $registerService, InfosBaseAgentsService $infosBaseAgentsService)
+    {
+        $this->registerService = $registerService;
+        $this->infosBaseAgentsService = $infosBaseAgentsService;
+    }
+    // 
+
+
     /**
      *  Home Secretaire
      *
      * @ param $request
      * @ return void
      */
-    public function home(Request $request)
+    public function home()
     {
+        // dd($this->infosBaseAgentsService->getInfosDemande()['Tab_infos_demandes']['demande_encours']);
         $id = Auth::id();
         $user = User::where('id', '=', $id)->get();
-        $demande_encours = demande::where('status_dmd', '=', 'en cours')->get();
-        $demande_valider = demande::where('status_dmd', '=', 'Autorisée')->get();
-        $demande_echec = demande::where('status_dmd', '=', 'Rejetée')->get();
-        $demande_suspendre = demande::where('status_dmd', '=', 'suspendu')->get();
-        $dmd_n_lu =0/*  count(demande::where('reponse_damf', '=', 1)->get()) */;
-        $le_n_dmd_c = count($demande_encours);
-        $le_n_dmd_v = count($demande_valider);
-        $le_n_dmd_e = count($demande_echec);
-        $le_n_dmd_s = count($demande_suspendre);
-        $date = now();
+        $dmd_n_lu = 0;
         $dmd_back = count(
             demande::where('back_secret', '=', 1)
                 ->where('vu_secret', '=', 0)
                 ->get(),
         );
-        return view('secretaire.Home', compact('user', 'dmd_back', 'dmd_n_lu', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'date', 'le_n_dmd_s'));
+        $All_info_dmd = $this->infosBaseAgentsService->getInfosDemande();
+        return view('secretaire.Home', compact('user', 'dmd_back', 'dmd_n_lu', 'All_info_dmd'));
     }
 
-   
+
 
     /**
      * GetFormAsk
@@ -61,7 +66,7 @@ class ControllerSecretaire extends Controller
      * @param Request $request The HTTP request instance.
      * 
      * @return [type]
-     */  
+     */
     public function get_form_ask(Request $request)
     {
         $id = Auth::id();
@@ -111,80 +116,45 @@ class ControllerSecretaire extends Controller
     /************************************
      * Sauvegarder une demande************************************************ 
      */
-    public function store_form_ask(Request $request)
+
+    public function generateDossierNumber()
     {
-        $id = Auth::id();
-        // Récupérer toutes les données du formulaire
-        $data = $request->all();
-        //dd($data);
-
-        if (request()->validate(
-            [
-                'num_compt_client' => 'required|min:11|max:12',
-            ]
-        )
-        ) {
-            $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
-        }
-        // Création d'un nouveau modèle avec les données du formulaire
-        $dmd_secretaire = new demande();
-        // Supposons que vous ayez les informations suivantes pour la demande de prêt
-
         $anneeDemande = date('Y');
 
-        // dd($anneeDemande);
-        // Récupérez le dernier numéro de dossier enregistré dans votre base de données
-        $test = demande::latest()->first();
-        $dernierNumeroDossier = null;
-
-        if ($test) {
-            $dernierNumeroDossier = $test->numero_doss;
-        }
-
+        // Get the last dossier number and increment it
+        $dernierNumeroDossier = demande::max('numero_doss');
         if ($dernierNumeroDossier) {
-            // Extraire la partie numérique "XXXXXX"
-            $n = substr($dernierNumeroDossier, 4, 6);
-
-            // Convertir la partie numérique en un nombre entier
-            $n = (int) $n;
-
-            // Incrémenter la partie numérique
+            $n = (int) substr($dernierNumeroDossier, 4, 6);
             $n++;
-
-            // Formatez la partie numérique avec des zéros non significatifs à gauche
             $n = sprintf('%06d', $n);
         } else {
-            // Si aucun numéro de dossier n'a été enregistré, initialisez à 1
             $n = '000001';
         }
-        // dd($n);
-        // Obtenez l'année de la demande (exemple : 2023)
-        $anneeDemande = date('Y');
 
-        // Créez le nouveau numéro de dossier en utilisant le format
+        // Create the new dossier number
         $numeroDossier = 'DTr' . '-' . $n . '-' . $anneeDemande;
-
-        /*         $numeroDossier =substr(strtoupper($prenomDemandeur), 0, 1) . substr(strtoupper($nomDemandeur), 0, 1) . $anneeDemande . sprintf('%03d', $new);
-         */
+        return $numeroDossier;
+    }
+    public function prepareDataForAllPersonSaveDemande($data, $dmd_secretaire)
+    {
+        $numeroDossier = $this->generateDossierNumber();
         $dmd_secretaire->numero_doss = $numeroDossier;
         $dmd_secretaire->date = $data['date_depot'];
         $dmd_secretaire->nature_p = $data['nature_pro'];
         $dmd_secretaire->nature_op = $data['nature_op'];
         $dmd_secretaire->montant = $data['montant_in'];
         $dmd_secretaire->num_save = $data['num_save'];
-
         $dmd_secretaire->type_prs = $data['type'];
-
-        if ($data['type'] == 'morale') {
-            $dmd_secretaire->boite = $data['boite'];
-            $dmd_secretaire->nomsociete = $data['nomsociete'];
-            $dmd_secretaire->categorie = $data['categorie'];
-            $dmd_secretaire->adresse = $data['adresse'];
-        }
 
         $dmd_secretaire->vu_secret = 1;
         $dmd_secretaire->devise = $data['currency_from'];
         $dmd_secretaire->valeur = $data['valeur'];
+
+        $dmd_secretaire->tel_client = $data['tel_client'];
+        $dmd_secretaire->banque_client = $data['banque_client'];
+        $dmd_secretaire->num_compt_client = $data['num_compt_client'];
+        $dmd_secretaire->id_secret = Auth::id();
+        $dmd_secretaire->status_dmd = 'En cours';
         if ($data['valeur'] * $data['montant_in'] != $data['mont_fcfa']) {
             $dmd_secretaire->montant_con = $data['valeur'] * $data['montant_in'];
         } else {
@@ -192,55 +162,156 @@ class ControllerSecretaire extends Controller
         }
 
         $fromCurrency = $data['currency_from'];
-
         $dmd_secretaire->devise = $fromCurrency;
+
+        if ($data['type'] == 'morale') {
+            $dmd_secretaire->boite = $data['boite'];
+            $dmd_secretaire->nomsociete = $data['nomsociete'];
+            $dmd_secretaire->categorie = $data['categorie'];
+            $dmd_secretaire->adresse = $data['adresse'];
+        }
         if ($data['type'] == 'physique') {
             $dmd_secretaire->nom_client = $data['nom_client'];
             $dmd_secretaire->prenom_client = $data['prenom_client'];
             $dmd_secretaire->profess_client = $data['profess_client'];
             $dmd_secretaire->nationalite = $data['nationalite'];
         }
-        $dmd_secretaire->tel_client = $data['tel_client'];
-        $dmd_secretaire->banque_client = $data['banque_client'];
-
-        $dmd_secretaire->num_compt_client = $data['num_compt_client'];
-        $dmd_secretaire->id_secret = Auth::id();
-        $dmd_secretaire->status_dmd = 'En cours';
-
-        // Sauvegarde du modèle en base de données
-        $dmd_secretaire->save();
-        $user = User::where('id', '=', $id)->get();
-
-        // Redirection vers la page de liste des produits
-        $demande = demande::where('id_secret', '=', $id)
-            ->where('vu_secret', '=', 1)
-            ->get();
-        $le_n_dmd = count($demande);
-        $dmd_back = count(
-            demande::where('back_secret', '=', 1)
-                ->where('vu_secret', '=', 0)
-                ->get(),
-        );
-        return redirect('/ListeDemandes')->with('demande', 'dmd_back', 'dmd_n_lu', 'user');
-
-        //return view('secretaire.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user'));
     }
-    /************************************
-     * Sauvegarder une demande************************************************ 
-     */
-    public function get_rec_ask(Request $request, $id)
+
+    public function savePersonRequest($typedmdeur, $data, $ifu)
     {
-        // retreive all records from db
-        $demande = demande::where('id', '=', $id)->first();
-        //dd($demande);
+        $data['ifu'] = $ifu;
 
-        // share data to view
-        view()->share('demande', $demande);
+        if ($data['type'] == 'morale' && $typedmdeur == 'morale') {
 
-        $pdf = PDF::loadView('secretaire.pdf_recu', $data = ['numero_doss', 'date', 'nature_p', 'nature_op', 'montant', 'montant_con', 'devise', 'num_save', 'nom_client', 'type_prs', 'boite', 'adresse', 'nomsociete', 'prenom_client', 'profess_client', 'tel_client', 'banque_client', 'num_compt_client']);
+            $takeEmail = demandeurM::where('num_ifu', '=', $data['ifu'])->first();
+            $password = Str::random(8);
+
+            if ($takeEmail) {
+                $email = $takeEmail->email;
+            } else {
+                $email = $data['nomsociete'] . $data['categorie'] . '@gmail.com';
+            }
+            $data['email'] = $email;
+            $data['password'] = $password;
+            $data['company_name'] = $data['nomsociete'];
+            $data['nom_client'] = null;
+            $data['prenom_client'] = null;
+            $exists = User::where('email', $email)->exists();
+            if ($exists) {
+                return ([$password, $email]);
+            } else {
+                $this->registerService->register($data);
+            }
+        }
+
+        if ($data['type'] == 'physique' && $typedmdeur == 'physique') {
+            $takeEmail = demandeurP::where('num_ifu', '=', $data['ifu'])->first();
+            $password = Str::random(8);
+
+            if ($takeEmail) {
+                $email = $takeEmail->email;
+            } else {
+                $email = $data['nom_client'] . $data['prenom_client'] . '@gmail.com';
+            }
+            $data['email'] = $email;
+            $data['password'] = $password;
+            $data['company_name'] = null;
+            $exists = User::where('email', $email)->exists();
+            if ($exists) {
+                return ([$password, $email]);
+            } else {
+                $this->registerService->register($data);
+            }
+        }
+        $this->emailGlobal = $email;
+        $this->passwordGlobal = $password;
+    }
+    public function store_form_ask(Request $request)
+    {
+        $id = Auth::id();
+        $user = User::where('id', '=', $id)->get();
+        $data = $request->all();
+        $num_save = $data['num_save'];
+        $dmd_exists = demande::where('num_save', $num_save)->exists();
+
+        if ($dmd_exists) {
+            // Get the id of the demande with the specific num_save
+            $id_demande = demande::where('num_save', $num_save)->value('id');
+            return $this->get_list_details_ask($id_demande);
+        } else {
+            // Create a new demande instance
+            $dmd_secretaire = new demande();
+            $this->prepareDataForAllPersonSaveDemande($data, $dmd_secretaire);
+            $ifu_exist = demandeurM::where('num_ifu', $data['ifu'])->exists();
+            $ifu = $data['ifu'];
+
+            // Determine the type of demandeur and save the request
+            $typedmdeur = $ifu_exist ? 'morale' : 'physique';
+            $this->savePersonRequest($typedmdeur, $data, $ifu);
+            // dd( $this->savePersonRequest($typedmdeur, $data, $ifu));
+            /*       $password = $this->savePersonRequest($typedmdeur, $data, $ifu)[0];
+            $email = $this->savePersonRequest($typedmdeur, $data, $ifu)[1]; */
+            //dd($this->emailGlobal);
+            // Save the demande to the database
+            $dmd_secretaire->save();
+
+            // Retrieve the demande by num_save
+            $demande = demande::where('num_save', $num_save)->firstOrFail();
+            $data = [
+                'email' => $this->emailGlobal,
+                'password' => $this->passwordGlobal,
+                'numero_doss' => $demande->numero_doss,
+                'date' => $demande->date,
+                'nom_client' => $demande->nom_client,
+                'nomsociete' => $demande->nomsociete,
+                'prenom_client' => $demande->prenom_client,
+                'devise' => $demande->devise,
+                'montant' => $demande->montant,
+                'montant_con' => $demande->montant_con,
+
+            ];
+            $this->dataGlobal=$data;
+            $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
+            $dmd_back = count(
+                demande::where('back_secret', '=', 1)
+                    ->where('vu_secret', '=', 0)
+                    ->get()
+            );
+            //return $this->get_rec_ask($this->passwordGlobal, $this->emailGlobal, $demande);
+
+            return view('secretaire.pre_recu', compact('data','user', 'dmd_back', 'dmd_n_lu'));
+        }
+    }
+
+    public function get_rec_ask($email,$password, $numero_doss)
+    {
+        //dd($password, $email, $numero_doss);
+        $demande = demande::where('numero_doss', $numero_doss)->firstOrFail();
+        $pdf = PDF::loadView('secretaire.pdf_recu',   $data = [
+            'email' => $email,
+            'password' => $password,
+            'numero_doss' => $demande->numero_doss,
+            'date' => $demande->date,
+            'nom_client' => $demande->nom_client,
+            'nomsociete' => $demande->nomsociete,
+            'prenom_client' => $demande->prenom_client,
+            'devise' => $demande->devise,
+            'montant' => $demande->montant,
+            'montant_con' => $demande->montant_con,
+        ]);
+       
         //  download PDF file with download method
         return $pdf->download('Recu.pdf');
     }
+
+
+    /************************************
+     * Sauvegarder une demande************************************************ 
+     */
+
+
+
     /************************************
      * Liste des demandes************************************************ 
      */
@@ -271,7 +342,7 @@ class ControllerSecretaire extends Controller
     /************************************
      * Voir les details d'une demande************************************************ 
      */
-    public function get_list_details_ask(Request $request, $id)
+    public function get_list_details_ask($id)
     {
         $id_c = Auth::id();
         $user = User::where('id', '=', $id_c)->get();
@@ -484,8 +555,8 @@ class ControllerSecretaire extends Controller
         }
     }
     */ /************************************
-        * Rechercher demande pour poursuivre************************************************ 
-        */
+     * Rechercher demande pour poursuivre************************************************ 
+     */
 
     /************************************
      * Sauvegarder une demande pour la suite************************************************ 
@@ -559,8 +630,8 @@ class ControllerSecretaire extends Controller
 
     }
     */ /************************************
-        * Sauvegarder une demande pour la suite************************************************ 
-        */
+     * Sauvegarder une demande pour la suite************************************************ 
+     */
     public function listeretour()
     {
         $id = Auth::id();

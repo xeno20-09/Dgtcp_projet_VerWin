@@ -108,10 +108,11 @@ Route::post(
 );
 
 Route::get(
-    '/Recu{id_ask}',
+    '/Recu/{email}/{password}/{numero_doss}',
     [App\Http\Controllers\ControllerSecretaire::class, 'get_rec_ask']
 )->name('get_rec_ask');
 
+ 
 /***************************************
  * Fin route secretaire 
 ***********************************/
