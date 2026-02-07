@@ -73,10 +73,17 @@
                                     style="background-image:url('../assets/img/image-sign-in.jpg')">
                                     <div
                                         class="blur mt-12 p-4 text-center border border-white border-radius-md position-absolute fixed-bottom m-4">
-                                        <h2 class="mt-3 text-dark font-weight-bold">Enter our global community of
-                                            developers.</h2>
-                                        <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+
+                                        <h6 class="text-dark text-sm mt-5"> Copyright
+                                            ©
+                                            <script>
+                                                document.write(new Date().getFullYear())
+                                            </script>
+                                            made with <x-bi-hearts /> by
+                                            <a href="https://xeno20-09.github.io/xeno.github.io/portfolio-sac-details.html"
+                                                class="text-secondary text-bold" target="_blank">Allégresse
+                                                CAKPO</a>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

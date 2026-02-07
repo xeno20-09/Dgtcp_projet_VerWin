@@ -364,8 +364,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="mt-6 mb-0 btn btn-white btn-sm float-end">Save
-                                changes</button>
+                            <button type="submit" class="mt-6 mb-0 btn btn-white btn-sm float-end">Ajouter</button>
                         </div>
                     </div>
                 </div>

@@ -17,9 +17,7 @@
                                     <h3 class="font-weight-black text-dark display-6">Welcome back</h3>
                                     <p class="mb-0">Welcome back!</p>
                                     <p class="mb-0">Create a new acount<br></p>
-                                    <p class="mb-0">OR Sign in with these credentials:</p>
-                                    <p class="mb-0">Email: <b>admin@corporateui.com</b></p>
-                                    <p class="mb-0">Password: <b>secret</b></p>
+
                                 </div>
                                 <div class="text-center">
                                     @if (session('status'))
@@ -34,31 +32,31 @@
                                     @enderror
                                 </div>
                                 <div class="card-body">
-                                    <form role="form" class="text-start" method="POST" action="{{ route('login') }}">
+                                    <form role="form" class="text-start" method="POST"
+                                        action="{{ route('login') }}">
                                         @csrf
                                         <label>Email Address</label>
                                         <div class="mb-3">
                                             <input type="email" id="email" name="email" class="form-control"
-                                                placeholder="Enter your email address"
-                                                value="{{ old('email') /* ? old('email') : 'admin@corporateui.com'  */}}"
+                                                placeholder="Enter your email address" value="{{ old('email') }}"
                                                 aria-label="Email" aria-describedby="email-addon">
                                         </div>
                                         <label>Password</label>
                                         <div class="mb-3">
                                             <input type="password" id="password" name="password"
-                                                value="{{ old('password')/*  ? old('password') : 'secret' */ }}"
-                                                class="form-control" placeholder="Enter password" aria-label="Password"
+                                                value="{{ old('password') }}" class="form-control"
+                                                placeholder="Enter password" aria-label="Password"
                                                 aria-describedby="password-addon">
                                         </div>
                                         <div class="d-flex align-items-center">
-                                     
+
                                             <a href="{{ route('password.request') }}"
                                                 class="text-xs font-weight-bold ms-auto">Forgot
                                                 password</a>
                                         </div>
-                                      <div class="text-center">
+                                        <div class="text-center">
                                             <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
-                                          
+
                                         </div>
                                     </form>
                                 </div>
@@ -76,10 +74,17 @@
                                     style="background-image:url('../assets/img/image-sign-in.jpg')">
                                     <div
                                         class="blur mt-12 p-4 text-center border border-white border-radius-md position-absolute fixed-bottom m-4">
-                                        <h2 class="mt-3 text-dark font-weight-bold">Enter our global community of
-                                            developers.</h2>
-                                        <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+
+                                        <h6 class="text-dark text-sm mt-5">Copyright
+                                            ©
+                                            <script>
+                                                document.write(new Date().getFullYear())
+                                            </script>
+                                            made with <x-bi-hearts /> by
+                                            <a href="https://xeno20-09.github.io/xeno.github.io/portfolio-sac-details.html"
+                                                class="text-secondary text-bold" target="_blank">Allégresse
+                                                CAKPO</a>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

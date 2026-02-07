@@ -48,8 +48,16 @@
                                         </div>
                                     </div>
                                     <div class="text-start position-absolute fixed-bottom ms-7">
-                                        <h6 class="text-white text-sm mb-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+                                        <h6 class="text-white text-sm mb-5">Copyright
+                                            ©
+                                            <script>
+                                                document.write(new Date().getFullYear())
+                                            </script>
+                                            made with <x-bi-hearts /> by
+                                            <a href="https://xeno20-09.github.io/xeno.github.io/portfolio-sac-details.html"
+                                                class="text-secondary text-bold" target="_blank">Allégresse
+                                                CAKPO</a>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
