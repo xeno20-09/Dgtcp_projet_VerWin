@@ -1,111 +1,129 @@
-@extends('layout.Admin.header')
-@section('content')
-<h1 style="text-align: center;">
-    @foreach ($admin as $item)
-    <a class="nav-link" href="#"> Mr/Mrs {{ $item['firstname'] }} {{ $item['lastname'] }} </a>
-    @endforeach
-</h1>
-    <div class="container">
-        <h1 style="text-align: center;">
-            {{--      @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item->name }}  <span class="badge rounded-pill badge-notification bg-danger"
-                    style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  </a>
-            @endforeach --}}
-        </h1>
-        {{-- 
-        <table class="table ">
-            <thead>
-                <tr>
+<x-app-layout>
 
-                    <th scope="col">N°Dossier:</th>
-                    <th scope="col">Nom du client:</th>
-                    <th scope="col">Date:</th>
-                    <th scope="col">Montant:</th>
-                    <th scope="col">Devise:</th>
-                    <th scope="col">Contre Montant en FCFA:</th>
-                    <th scope="col">Status:</th>
-                    <th scope="col">Actions</span></th>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <x-app.navbar />
+        <div class="container-fluid py-4 px-5">
+
+            <!-- En-tête de la page -->
 
 
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach ($demande as $item)
-                    <tr class="table-success">
-
-                        <td> {{ $item->numero_doss }}</td>
-                        <td> {{ $item->nom_client }}</td>
-                        <td> {{ $item->date }}</td>
-
-              
-
-            <td> {{ $item['montant'] }}</td>
-            <td>{{ $item['devise'] }}</td>
-            <td>{{ $item['montant_con'] }}</td>
-            <td>{{ $item->status_dmd }}</td>
-            <td>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border shadow-xs mb-4">
+                        <div class="card-header border-bottom pb-0">
+                            <div class="d-sm-flex align-items-center">
+                                <div>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Demandes</h6>
+                                    <p class="text-sm">Liste des demandes</p>
+                                </div>
+                                {{-- <div class="ms-auto d-flex">
+                                    <span class="badge badge-sm border border-warning text-warning bg-warning me-2">
+                                        {{ count($demande) }} non lues
+                                    </span>
+                                </div> --}}
 
 
-            </td>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 py-0">
+                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
+                                <div class="input-group w-sm-25 ms-auto">
+                                    <span class="input-group-text text-body">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
+                                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Rechercher une demande...">
+                                </div>
+                            </div>
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">N° Dossier
+                                            </th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Date
+                                            </th>
 
-            <td>
-                <a style="width: auto; height:fit-content;"
-                    href="{{ route('detaillesdmd', ['id' => $item->id]) }}" class="btn btn-primary">Voir</a>
-            </td>
+                                            <th
+                                                class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Montant</th>
+
+                                            <th
+                                                class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Contre Montant FCFA</th>
+                                            <th
+                                                class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Statut</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($demande as $item)
+                                            <tr class="">
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold">
+                                                                {{ $item->numero_doss }} </h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-sm text-dark font-weight-semibold mb-0">
+                                                        {{ $item->date }}
+                                                    </p>
+                                                </td>
+
+                                                <td class="align-middle text-center">
+                                                    <span class="text-dark text-sm font-weight-bold">
+                                                        {{ $item['montant'] }} {{ $item['devise'] }}
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-sm font-weight-normal">
+                                                        {{ $item['montant_con'] }}
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-dark text-sm font-weight-bold">
+                                                        {{ $item->status_dmd }}
+                                                    </span>
+                                                </td>
 
 
 
 
-        </tr>
-    @endforeach
-</tbody>
-</table> --}}
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="row mt-4">
+                                    <div class="col p-3 d-flex justify-content-start">
+                                        <a class="btn btn-primary"
+                                            href="{{ route('liste.pdf', ['status' => $status, 'sdate' => $sdate, 'fdate' => $fdate]) }}">Impression</a>
 
-        @if ($number == 0)
-            <div class="alert alert-danger">
-                <strong>Vos critères de recherche n'ont retournés aucunes demandes </strong>
+                                    </div>
+                                    <div class="col p-3 d-flex justify-content-end">
+                                        <a style="width: auto; height:fit-content;" href="{{ url()->previous() }}"
+                                            class="btn btn-primary">Retour</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
-        @else
-            <h1>Liste des demandes </h1>
-            <a class="btn btn-primary"
-                href="{{ route('liste.pdf', ['status' => $status, 'sdate' => $sdate, 'fdate' => $fdate]) }}">Impression</a>
-            <br><br>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-
-                            <th scope="col">N°Dossier:</th>
-                            <th scope="col">Date:</th>
-                            <th scope="col">Montant:</th>
-                            <th scope="col">Contre Montant en FCFA:</th>
-                            <th scope="col">Status:</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach ($demande as $item)
-                            <tr class="table">
-
-                                <td> {{ $item->numero_doss }}</td>
-                                <td> {{ $item->date }}</td>
-                                <td> {{ $item['montant'] }} {{ $item['devise'] }}</td>
-                                <td>{{ $item['montant_con'] }}</td>
-                                <td>{{ $item->status_dmd }}</td>
 
 
 
+            <x-app.footer />
+        </div>
+    </main>
 
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endif
-        <a style="width: auto; height:fit-content;" href="{{ url()->previous() }}" class="btn btn-primary">Retour</a>
-
-        <br>
-        <br>
-    @endsection
+</x-app-layout>

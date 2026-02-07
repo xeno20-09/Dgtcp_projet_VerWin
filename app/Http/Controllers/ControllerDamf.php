@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\demandeurM;
+use App\Models\demandeurP;
 use App\Models\user as user;
-use App\Models\demandes as demande;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Models\pieces as piece;
+use Illuminate\Support\Facades\DB;
+use App\Models\demandes as demande;
+use Illuminate\Support\Facades\Auth;
 
 class ControllerDamf extends Controller
 {
@@ -78,11 +80,17 @@ class ControllerDamf extends Controller
         $dmd_damf = demande::find($id);
         /*         $dmd_damf->vu_damf = 1;
         $dmd_damf->update(); */
+        $type = $demande[0]['type_prs'];
 
+        if ($type == 'physique') {
+            $ifu = demandeurP::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        } else {
+            $ifu = demandeurM::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        }
         $piece = piece::where('id_dmd', '=', $id)->get();
-        $taux_d=$demande[0]['montant_con']/$demande[0]['montant'];
+        $taux_d = $demande[0]['montant_con'] / $demande[0]['montant'];
 
-        return view('damf.form_demande', compact('demande', 'piece', 'user', 'dmd_n_lu', 'taux_d'));
+        return view('damf.form_demande', compact('demande', 'ifu', 'piece', 'user', 'dmd_n_lu', 'taux_d'));
     }
     public function form(Request $request, $id_dmd)
     {

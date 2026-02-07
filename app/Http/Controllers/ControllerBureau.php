@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\devises;
+use App\Models\demandeurM;
+use App\Models\demandeurP;
 use App\Models\user as user;
 use Illuminate\Http\Request;
 use App\Models\pieces as piece;
@@ -76,6 +78,13 @@ class ControllerBureau extends Controller
             ->where('vu_chef_bureau', '=', 0)
             ->where('id', '=', $id)
             ->get();
+        $type = $demande[0]['type_prs'];
+
+        if ($type == 'physique') {
+            $ifu = demandeurP::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        } else {
+            $ifu = demandeurM::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        }
         $le_n_dmd = count($demande);
         $piece = piece::where('id_dmd', '=', $id)->get();
 
@@ -90,9 +99,9 @@ class ControllerBureau extends Controller
         $devise=$demande[0]['devise'];
         $taux_d=(devises::where('devise', '=', $devise)->latest()->first())['valeur'];
         */
-        $taux_d=$demande[0]['montant_con']/$demande[0]['montant'];
+        $taux_d = $demande[0]['montant_con'] / $demande[0]['montant'];
 
-        return view('chef_bureau.form_demande', compact('demande', 'piece', 'user', 'dmd_back', 'dmd_n_lu', 'taux_d'));
+        return view('chef_bureau.form_demande', compact('ifu', 'demande', 'piece', 'user', 'dmd_back', 'dmd_n_lu', 'taux_d'));
     }
     public function form(Request $request, $id_dmd)
     {

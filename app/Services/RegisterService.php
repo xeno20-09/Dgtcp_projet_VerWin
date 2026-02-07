@@ -15,7 +15,7 @@ class RegisterService
 {
 
 
-/*     protected function validator(array $data)
+    /*     protected function validator(array $data)
     {
         return Validator::make($data, [
             'lastname' => ['required', 'string', 'max:255'],
@@ -32,20 +32,20 @@ class RegisterService
         // Créer un nouvel utilisateur
         $user = $this->create($data);
 
-     //   return $user;
+        //   return $user;
     }
     protected function create(array $data)
     {
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'firstname' => $data['prenom_client'],
-            'lastname' => $data['nom_client'],
-            'company_name'=>$data['company_name'],
-            'ifu'=>$data['ifu'],
+            'firstname' => $data['prenom_client'] ? $data['prenom_client'] : 'Entreprise',
+            'lastname' => $data['nom_client'] ? $data['nom_client'] : 'Entreprise',
+            'company_name' => $data['company_name'] ? $data['company_name'] : 'Physique',
+            'ifu' => $data['ifu'],
         ]);
 
-/*         // Envoyer l'e-mail de bienvenue
+        /*         // Envoyer l'e-mail de bienvenue
         Mail::to($user->email)->send(new WelcomeUserMail());
         return $user; */
     }

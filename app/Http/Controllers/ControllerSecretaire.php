@@ -271,7 +271,7 @@ class ControllerSecretaire extends Controller
                 'montant_con' => $demande->montant_con,
 
             ];
-            $this->dataGlobal=$data;
+            $this->dataGlobal = $data;
             $dmd_n_lu = count(demande::where('reponse_damf', '=', 1)->get());
             $dmd_back = count(
                 demande::where('back_secret', '=', 1)
@@ -279,12 +279,14 @@ class ControllerSecretaire extends Controller
                     ->get()
             );
             //return $this->get_rec_ask($this->passwordGlobal, $this->emailGlobal, $demande);
+            $email = $this->emailGlobal;
+            $password = $this->passwordGlobal;
 
-            return view('secretaire.pre_recu', compact('data','user', 'dmd_back', 'dmd_n_lu'));
+            return view('secretaire.pre_recu', compact('data', 'user', 'dmd_back', 'dmd_n_lu', 'email', 'password'));
         }
     }
 
-    public function get_rec_ask($email,$password, $numero_doss)
+    public function get_rec_ask($email, $password, $numero_doss)
     {
         //dd($password, $email, $numero_doss);
         $demande = demande::where('numero_doss', $numero_doss)->firstOrFail();
@@ -300,7 +302,7 @@ class ControllerSecretaire extends Controller
             'montant' => $demande->montant,
             'montant_con' => $demande->montant_con,
         ]);
-       
+
         //  download PDF file with download method
         return $pdf->download('Recu.pdf');
     }
@@ -554,7 +556,8 @@ class ControllerSecretaire extends Controller
             return view('secretaire.form_dmd_suite', compact('montantr', 'dmd_back', 'numeroDossier', 'demande', 'user', 'le_n_dmd_c', 'le_n_dmd_v', 'le_n_dmd_e', 'le_n_dmd_s', 'dmd_n_lu'));
         }
     }
-    */ /************************************
+    */
+    /************************************
      * Rechercher demande pour poursuivre************************************************ 
      */
 
@@ -629,7 +632,8 @@ class ControllerSecretaire extends Controller
 
 
     }
-    */ /************************************
+    */
+    /************************************
      * Sauvegarder une demande pour la suite************************************************ 
      */
     public function listeretour()

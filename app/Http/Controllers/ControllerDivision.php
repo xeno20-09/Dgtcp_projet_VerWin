@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\user as user;
-use App\Models\demandes as demande;
 use App\Models\devises;
+use App\Models\demandeurM;
+use App\Models\demandeurP;
 use App\Models\listedevise;
-use Illuminate\Support\Facades\DB;
+use App\Models\user as user;
 use Illuminate\Http\Request;
 use App\Models\pieces as piece;
+use Illuminate\Support\Facades\DB;
+use App\Models\demandes as demande;
+use Illuminate\Support\Facades\Auth;
 
 class ControllerDivision extends Controller
 {
@@ -51,6 +53,7 @@ class ControllerDivision extends Controller
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
             ->get();
+
         $jointure1 = DB::table('users')
             ->join('demandes', 'users.id', '=', 'demandes.id_verifi')
             ->select('demandes.*', 'users.*')
@@ -73,6 +76,13 @@ class ControllerDivision extends Controller
         $id_c = Auth::id();
         $user = User::where('id', '=', $id_c)->get();
         $demande = demande::where('id', '=', $id)->get();
+        $type = $demande[0]['type_prs'];
+
+        if ($type == 'physique') {
+            $ifu = demandeurP::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        } else {
+            $ifu = demandeurM::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        }
         $le_n_dmd = count($demande);
         $dmd_n_lu = count(
             demande::where('status_dmd', '=', 'En cours')
@@ -89,12 +99,12 @@ class ControllerDivision extends Controller
         /*     $devise=$demande[0]['devise'];
         $taux_d=(devises::where('devise', '=', $devise)->latest()->first())['valeur'];
         */
-        $taux_d=$demande[0]['montant_con']/$demande[0]['montant'];
-//dd($taux_d);
+        $taux_d = $demande[0]['montant_con'] / $demande[0]['montant'];
+        //dd($taux_d);
         $id_dmd = $demandes->id;
         $piece = piece::where('id_dmd', '=', $id_dmd)->get();
-        //  dd($piece);
-        return view('chef_division.form_demande', compact('demande', 'dmd_back', 'piece', 'user', 'dmd_n_lu', 'taux_d'));
+        //dd($piece);
+        return view('chef_division.form_demande', compact('demande', 'dmd_back', 'piece', 'user', 'dmd_n_lu', 'taux_d', 'ifu'));
     }
 
     public function form(Request $request, $id_dmd)
@@ -432,15 +442,14 @@ class ControllerDivision extends Controller
             ->select('demandes.*', 'users.*')
             ->get();
         $dmd_back = count(demande::where('back_chef_division', '=', 1)->get());
-        $piece = piece::where('id_dmd', '=', $id)->first();
+        $pieces = piece::where('id_dmd', '=', $id)->get();
+        /*     dd($piece);
         if ($piece) {
             $pieces = $piece->libellepiece;
         } else {
             $pieces = null;
-        }
-        $piece = piece::where('id_dmd', '=', $id)->first();
-
-        return view('chef_division.detaille_demande', compact('demande', 'piece', 'pieces', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
+        } */
+        return view('chef_division.detaille_demande', compact('demande'/* , 'piece' */, 'pieces', 'dmd_back', 'user', 'dmd_n_lu', 'jointure', 'jointure1'));
     }
     public function retour(Request $request, $idc)
     {

@@ -166,7 +166,8 @@ class ControllerAdminSGBD extends Controller
                 "BWP" => "Pula botswanaise",
                 "BYN" => "Rouble biélorusse",
                 "BZD" => "Dollar bélizien",
-               */ 'CAD' =>
+               */
+            'CAD' =>
             'Dollar canadien',
             /*  "CDF" => "Franc congolais",
                 "CHF" => "Franc suisse",
@@ -180,20 +181,24 @@ class ControllerAdminSGBD extends Controller
                 "DJF" => "Franc djiboutien",
                 "DKK" => "Couronne danoise",
                 "DOP" => "Peso dominicain",
-               */ 'DZD' => 'Dinar algérien',
+               */
+            'DZD' => 'Dinar algérien',
             'EGP' => 'Livre égyptienne',
             /*     "ERN" => "Nakfa érythréen",
              "ETB" => "Birr éthiopien", */
             'EUR' => 'Euro',
             /* "FJD" => "Dollar fidjien",
                 "FKP" => "Livre des îles Malouines",
-                 */ 'GBP' => 'Livre sterling',
+                 */
+            'GBP' => 'Livre sterling',
             /* "GEL" => "Lari géorgien",
                 "GGP" => "Livre de Guernesey",
-                 */ 'GHS' => 'Cedi ghanéen',
+                 */
+            'GHS' => 'Cedi ghanéen',
             /* "GIP" => "Livre de Gibraltar",
                 "GMD" => "Dalasi gambien",
-                 */ 'GNF' => 'Franc guinéen',
+                 */
+            'GNF' => 'Franc guinéen',
             'GTQ' => 'Quetzal guatémaltèque',
             /*  "GYD" => "Dollar guyanais",
                 "HKD" => "Dollar de Hong Kong",
@@ -211,7 +216,8 @@ class ControllerAdminSGBD extends Controller
                 "JEP" => "Livre de Jersey",
                 "JMD" => "Dollar jamaïcain",
                 "JOD" => "Dinar jordanien",
-                */ 'JPY' => 'Yen japonais',
+                */
+            'JPY' => 'Yen japonais',
             /*  "KES" => "Shilling kényan",
                 "KGS" => "Som kirghize",
                 "KHR" => "Riel cambodgien",
@@ -244,12 +250,14 @@ class ControllerAdminSGBD extends Controller
                 "MYR" => "Ringgit malais",
                 "MZN" => "Métical mozambicain",
                 "NAD" => "Dollar namibien",
-                */ 'NGN' =>
+                */
+            'NGN' =>
             'Naira nigérian',
             /*  "NIO" => "Cordoba nicaraguayen",
                 "NOK" => "Couronne norvégienne",
                 "NPR" => "Roupie népalaise",
-                */ 'NZD' => 'Dollar néo-zélandais',
+                */
+            'NZD' => 'Dollar néo-zélandais',
             /*    "OMR" => "Rial omanais",
                 "PAB" => "Balboa panaméen",
                 "PEN" => "Nouveau sol péruvien",
@@ -295,7 +303,8 @@ class ControllerAdminSGBD extends Controller
                 "VUV" => "Vatu vanuatais",
                 "WST" => "Tala samoan",
     
-                */ 'XAF' =>
+                */
+            'XAF' =>
             "Franc CFA d'Afrique centrale",
             'USD' => 'Dollar des États-Unis',
 
@@ -562,7 +571,8 @@ class ControllerAdminSGBD extends Controller
 
     // Generate PDF
     public function createPDF()
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // retreive all records from db
         $data = user::all();
@@ -574,7 +584,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function listePDF($status, $sdate, $fdate)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -633,7 +644,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalistePDF($status, $sdate, $fdate, $devise)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         /*         // retreive all records from db
         $data = user::all();
@@ -694,7 +706,8 @@ class ControllerAdminSGBD extends Controller
     }
 
     public function lalisteetatsPDF($test)
-    {        $id = Auth::id();
+    {
+        $id = Auth::id();
         $admin = User::where('id', '=', $id)->get();
         // dd($test);
 
@@ -708,8 +721,8 @@ class ControllerAdminSGBD extends Controller
 
             view()->share(
                 [
-                'devise' => $devise,
-                'test' => $test,
+                    'devise' => $devise,
+                    'test' => $test,
                 ]
             );
 
@@ -727,9 +740,9 @@ class ControllerAdminSGBD extends Controller
                 ->get();
             view()->share(
                 [
-                'grouped' => $grouped,
-                'test' => $test,
-                'devis' => $devis,
+                    'grouped' => $grouped,
+                    'test' => $test,
+                    'devis' => $devis,
                 ]
             );
             /*             foreach ($grouped as $group) {
@@ -756,8 +769,8 @@ class ControllerAdminSGBD extends Controller
 
             view()->share(
                 [
-                'group' => $group,
-                'test' => $test,
+                    'group' => $group,
+                    'test' => $test,
                 ]
             );
             $pdf = PDF::loadView('Admin_SGBD.pdf_view2', $group = ['devise', 'montant', 'nomsociete']);

@@ -1,400 +1,380 @@
-@extends('layout.secretaire.header')
-@section('content')
-<h1 style="text-align: center;">
-    @foreach ($user as $item)
-    <a class="nav-link" href="#"> Mr/Mrs {{ $item['firstname'] }} {{ $item['lastname'] }} {{-- <span
-            class="badge rounded-pill badge-notification bg-danger"
-            style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span>  --}}</a>
-    @endforeach
-</h1>
-@foreach ($user as $item)
-<form action="{{ route('store_form_ask', $item->id) }}" method="post" class="card-body cardbody-color p-lg-5">
+<x-app-layout>
 
-    @csrf
-    @endforeach
-    <div class="row">
-        {{-- @foreach ($user as $item)
-        <legend>Bureau du {{ $item->poste }} </legend>
-        @endforeach --}}
-        <legend>Enregistrement d'une demande</legend>
-        {{-- <button type="button" id="press">test</button>
-        --}}
-        <div class="col">
-            <div class="form-group">
-                <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
-                <input name="date_depot" type="texte" value="{{ $date }}" class="form-control" id="" aria-describedby=""
-                    placeholder="" required>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <x-app.navbar />
+        <div class="px-5 py-4 container-fluid ">
+            @foreach ($user as $item)
+                <form action="{{ route('store_form_ask', $item->id) }}" method="post"
+                    class="card-body cardbody-color p-lg-5">
 
+                    @csrf
+            @endforeach
+            <div class="mt-5 mb-5 mt-lg-9 row justify-content-center">
+                <div class="col-lg-9 col-12">
+                    <div class="card card-body" id="profile">
+
+
+                        <div class="row z-index-2 justify-content-center align-items-center">
+                            <div class="col-sm-auto col-4">
+
+                            </div>
+                            <div class="col-sm-auto col-8 my-auto">
+                                <div class="h-100">
+
+                                    <p class="mb-0 font-weight-bold text-sm">
+                                        Enregistrement d'une demande </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-12">
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert" id="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert" id="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="mb-5 row justify-content-center">
+                <div class="col-lg-11 col-12">
+                    <div class="card" id="basic-info">
+                        <div class="card-header">
+                            <h5>1ere Etape</h5>
+                        </div>
+                        <div class="pt-0 card-body">
+                            <!-- Première partie du formulaire -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="" class="form-label mt-4">Date de dépôt du dossier</label>
+                                        <input name="date_depot" type="texte" value="{{ $date }}"
+                                            class="form-control" id="" aria-describedby="" placeholder=""
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="" class="form-label mt-4">Type personne</label>
+                                        <select class="form-select position-relative"
+                                            aria-label="Default select example" id="type" onchange="toggleFields()"
+                                            name="type" required>
+                                            <option value="null">Personne?</option>
+                                            <option value="morale">Personne morale</option>
+                                            <option value="physique">Personne physique</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="" class="form-label mt-4">IFU</label>
+                                        <input name="ifu" type="texte" value="" class="form-control"
+                                            id="ifu" aria-describedby="" maxlength="13" minlength="12"
+                                            onchange="infopers()" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="" class="form-label mt-4">N° enregistrement</label>
+                                        <input name="num_save" type="texte" value="" class="form-control"
+                                            id="" aria-describedby="" placeholder="" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section Personne Physique -->
+                            <div id="physique" style="display: none;">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nature des opérations</label>
+                                            <input name="nature_op" type="text" class="form-control" id=""
+                                                placeholder="Nature des opérations">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nature des produits</label>
+                                            <input name="nature_pro" type="text" class="form-control" id=""
+                                                placeholder="Nature des produits">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nationalité du
+                                                demandeur</label>
+                                            <input name="nationalite" type="text" class="form-control"
+                                                id="nationalite_id_p" placeholder="Nationalité">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Devise</label>
+                                            <select style="top: 0px;" class="form-select position-relative"
+                                                name='currency_from' aria-label="Default select example"
+                                                onchange="valeur_p()" id='currency_from_p' required>
+                                                <option value="null">Selectionner une devise</option>
+                                                <option value="Euro">Euro</option>
+                                                <option value="Dollar des États-Unis">Dollar us</option>
+                                                <option value="Yen japonais">Yen japonais</option>
+                                                <option value="Livre sterling">Livre sterling</option>
+                                                <option value="Dollar canadien">Dollar canadien</option>
+                                                <option value="Yuan chinois">Yuan chinois</option>
+                                                <option value="Dirham des Émirats arabes unis">Dirham Emirats Arabes
+                                                    Unis</option>
+                                                <option value="Dinar algérien">Dinar algérien</option>
+                                                <option value="Livre égyptienne">Livre égyptienne</option>
+                                                <option value="Cedi ghanéen">Cedi ghanéen</option>
+                                                <option value="Franc guinéen">Franc guinéen</option>
+                                                <option value="Quetzal guatémaltèque">Quetzal guatémaltèque</option>
+                                                <option value="Naira nigérian">Naira nigérian</option>
+                                                <option value="Dollar néo-zélandais">Dollar néo-zélandais</option>
+                                                <option value="Franc rwandais">Franc rwandais</option>
+                                                <option value="Riyal saoudien">Riyal saoudien</option>
+                                                <option value="Franc CFA d'Afrique centrale">Franc CFA d'Afrique
+                                                    centrale</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Montant de la
+                                                transaction</label>
+                                            <input name="montant_in" type="number" oninput="test()"
+                                                class="form-control" id="montant_in" placeholder="Montant">
+                                        </div>
+                                    </div>
+                                    <div class="col" id="valeur_p">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Coût de la devise</label>
+                                            <input name="valeur" type="text" id="val" class="form-control"
+                                                placeholder="Valeur" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col" id="mont_fcfa_p">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Contre montant</label>
+                                            <input name="mont_fcfa" type="text" class="form-control"
+                                                id="montant_fcfa" placeholder="Contre montant" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nom du demandeur</label>
+                                            <input name="nom_client" type="text" class="form-control"
+                                                id="nom_id_p" placeholder="Nom client">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Prenom du demandeur</label>
+                                            <input name="prenom_client" type="text" class="form-control"
+                                                id="prenom_id_p" placeholder="Prenom client">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Profession du
+                                                demandeur</label>
+                                            <input name="profess_client" type="text" class="form-control"
+                                                id="profess_id_p" placeholder="ProfClient">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Telephone du
+                                                demandeur</label>
+                                            <input id="tel_id_p" type="tel" name="tel_client"
+                                                class="form-control" placeholder="TelClient">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Banque du demandeur</label>
+                                            <input id="banque_id_p" type="texte" name="banque_client"
+                                                class="form-control" placeholder="Banque">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Numéro de compte du
+                                                demandeur</label>
+                                            <input name="num_compt_client" type="text" min="11"
+                                                max="12" class="form-control" id="num_compt_id_p"
+                                                placeholder="Numéro de compte">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section Personne Morale -->
+                            <div id="morale" style="display: none;">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nature des
+                                                opérations</label>
+                                            <input name="nature_op" type="text" class="form-control"
+                                                id="" placeholder="Nature des opérations">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nature des produits</label>
+                                            <input name="nature_pro" type="text" class="form-control"
+                                                id="" placeholder="Nature des produits">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Boite postale de la
+                                                société</label>
+                                            <input name="boite" type="text" class="form-control"
+                                                id="boite_id_m" placeholder="Boite postale">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Devise</label>
+                                            <select style="top: 0px;" id="currency_from_m"
+                                                class="form-select position-relative" name='currency_from'
+                                                aria-label="Default select example" onchange="valeur_m()" required>
+                                                <option value="null">Selectionner une devise</option>
+                                                <option value="Euro">Euro</option>
+                                                <option value="Dollar des États-Unis">Dollar us</option>
+                                                <option value="Yen japonais">Yen japonais</option>
+                                                <option value="Livre sterling">Livre sterling</option>
+                                                <option value="Dollar canadien">Dollar canadien</option>
+                                                <option value="Yuan chinois">Yuan chinois</option>
+                                                <option value="Dirham des Émirats arabes unis">Dirham Emirats Arabes
+                                                    Unis</option>
+                                                <option value="Dinar algérien">Dinar algérien</option>
+                                                <option value="Livre égyptienne">Livre égyptienne</option>
+                                                <option value="Cedi ghanéen">Cedi ghanéen</option>
+                                                <option value="Franc guinéen">Franc guinéen</option>
+                                                <option value="Quetzal guatémaltèque">Quetzal guatémaltèque</option>
+                                                <option value="Naira nigérian">Naira nigérian</option>
+                                                <option value="Dollar néo-zélandais">Dollar néo-zélandais</option>
+                                                <option value="Franc rwandais">Franc rwandais</option>
+                                                <option value="Riyal saoudien">Riyal saoudien</option>
+                                                <option value="Franc CFA d'Afrique centrale">Franc CFA d'Afrique
+                                                    centrale</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Montant de la
+                                                transaction</label>
+                                            <input name="montant_in" type="number" class="form-control"
+                                                oninput="test1()" id="montant_in_m" placeholder="Montant">
+                                        </div>
+                                    </div>
+                                    <div class="col" id="valeur_m">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Coût de la devise</label>
+                                            <input name="valeur" type="text" class="form-control" id="val1"
+                                                placeholder="Valeur" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col" id="mont_fcfa_m">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Contre montant de la
+                                                transaction</label>
+                                            <input name="mont_fcfa" type="text" class="form-control"
+                                                id="montant_fcfa_m" placeholder="Contre montant" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Nom de la société</label>
+                                            <input name="nomsociete" type="text" class="form-control"
+                                                id="nom_id_m" placeholder="Nom societe">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Catégorie de la
+                                                société</label>
+                                            <input name="categorie" type="text" class="form-control"
+                                                id="categorie_id_m" placeholder="Catégorie">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Adresse de la
+                                                société</label>
+                                            <input name="adresse" type="text" class="form-control"
+                                                id="adresse_id_m" placeholder="Adresse">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group" style="position: relative;top: 15px;">
+
+                                            <label for="" class="form-label mt-4">Entrez le numéro de
+                                                téléphone de la société:</label>
+
+                                            <input id="tel_id_m" type="tel" name="tel_client"
+                                                class="form-control" placeholder="TelClient">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Banque de la société</label>
+                                            <input id="banque_id_m" type="texte" name="banque_client"
+                                                class="form-control" placeholder="Banque">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="" class="form-label mt-4">Numéro de compte de la
+                                                société</label>
+                                            <input name="num_compt_client" type="text" class="form-control"
+                                                id="num_compt_id_m" placeholder="Numéro de compte">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="mt-6 mb-0 btn btn-white btn-sm float-end">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="" class="form-label mt-4">Type personne</label>
-                <select name="type" class="form-select position-relative" aria-label="Default select example" id="type"
-                    onchange="toggleFields()" name="type_prs" required>
-                    <option value="null">Personne?</option>
-                    <option value="morale">Personne morale</option>
-                    <option value="physique">Personne physique</option>
-                </select>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="" class="form-label mt-4">IFU</label>
-                <input name="ifu" type="texte" value="" class="form-control" id="ifu" aria-describedby="" maxlength="13"
-                    minlength="12" onchange="infopers()" required>
+    </main>
 
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-group">
-                <label for="" class="form-label mt-4">N° enregistrement</label>
-                <input name="num_save" type="texte" value="" class="form-control" id="" aria-describedby=""
-                    placeholder="" required>
-
-            </div>
-        </div>
-
-
-    </div>
-
-    <div id="physique">
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nature des opérations</label>
-                    <input name="nature_op" type="text" class="form-control" id="" placeholder="Nature des opérations">
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nature des produits</label>
-                    <input name="nature_pro" type="text" class="form-control" id="" placeholder="Nature des produits">
-
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nationalité du demandeur</label>
-                    <input name="nationalite" type="text" class="form-control" id="nationalite_id_p"
-                        placeholder="Nationalité">
-
-
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="row">
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Devise </label>
-                    {{-- <select style="top: 0px;" class="form-select position-relative" name='currency_from'
-                        aria-label="Default select example" onchange="valeur_p()" id='currency_from_p' required>
-                        <option value="" @if (Request::get('currency_to')==null) selected @endif>Select Currency
-                        </option>
-                        <option value="AUD" @if (Request::get('currency_to')=='AUD' ) selected @endif>Australia Dollar
-                        </option>
-                        <option value="EUR" @if (Request::get('currency_to')=='EUR' ) selected @endif>Euro</option>
-                        <option value="GBP" @if (Request::get('currency_to')=='GBP' ) selected @endif>Great Britain
-                            Pound</option>
-                        <option value="INR" @if (Request::get('currency_to')=='INR' ) selected @endif>India Rupee
-                        </option>
-                        <option value="USD" @if (Request::get('currency_to')=='USD' ) selected @endif>USA Dollar
-                        </option>
-
-                    </select> --}}
-
-                    <select style="top: 0px;" class="form-select position-relative" name='currency_from'
-                        aria-label="Default select example" onchange="valeur_p()" id='currency_from_p' required>
-                        <option value="null">Selectionner une devise</option>
-                        {{-- @foreach ($listedevis as $name)
-                        <option value="{{ $name->nom }}">{{ $name->nom }}</option>
-                        @endforeach --}}
-                        <option value="Euro">Euro</option>
-                        <option value="Dollar des États-Unis">Dollar us</option>
-                        <option value="Yen japonais">Yen japonais</option>
-                        <option value="Livre sterling">Livre sterling</option>
-                        <option value="Dollar canadien">Dollar canadien</option>
-                        <option value="Yuan chinois">Yuan chinois</option>
-                        <option value="Dirham des Émirats arabes unis">Dirham Emirats Arabes Unis</option>
-                        <option value="Dinar algérien">Dinar algérien</option>
-                        <option value="Livre égyptienne">Livre égyptienne</option>
-                        <option value="Cedi ghanéen">Cedi ghanéen</option>
-                        <option value="Franc guinéen">Franc guinéen</option>
-                        <option value="Quetzal guatémaltèque">Quetzal guatémaltèque</option>
-                        <option value="Naira nigérian">Naira nigérian</option>
-                        <option value="Dollar néo-zélandais">Dollar néo-zélandais</option>
-                        <option value="Franc rwandais">Franc rwandais</option>
-                        <option value="Riyal saoudien">Riyal saoudien</option>
-                        <option value="Franc CFA d'Afrique centrale">Franc CFA d'Afrique centrale</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Montant de la transaction </label>
-                    <input name="montant_in" type="number" oninput="test()" class="form-control" id="montant_in"
-                        placeholder="Montant ">
-                </div>
-            </div>
-
-            <div class="col" id="valeur_p">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Coût de la devise </label>
-                    <input name="valeur" type="text" id="val" class="form-control" placeholder="Valeur" readonly>
-
-
-                </div>
-            </div>
-            <div class="col" id="mont_fcfa_p">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Contre montant de la transaction </label>
-                    <input name="mont_fcfa" type="text" class="form-control" id="montant_fcfa"
-                        placeholder="Contre montant" readonly>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nom du demandeur</label>
-                    <input name="nom_client" type="text" class="form-control" id="nom_id_p" placeholder="Nom client">
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Prenom du demandeur</label>
-                    <input name="prenom_client" type="text" class="form-control" id="prenom_id_p"
-                        placeholder="Prenom client">
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Profession du demandeur</label>
-                    <input name="profess_client" type="text" class="form-control" id="profess_id_p"
-                        placeholder="ProfClient">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group" style="">
-                    <label for="" class="form-label mt-4">Telephone du demandeur</label>
-
-                    <input id="tel_id_p" type="tel" name="tel_client" class="form-control" style=""
-                        placeholder="TelClient">
-
-
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Banque du demandeur</label>
-                    <input id="banque_id_p" type="texte" name="banque_client" class="form-control" style=""
-                        placeholder="Banque">
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Numéro de compte du demandeur</label>
-                    <input name="num_compt_client" type="text" min="11" max="12" class="form-control" id="num_compt_id_p"
-                        placeholder="Numéro de compte">
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div id="morale">
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nature des opérations</label>
-                    <input name="nature_op" type="text" class="form-control" id="" placeholder="Nature des opérations">
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nature des produits</label>
-                    <input name="nature_pro" type="text" class="form-control" id="" placeholder="Nature des produits">
-
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Boite postale de la société</label>
-                    <input name="boite" type="text" class="form-control" id="boite_id_m" placeholder="Boite postale">
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Devise</label>
-
-                    <select style="top: 0px;" id="currency_from_m" class="form-select position-relative"
-                        name='currency_from' aria-label="Default select example" onchange="valeur_m()" required>
-                        {{-- <option value="" @if (Request::get('currency_to')==null) selected @endif>Select Currency
-                        </option>
-                        <option value="AUD" @if (Request::get('currency_to')=='AUD' ) selected @endif>Australia Dollar
-                        </option>
-                        <option value="EUR" @if (Request::get('currency_to')=='EUR' ) selected @endif>Euro</option>
-                        <option value="GBP" @if (Request::get('currency_to')=='GBP' ) selected @endif>Great Britain
-                            Pound</option>
-                        <option value="INR" @if (Request::get('currency_to')=='INR' ) selected @endif>India Rupee
-                        </option>
-                        <option value="USD" @if (Request::get('currency_to')=='USD' ) selected @endif>USA Dollar
-                        </option> --}}
-                        <option value="Euro">Euro</option>
-                        <option value="Dollar des États-Unis">Dollar us</option>
-                        <option value="Yen japonais">Yen japonais</option>
-                        <option value="Livre sterling">Livre sterling</option>
-                        <option value="Dollar canadien">Dollar canadien</option>
-                        <option value="Yuan chinois">Yuan chinois</option>
-                        <option value="Dirham des Émirats arabes unis">Dirham Emirats Arabes Unis</option>
-                        <option value="Dinar algérien">Dinar algérien</option>
-                        <option value="Livre égyptienne">Livre égyptienne</option>
-                        <option value="Cedi ghanéen">Cedi ghanéen</option>
-                        <option value="Franc guinéen">Franc guinéen</option>
-                        <option value="Quetzal guatémaltèque">Quetzal guatémaltèque</option>
-                        <option value="Naira nigérian">Naira nigérian</option>
-                        <option value="Dollar néo-zélandais">Dollar néo-zélandais</option>
-                        <option value="Franc rwandais">Franc rwandais</option>
-                        <option value="Riyal saoudien">Riyal saoudien</option>
-                        <option value="Franc CFA d'Afrique centrale">Franc CFA d'Afrique centrale</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Montant de la transaction </label>
-                    <input name="montant_in" type="number" class="form-control" oninput="test1()" id="montant_in_m"
-                        placeholder="Montant ">
-                </div>
-            </div>
-
-
-
-            <div class="col" id="valeur_m">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Coût de la devise </label>
-                    <input name="valeur" type="text" class="form-control" id="val1" placeholder="Valeur" readonly>
-                </div>
-            </div>
-            <div class="col" id="mont_fcfa_m">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Contre montant de la transaction </label>
-                    <input name="mont_fcfa" type="text" class="form-control" id="montant_fcfa_m"
-                        placeholder="Contre montant" readonly>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Nom de la société</label>
-                    <input name="nomsociete" type="text" class="form-control" id="nom_id_m" placeholder="Nom societe">
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Catégorie de la société</label>
-                    <input name="categorie" type="text" class="form-control" id="categorie_id_m"
-                        placeholder="Catégorie">
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Adresse de la société</label>
-                    <input name="adresse" type="text" class="form-control" id="adresse_id_m" placeholder="Adresse">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            {{-- <div class="col">
-                <div class="form-group" style="position: relative;top: 15px;">
-                    <p>Entrez votre numéro de téléphone:</p>
-                    <input id="phone" type="tel" name="tel_client" class="form-control" style=""
-                        placeholder="TelClient">
-                    <input type='hidden' name='codecountry' id="codecountry" value="">
-                    <input type='hidden' name='namcountry' id="namcountry" value="">
-
-                </div>
-            </div> --}}
-
-            <div class="col">
-                <div class="form-group" style="position: relative;top: 15px;">
-                    <p>Entrez le numéro de téléphone de la société:</p>
-                    <input id="tel_id_m" type="tel" name="tel_client" class="form-control" style=""
-                        placeholder="TelClient">
-
-
-                </div>
-            </div>
-
-
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Banque de la société</label>
-                    <input id="banque_id_m" type="texte" name="banque_client" class="form-control" style=""
-                        placeholder="Banque">
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="" class="form-label mt-4">Numéro de compte de la société</label>
-                    <input name="num_compt_client" type="text" class="form-control" id="num_compt_id_m"
-                        placeholder="Numéro de compte">
-                </div>
-            </div>
-
-            
-        </div>
-
-    </div>
-
-    <br>
-    @section('script')
-    {{-- <script src="{{ asset('js/intlTelInput.js') }}"></script>
-    <script src="{{ asset('js/international-telephone-input.js') }}"></script> --}}
-
-    {{-- <script>
-        var input =document.querySelector("#phone")
-    window.intlTelInput(input,{
-        utilsScript: "/intl-tel-input/js/utils.js?1695806485509"
-    });     
-    </script> --}}
-    @endsection
-
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-</form>
-
+</x-app-layout>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -514,7 +494,7 @@
         var ifutake = document.getElementById('ifu').value;
         var val = document.getElementById('boss');
 
-        if (ifutake !== '' ) {
+        if (ifutake !== '') {
             $.ajax({
                 type: 'POST',
                 url: '/get-info',
@@ -552,38 +532,38 @@
                     $('#banque_id_m').val(info.val0.banque);
                     // $('#type').val(info.val0.type_prs);
                     console.log(info);
-               /*      val.style.display = 'block';
-                    testfunction = 1; */
+                    /*      val.style.display = 'block';
+                         testfunction = 1; */
 
 
                 },
-    error: function(info) {
-    // Vérifie si des données sont reçues dans l'objet info
-    if (info) {
-        // Configuration des options Toastr
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": false,
-            "onclick": true,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
+                error: function(info) {
+                    // Vérifie si des données sont reçues dans l'objet info
+                    if (info) {
+                        // Configuration des options Toastr
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "preventDuplicates": false,
+                            "onclick": true,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
 
-        // Affiche un message d'erreur avec Toastr
-        toastr.error("IFU incorrecte ou Veuillez contacter la direction de l'ANIP.");
-    }
-},
-         /*        error: function() {
+                        // Affiche un message d'erreur avec Toastr
+                        toastr.error("IFU incorrecte ou Veuillez contacter la direction de l'ANIP.");
+                    }
+                },
+                /*        error: function() {
             // En cas d'erreur lors de la requête AJAX
                           console.error(xhr.responseText);
            toastr.error("Une erreur s'est produite lors de la récupération des informations.");
@@ -635,6 +615,3 @@
     }
     test1();
 </script>
-
-
-@endsection

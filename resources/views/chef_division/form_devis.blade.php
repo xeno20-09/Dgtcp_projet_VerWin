@@ -1,13 +1,5 @@
 @extends('layout.chef_division.header')
 @section('content')
-    <div class="container">
-        <h1 style="text-align: center;">
-            @foreach ($user as $item)
-                <a class="nav-link" href="#"> Mr/Mrs {{ $item['firstname'] }} {{ $item['lastname'] }} <span
-                        class="badge rounded-pill badge-notification bg-danger"
-                        style="position: relative;bottom: 24px;right: 24px;">{{ $dmd_n_lu }}</span> </a>
-            @endforeach
-        </h1>
 
 
         {{--        <a href="{{ route('adddevises', ['id' => $item->id]) }}" data-bs-toggle="modal">

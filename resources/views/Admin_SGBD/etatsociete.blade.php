@@ -1,71 +1,100 @@
-@extends('layout.chef_bureau.header')
-@section('content')
-<h1 style="text-align: center;">
-    @foreach ($admin as $item)
-    <a class="nav-link" href="#"> Mr/Mrs {{ $item['firstname'] }} {{ $item['lastname'] }} </a>
-    @endforeach
-</h1>
-    <div class="container">
-        @php
-            $test = 'Société';
-        @endphp
-        <br>
-        <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => $test]) }}">Impression</a>
-        <br><br>
+<x-app-layout>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <x-app.navbar />
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nom de la société</th>
-                        <th>Montants</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $currentSociete = null;
-                        $totalMontant = 0;
-                    @endphp
+        <div class="px-5 py-4 container-fluid">
 
-                    @foreach ($group as $dat)
-                        @if ($dat->nomsociete != null)
-                            @if ($currentSociete != $dat->nomsociete)
-                                @if ($currentSociete != null)
-                                    <tr>
-                                        <th scope="row">{{ $currentSociete }}</th>
-                                        <td>Total :{{ $totalMontant }}</td>
-                                    </tr>
+            <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => 'Société']) }}">
+                Impression
+            </a>
+
+            <br><br>
+
+            <div id="mon-chart"></div>
+
+            <a href="{{ url()->previous() }}" class="btn btn-primary mt-3">Retour</a>
+
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <script>
+                google.charts.load('current', {
+                    packages: ['table']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Nom de la société');
+                    data.addColumn('number', 'Montant');
+                    data.addColumn('string', 'Devise');
+
+                    data.addRows([
+                        @php
+                            $currentSociete = null;
+                            $totaux = [];
+                        @endphp
+
+                        @foreach ($group as $dat)
+
+                            @if (!empty($dat->nomsociete))
+
+                                {{-- changement de société → afficher les totaux --}}
+                                @if ($currentSociete !== null && $currentSociete !== $dat->nomsociete)
+                                    @foreach ($totaux as $devise => $montant)
+                                        [
+                                            "TOTAL {{ $currentSociete }}",
+                                            {{ $montant }},
+                                            "{{ $devise }}"
+                                        ],
+                                    @endforeach
+
+                                    @php $totaux = []; @endphp
                                 @endif
 
                                 @php
                                     $currentSociete = $dat->nomsociete;
-                                    $totalMontant = $dat->total;
+
+                                    if (!isset($totaux[$dat->devise])) {
+                                        $totaux[$dat->devise] = 0;
+                                    }
+
+                                    $totaux[$dat->devise] += $dat->total;
                                 @endphp
-                            @else
-                                @php
-                                    $totalMontant += $dat->total;
-                                @endphp
+
+                                {{-- ligne détail --}}
+                                    [
+                                        "{{ $dat->nomsociete }}",
+                                        {{ $dat->total }},
+                                        "{{ $dat->devise }}"
+                                    ],
                             @endif
+                        @endforeach
 
-                            <tr>
-                                <td>{{ $dat->nomsociete }}</td>
-
-                                <td>{{ $dat->total }} {{ $dat->devise }}</td>
-                            </tr>
+                        {{-- derniers totaux --}}
+                        @if ($currentSociete !== null)
+                            @foreach ($totaux as $devise => $montant)
+                                [
+                                    "TOTAL {{ $currentSociete }}",
+                                    {{ $montant }},
+                                    "{{ $devise }}"
+                                ],
+                            @endforeach
                         @endif
-                    @endforeach
+                    ]);
 
-                    @if ($currentSociete != null)
-                        <tr>
-                            <th scope="row">{{ $currentSociete }}</th>
-                            <td>Total :{{ $totalMontant }}</td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
+                    var chart = new google.visualization.Table(
+                        document.getElementById('mon-chart')
+                    );
+
+                    chart.draw(data, {
+                        showRowNumber: true,
+                        width: '100%',
+                        height: '100%'
+                    });
+                }
+            </script>
 
         </div>
-        <a style="width: auto; height:fit-content;" href="{{ url()->previous() }}" class="btn btn-primary">Retour</a>
-    </div>
-
-@endsection
+    </main>
+</x-app-layout>

@@ -1,73 +1,78 @@
-@extends('layout.chef_bureau.header')
-@section('content')
-<h1 style="text-align: center;">
-    @foreach ($admin as $item)
-    <a class="nav-link" href="#"> Mr/Mrs {{ $item['firstname'] }} {{ $item['lastname'] }} </a>
-    @endforeach
-</h1>
 
-    <div class="container">
-        @php
-            $test = 'Pays';
-        @endphp
-        <br>
-        <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => $test]) }}">Impression</a>
-        <br><br>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nationalité</th>
-                        <th>Montant</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($grouped as $dataa)
-                        <tr>
+<x-app-layout>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <x-app.navbar />
 
-                            <td>{{ $dataa->nationalite }}</td>
-                            <td>
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        @foreach ($devise as $d)
-                                            @if ($dataa->nationalite == $d->nationalite)
-                                                <tr>
-                                                    <td>{{ $d->montant }} {{ $d->devise }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                @php
-                                    $totalMontant = 0; // Initialiser la somme des montants
-                                @endphp
+        <div class="px-5 py-4 container-fluid">
 
-                                @foreach ($devise as $subD)
-                                    @if ($subD->nationalite == $dataa->nationalite)
-                                        @php
-                                            $totalMontant += $subD->montant; // Ajouter le montant à la somme
-                                        @endphp
-                                    @endif
-                                @endforeach
+            <a class="btn btn-primary" href="{{ route('lalisteetats.pdf', ['test' => 'Pays']) }}">
+                Impression
+            </a>
 
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Montant total :</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $totalMontant }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <br><br>
+
+            <div id="mon-chart"></div>
+
+            <a href="{{ url()->previous() }}" class="btn btn-primary mt-3">Retour</a>
+
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
+            <script>
+                google.charts.load('current', {
+                    packages: ['table']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Pays');
+                    data.addColumn('number', 'Montant');
+                    data.addColumn('string', 'Devise');
+                    data.addColumn('number', 'Montant total');
+
+                    data.addRows([
+                        @foreach ($grouped as $dataa)
+
+                            @php
+                                $montant = 0;
+                                $deviseLabel = '';
+                                $totalMontant = 0;
+
+                                foreach ($devise as $d) {
+                                    if ($d->nationalite === $dataa->nationalite) {
+                                        $montant = $d->montant;
+                                        $deviseLabel = $d->devise;
+                                    }
+                                }
+
+                                foreach ($devise as $subD) {
+                                    if ($subD->nationalite === $dataa->nationalite) {
+                                        $totalMontant += $subD->montant;
+                                    }
+                                }
+                            @endphp
+
+                                [
+                                    "{{ $dataa->nationalite }}",
+                                    {{ $montant }},
+                                    "{{ $deviseLabel }}",
+                                    {{ $totalMontant }}
+                                ],
+                        @endforeach
+                    ]);
+
+                    var chart = new google.visualization.Table(
+                        document.getElementById('mon-chart')
+                    );
+
+                    chart.draw(data, {
+                        showRowNumber: true,
+                        width: '100%',
+                        height: '100%'
+                    });
+                }
+            </script>
+
         </div>
-        <a style="width: auto; height: fit-content;" href="{{ url()->previous() }}" class="btn btn-primary">Retour</a>
-    </div>
-@endsection
+    </main>
+</x-app-layout>

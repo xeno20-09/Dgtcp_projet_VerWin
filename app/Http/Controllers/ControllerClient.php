@@ -30,12 +30,11 @@ class ControllerClient extends Controller
 
         $nom = $use->firstname;
         $prenom = $use->lastname;
-        $check_type_prs = demande::where('nom_client', '=', $nom)->where('prenom_client', '=', $prenom)->first();
+        $check_type_prs = demande::where('prenom_client', '=', $nom)->where('nom_client', '=', $prenom)->first();
 
         if (!$check_type_prs) {
             $check_type_prs = demande::where('nomsociete', '=', $nom)->where('nomsociete', '=', $prenom)->first();
         }
-        
         if ($check_type_prs) {
             $type_prs = $check_type_prs->type_prs;
         } else {
@@ -44,39 +43,37 @@ class ControllerClient extends Controller
         }
         //  dd($type_prs);
 
-        
+
         $data = $request->all();
         $num_doss = $data['numero_dossier'];
         $date_depot = $data['date_depot'];
 
-   
-        if($type_prs=='morale') {
-    
+
+        if ($type_prs == 'morale') {
+
             $demandes = demande::where('numero_doss', '=', $num_doss)
                 ->where('date', '=', $date_depot)
 
                 ->where('nomsociete', '=', $nom)
                 ->where('nomsociete', '=', $prenom)
                 ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
+            $demande = demande::where('numero_doss', '=', $num_doss)
+                ->where('date', '=', $date_depot)
+                ->get();
             $test = count($demande);
-        }
-        else{
-    
+        } else {
+
             $demandes = demande::where('numero_doss', '=', $num_doss)
                 ->where('date', '=', $date_depot)
-                ->where('nom_client', '=', $nom)
-                ->where('prenom_client', '=', $prenom)
+                ->where('prenom_client', '=', $nom)
+                ->where('nom_client', '=', $prenom)
 
                 ->first();
-                $demande = demande::where('numero_doss', '=', $num_doss)
-                    ->where('date', '=', $date_depot)
-                    ->get();
+            $demande = demande::where('numero_doss', '=', $num_doss)
+                ->where('date', '=', $date_depot)
+                ->get();
             $test = count($demande);
         }
-           // dd($demandes);
         $pic = 0;
         if ($demandes == null || $test == 0) {
             $message = 'La demande n\'est pas la votre désolé ou  La demande n\'exite pas désolé !';
@@ -90,7 +87,6 @@ class ControllerClient extends Controller
         if ($test != 0) {
             return view('client.demande_client_t', compact('user', 'demande', 'pic'));
         }
-
     }
     // Generate PDF
     public function createPDF(Request $request, $id)

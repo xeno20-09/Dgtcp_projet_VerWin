@@ -8,6 +8,8 @@ use App\Models\user as user;
 use App\Models\demandes as demande;
 use App\Models\pieces as piece;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\demandeurM;
+use App\Models\demandeurP;
 use App\Models\devises;
 use Illuminate\Support\Facades\DB;
 use Nette\Utils\FileInfo;
@@ -59,16 +61,23 @@ class ControllerVerificateur extends Controller
     }
     public function formulaire(Request $request, $id)
     {
-        $lespieces=[];
+        $lespieces = [];
 
         $id_c = Auth::id();
         $user = User::where('id', '=', $id_c)->get();
         $demande = demande::where('id', '=', $id)->get();
+        $type = $demande[0]['type_prs'];
+
+        if ($type == 'physique') {
+            $ifu = demandeurP::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        } else {
+            $ifu = demandeurM::where('num_compt', '=', $demande[0]['num_compt_client'])->first()['num_ifu'];
+        }
         // $devise = demande::where('id', '=', $id)->get();
 
         /*         $devise=$demande[0]['devise'];
         $taux_d=(devises::where('devise', '=', $devise)->latest()->first())['valeur']; */
-        $taux_d=$demande[0]['montant_con']/$demande[0]['montant'];
+        $taux_d = $demande[0]['montant_con'] / $demande[0]['montant'];
         //    dd($taux_d);
 
         $le_n_dmd = count($demande);
@@ -81,11 +90,11 @@ class ControllerVerificateur extends Controller
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
         $piece = piece::where('id_dmd', '=', $id)->get();
         foreach ($piece as $key => $listepiece) {
-            $lespieces=$listepiece;
+            $lespieces = $listepiece;
         }
-        $piece=$lespieces;
+        $piece = $lespieces;
         //dd($lespieces);
-        return view('verificateur.form_demande', compact('demande', 'piece', 'dmd_back', 'user', 'dmd_n_lu', 'taux_d'));
+        return view('verificateur.form_demande', compact('demande', 'piece', 'dmd_back', 'user', 'dmd_n_lu', 'taux_d', 'ifu'));
     }
 
     public function form(Request $request, $id_dmd)
@@ -98,15 +107,15 @@ class ControllerVerificateur extends Controller
                 ->get(),
         );
         $demande = demande::where('id', '=', $id_dmd)->get();
-        $taux_d=$demande[0]['montant_con']/$demande[0]['montant'];
+        $taux_d = $demande[0]['montant_con'] / $demande[0]['montant'];
 
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
         $piece = piece::where('id_dmd', '=', $id_dmd)
-           // ->where('vu_verif', '=', 1)
+            // ->where('vu_verif', '=', 1)
             ->get();
         //dd($piece);
         $test = piece::where('id_dmd', '=', $id_dmd)
-           // ->where('vu_verif', '=', 0)
+            // ->where('vu_verif', '=', 0)
             ->get();
 
         return view('verificateur.formv_demande_mj', compact('demande', 'test', 'piece', 'dmd_back', 'dmd_n_lu', 'user', 'taux_d'));
@@ -421,10 +430,11 @@ class ControllerVerificateur extends Controller
         $user = User::where('id', '=', $id)->get();
 
         // Redirection vers la page de liste des produits
-        $demande = demande::where('id_verifi', '=', $id)
+        /*    $demande = demande::where('id_verifi', '=', $id)
             ->where('vu_verifi', '=', 1)
             ->where('vu_secret', '=', 1)
-            ->get();
+            ->get(); */
+        $demande = demande::all();
         $le_n_dmd = count($demande);
         $dmd_n_lu = count(
             demande::/* where('id_verifi', '=', $id)-> */where('vu_verifi', '=', 0)
@@ -436,6 +446,7 @@ class ControllerVerificateur extends Controller
             ->join('demandes', 'users.id', '=', 'demandes.id_secret')
             ->select('demandes.*', 'users.*')
             ->get();
+    
         $dmd_back = count(demande::where('back_verifi', '=', 1)->get());
 
         return view('verificateur.liste_demande', compact('demande', 'dmd_back', 'dmd_n_lu', 'user', 'jointure'));
